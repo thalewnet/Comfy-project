@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Navbar from '../component/Navbar.js'
 import Footer from '../component/Footer.js'
 import Path from '../component/Path'
-import credit from '../image/credit.png'
+import Cargo from '../image/cargo.png'
+import Ordernubmer from '../component/Ordernumber'
 
 const Decoration = styled.div `
     padding-top: 64px;
@@ -39,34 +40,33 @@ const Decoration = styled.div `
            font-weight: 500;
         }
 
+    .topics{
+        width: 80%;
+        margin: 0 auto;
+        padding-left: 120px;
+        margin-top: 10px;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
     .container {
         margin: 0 auto;
         margin-top: 5px;
         width: 80%;
-        min-height: 450px;
+        /* background-color: #F8F8F8; */
         padding: 10px 0;
-        
-    }   
-    .box {
+    }
+
+    .container-inside {
         width: 90%;
-        margin: 0 auto;
-    }
-    .text1 {
-        margin:0;
-        font-size: 40px;
-        font-weight: 700;
-    }
-    .text2 {
-        margin:0;
-        margin-top: 15px;
-        font-size: 24px;
-        font-weight: 500;
+        margin:0 auto;
+        
+  
     }
 
     .btn {
              position: relative;
-             bottom: -200px;
-             width: 100%;
+             width: 90%;
              border: none;
              border-radius: 5px;
              font-size: 16px;
@@ -94,30 +94,31 @@ const Decoration = styled.div `
             background-color: #456044
     }
 `
-function Orderconfirm() {
+function Myorder() {
     return (
         <Decoration>
         <Navbar/>
         <Path/>
         <div>
-            <div className="bar">
-                <div className="inside">
-                    <img className="all" src={credit} alt="credit"></img>
-                    <p className="text-bar">Payment</p>
-                 </div>
-            </div>  
+        <div className="bar">
+             <div className="inside">
+                <img className="all" src={Cargo} alt="truck"></img>
+                <p className="text-bar">My Order</p>
+                </div>
+             </div>  
+             <p className="topics">Order status</p>
 
-            <div className="container">
-                <div className="box">
-                 <p className="text1">Your order has been confirmed </p>
-                 <p className="text2">You can check order status on "My order" </p>
-                 <a href="/homepage"><button type='button' className="btn">Back to homepage</button></a>
-                 </div>
-             </div>
+             <div className="container">
+                <div className="container-inside">
+                    <Ordernubmer order={"CF-001"}/>
+                    <Ordernubmer order={"CF-002"}/>
+                    <a href="/homepage"><button type='button' className="btn">Back to homepage</button></a>
+                </div>
+            </div>
         </div>
         <Footer/>
         </Decoration>
     )
 }
 
-export default Orderconfirm
+export default Myorder

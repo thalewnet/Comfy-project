@@ -73,18 +73,31 @@ const Decoration = styled.div`
             border-right: 1px solid black ;
         }
     }
-    a {
+    .product {
         text-decoration: none;
         color: black;
     }
 
-    a:hover{
-        text-decoration: underline;
+    .contact-us {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
     }
-    
+
+    .btncontact, .btnlogin {
+        text-decoration: none;
+        color: black;
+    }
+
+    .btncontact:hover {
+        text-decoration: none;
+    }
+
     .btnlogin:hover{
         text-decoration: none;
     }
+
+   
 `   
 
 
@@ -96,22 +109,23 @@ function Navbar() {
          <div className="left">
             <a className="logo" href="/homepage"><img className='logo' src={Logo} alt="logo"/></a>
             <ul className="nav-product">
-                <li><a className="allproduct" href="/allproducts">All Product</a></li>
-                <li><a className="Localproduct" href="/localproducts">Local Coffee Bean</a></li>
-                <li><a className="Improtedproduct" href="/importproducts">Imported Coffee Bean</a></li>
+                <li><a className="product" href="/allproducts">All Product</a></li>
+                <li><a className="product" href="/localproducts">Local Coffee Bean</a></li>
+                <li><a className="product" href="/importproducts">Imported Coffee Bean</a></li>
             </ul>
         </div>
 
         <div className="right">
             <div className="contact-us">
-                <img className="right-icon" src={phone} alt="phone"/>
-                <label>Contact Us</label>
+                <a href="/contact"><img className="right-icon" src={phone} alt="phone"/></a>
+                <label><a className="btncontact" href="/contact">Contact us</a></label>
             </div>
+        
             <div className="cart">
                 <img className="right-icon" src={cart} alt="cart"/>
              </div>
             <div className="login">
-                 <img className="right-icon" src={login} alt="login"/>
+                 <a href="/login"><img className="right-icon" src={login} alt="login"/></a>
                 <label><a className="btnlogin" href="/login">Log - in</a></label>
              </div>
         </div>

@@ -12,7 +12,7 @@ import Importproduct from './page/Importproduct';
 import Delivery from './page/Delivery';
 import Payment from './page/Payment';
 import Orderconfirm from './page/Orderconfirm';
-
+import Contact from './page/Contact';
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
       <Route path="/cart/delivery-payment" component={Payment}/>
       <Route path="/cart/delivery-payment-confirm" component={Orderconfirm}/>
       <Route path="/contactus"  component={ContactUs}/>
+      <Route path="/contact" component={Contact}/>
       </Switch>
       </BrowserRouter>
     </div>

@@ -122,7 +122,7 @@ function Navbar() {
             </div>
         
             <div className="cart">
-                <img className="right-icon" src={cart} alt="cart"/>
+               <a href="/cart"><img className="right-icon" src={cart} alt="cart"/></a> 
              </div>
             <div className="login">
                  <a href="/login"><img className="right-icon" src={login} alt="login"/></a>

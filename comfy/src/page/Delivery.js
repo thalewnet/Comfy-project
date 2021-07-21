@@ -117,10 +117,7 @@ const Decoration = styled.div `
         margin-bottom: 18px;;
     }
     
-    label {
-        font-size: 12px;
-        font-weight: 600;
-    }
+  
          
     textarea {
         width: 100%;
@@ -194,7 +191,7 @@ function Delivery() {
                     <label for="details">Detail information:</label>
                     <textarea id="details" name="details" placeholder="More information"></textarea>
                     </div>
-                <div className="form"><a href="/cart/delivery-payment"><button type='button' className="btn">Confirm Shipping Address</button></a></div>
+                <div className="form"><a href="/cart-delivery-payment"><button type='button' className="btn">Confirm Shipping Address</button></a></div>
                 </form>
             </div>
         </div>

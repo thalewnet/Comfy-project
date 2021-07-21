@@ -104,10 +104,7 @@ const Decoration = styled.div `
             background-color: #456044
      }
      
-     label {
-        font-size: 12px;
-        font-weight: 600;
-    }
+
 `
 
 function Payment() {
@@ -140,7 +137,7 @@ function Payment() {
                 <div className="form">
                     <label for="upload">Upload payment slip :</label>
                     <input type="file" id="upload" multiple/></div>
-            <div className="form"><a href="/cart/delivery-payment-confirm"><button type='button' className="btn">Confirm payment</button></a></div>
+             <div className="form"><a href="/cart-delivery-payment-confirm"><button type='button' className="btn">Confirm payment</button></a></div>
             </form>
             </div>
         </div>

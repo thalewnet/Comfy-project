@@ -14,8 +14,8 @@ import Payment from './page/Payment';
 import Orderconfirm from './page/Orderconfirm';
 import Contact from './page/Contact';
 import Myorder from './page/Myorder';
-import Ordernumber from './component/Ordernumber';
-
+import Cardcart from './component/Cardcart';
+import Cart from './page/Cart';
 function App() {
   return (
     <div className="App">
@@ -29,13 +29,15 @@ function App() {
       <Route path="/allproducts"  component={Allproduct}/>
       <Route path="/localproducts"  component={Localproduct}/>
       <Route path="/importproducts" component={Importproduct}/>
-      <Route path="/cart/delivery" component={Delivery}/>
-      <Route path="/cart/delivery-payment" component={Payment}/>
-      <Route path="/cart/delivery-payment-confirm" component={Orderconfirm}/>
+      <Route path="/cart" component={Cart}/>
+      <Route path="/cart-delivery" component={Delivery}/>
+      <Route path="/cart-delivery-payment" component={Payment}/>
+      <Route path="/cart-delivery-payment-confirm" component={Orderconfirm}/>
       <Route path="/contactus"  component={ContactUs}/>
       <Route path="/contact" component={Contact}/>
       <Route path="/myorder" component={Myorder}/>
-      <Route path="/test" component={Ordernumber}/>
+      <Route path="/test" component={Cardcart}/>
+      
       </Switch>
       </BrowserRouter>
     </div>

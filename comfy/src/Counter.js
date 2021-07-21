@@ -2,13 +2,10 @@ import React from "react"
 
 class Counter extends React.Component{
    
-
         state = {
             counter:0
         }
       
-  
-
     addCounter = () => {
             this.setState(function(state){
                 return {

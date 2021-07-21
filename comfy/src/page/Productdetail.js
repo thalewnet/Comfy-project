@@ -157,7 +157,7 @@ function Productdetail() {
         <div className="container"> 
                 <div className="col-left">
                     <div className="productfigure"></div>
-                    <img  src={image} alt="producrfigue"></img>
+                    <img  src={image} alt="producrfigue"/>
                     <div className="productamount">
                        <button className="btnsub">-</button>
                        <p>1</p>
@@ -184,7 +184,7 @@ function Productdetail() {
                             <span className="specific">*</span>
                             </div>
                             <div className="controlinput">
-                                <input className="test" type="radio" id="wetprocess" name="coffeeprocessing" value="wetprocess"/>
+                                <input  type="radio" id="wetprocess" name="coffeeprocessing" value="wetprocess"/>
                                 <label for="wetprocess">Washed / Wet process</label><br/>
                             </div>
                             <div className="controlinput">
@@ -272,7 +272,7 @@ function Productdetail() {
                       <div className='price'>Baht</div>
                       </div>
                       <div className="btn-group">
-                          <a className="btn" href="#">Continue Shopping</a>
+                          <a className="btn" href="/localproducts">Continue Shopping</a>
                           <button className="btnaddtocart">Add to cart</button>
                       </div>
                      </div>

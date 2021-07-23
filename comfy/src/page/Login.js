@@ -96,7 +96,7 @@ function Login() {
                 <div className="register">
                     <h1>Log in</h1>
                 <form className="form">
-                <div><input type="text" placeholder="Email"/> </div>
+                <div><input type="text" placeholder="Email"/></div>
                 <div><input type="password" placeholder="Password"/> </div>
                 <div className="forgot"><a className="forgot" href="./forgot">Forgotten password?</a></div>
                 <div>

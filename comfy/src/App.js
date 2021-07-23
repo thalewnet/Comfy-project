@@ -18,6 +18,8 @@ import Cardcart from './component/Cardcart';
 import Dropdown from './component/Maindropdown';
 import Overlay from './page/Overhomepage';
 import Cart from './page/Cart';
+import Admintable from './component/Admintable';
+import Adminproduct from './component/Adminproduct';
 
 
 function App() {
@@ -40,7 +42,8 @@ function App() {
       <Route path="/contactus"  component={ContactUs}/>
       <Route path="/contact" component={Contact}/>
       <Route path="/myorder" component={Myorder}/>
-      <Route path="/test" component={Overlay}/>
+      <Route path="/test" component={Admintable}/>
+      <Route path="/test1" component={Adminproduct}/>
       
       
       </Switch>

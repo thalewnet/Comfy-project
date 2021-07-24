@@ -22,6 +22,8 @@ import Admintable from './component/Admintable';
 import Adminproduct from './component/Adminproduct';
 import Logincomponent from './component/Logincomponent';
 import Registercomponent from './component/Registercomponent';
+import Footer from './component/Footer';
+import Footercomponent from './component/Footercomponent';
 
 
 function App() {
@@ -45,7 +47,7 @@ function App() {
       <Route path="/contact" component={Contact}/>
       <Route path="/myorder" component={Myorder}/>
       <Route path="/test" component={Admintable}/>
-      <Route path="/test2" component={Registercomponent}/>
+      <Route path="/test2" component={Footercomponent}/>
       
       
       </Switch>

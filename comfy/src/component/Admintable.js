@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 const Decoration = styled.div `
     overflow-x:auto;
 
@@ -76,8 +77,7 @@ function Admintable() {
                 <td>Waiting for confirm</td>
                 <td><button className="edit-btn">Edit</button></td>
             </tr>   
-           
-            </table>        
+            </table>   
         </div>
         </Decoration>
     )

@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import Navbar from '../component/Navbar.js'
 import Footer from '../component/Footer.js'
 import register from '../image/register.jpg'
-
+import Registercomponent from '../component/Registercomponent'
 const Decoration = styled.div`
     padding-top: 64px;
    
-    .container {
+    .main-container {
         margin: 0 auto;
         margin-top: 40px;
         width: 80%;
@@ -15,11 +15,45 @@ const Decoration = styled.div`
         display: flex;
         background-color: #F8F8F8;
     }
-    img {
-        height: 550px;
-    }
+    
+    .image-container{
+       width: 90%;
+       height: 100%;
+       background:red;
+       position: relative;
+   }
 
-    .register  {
+   .image-container img{
+      position: absolute;
+      width: 100%;
+      object-fit: cover;
+   }
+   .register-container {
+      background-color: #fff;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+      width: 50%; 
+   }
+
+   @media (max-width: 1090px ) {
+    .image-container{
+      display: none;
+    }
+    .register-container {
+       width: 100%;
+       margin: 0 auto;
+
+   }
+   }
+
+   @media (max-width: 730px ) {
+    .image-container{
+      display: none;
+   }
+    /* img {
+        height: 550px;
+    } */
+
+    /* .register  {
         padding-top: 20px;
         width: 80%;
         display: flex;
@@ -61,19 +95,22 @@ const Decoration = styled.div`
         }
         .btn:hover{
             background-color: #456044
-        }
-    
+        } */
+    }
 `
 function Register() {
     return (
         <Decoration>
         <Navbar/>
         <div>
-            <div className="container">
-                <div className="image">
+            <div className="main-container">
+                <div className="image-container">
                     <img src={register} alt=""/>
                 </div>
-                <div className="register">
+                <div className="register-container">
+                <Registercomponent/>
+                </div>
+                {/* <div className="register">
                     <h1>Sign Up</h1>
                 <form className='box'>
                 <div className="form"><input type="text" placeholder="First Name"/></div>
@@ -84,7 +121,7 @@ function Register() {
                 <div className="form"><input type="password" placeholder="Confirm password"/></div>
                 <div className="form"><button type="submit" className="btn">Sign Up</button></div>
                 </form>
-                </div>
+                </div> */}
             </div>
         </div>
         <Footer/>

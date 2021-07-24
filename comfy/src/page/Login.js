@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import Navbar from '../component/Navbar.js'
 import Footer from '../component/Footer.js'
 import register1 from '../image/register1.jpg'
+import Logincompo from '../component/Logincomponent.js'
 
 const Decoration = styled.div`
       padding-top: 64px;
    
-   .container {
+   .main-container {
        margin: 0 auto;
        margin-top: 40px;
        width: 80%;
@@ -15,11 +16,42 @@ const Decoration = styled.div`
        display: flex;
        background-color: #F8F8F8;
    }
-   img {
-       height: 550px;
+
+   .image-container{
+       width: 90%;
+       height: 100%;
+       background:red;
+       position: relative;
    }
 
-   .register  {
+   .image-container img{
+      position: absolute;
+      width: 100%;
+      object-fit: cover;
+   }
+   .login-container {
+      background-color: #fff;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+      width: 50%; 
+   }
+
+   @media (max-width: 1090px ) {
+    .image-container{
+      display: none;
+    }
+    .login-container {
+       width: 100%;
+       margin: 0 auto;
+
+   }
+   }
+
+   @media (max-width: 730px ) {
+    .image-container{
+      display: none;
+   }
+   
+   /* .register  {
        width: 80%;
        display: flex;
        flex-direction: column;
@@ -80,8 +112,9 @@ const Decoration = styled.div`
 
        a:hover{
                 text-decoration: underline;
-            }
-        
+            } */
+
+}
 `
 
 function Login() {
@@ -89,15 +122,20 @@ function Login() {
         <Decoration>
         <Navbar/>
         <div>
-         <div className="container">
-                <div className="image">
-                    <img src={register1} alt=""/>
-                </div>
-                <div className="register">
+         <div className="main-container">
+            <div className="image-container">
+             <img src={register1} alt=""/>
+            </div>
+
+            <div className="login-container">
+                <Logincompo/>
+            </div>
+               
+                {/* <div className="register">
                     <h1>Log in</h1>
                 <form className="form">
-                <div><input type="text" placeholder="Email"/></div>
-                <div><input type="password" placeholder="Password"/> </div>
+                <div><input type="text" placeholder="Enter your email"/></div>
+                <div><input type="password" placeholder=" Enter your password"/></div>
                 <div className="forgot"><a className="forgot" href="./forgot">Forgotten password?</a></div>
                 <div>
                     <button type="submit" className="btn">Log in</button>
@@ -105,7 +143,7 @@ function Login() {
                 <a className="newaccount" href="./register">Create new account</a>
                 <span> For new experience flavors of coffee </span>
                 </form>
-            </div>
+                </div> */}
          </div>
         </div>
         <Footer/>

@@ -20,6 +20,8 @@ import Overlay from './page/Overhomepage';
 import Cart from './page/Cart';
 import Admintable from './component/Admintable';
 import Adminproduct from './component/Adminproduct';
+import Logincomponent from './component/Logincomponent';
+import Registercomponent from './component/Registercomponent';
 
 
 function App() {
@@ -43,7 +45,7 @@ function App() {
       <Route path="/contact" component={Contact}/>
       <Route path="/myorder" component={Myorder}/>
       <Route path="/test" component={Admintable}/>
-      <Route path="/test1" component={Adminproduct}/>
+      <Route path="/test2" component={Registercomponent}/>
       
       
       </Switch>

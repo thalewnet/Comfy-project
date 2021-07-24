@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import { ChakraProvider } from "@chakra-ui/react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <ChakraProvider> */}
+    
     <App />
     {/* </ChakraProvider> */}
+   
   </React.StrictMode>,
   document.getElementById('root')
 );

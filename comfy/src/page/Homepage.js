@@ -45,7 +45,7 @@ function HomePage() {
     <div>
         <Navbar/>
         <Branner/>
-        
+
         <div className="main-container">
           <div className="upper">
             <span className="recommend">ฺRecommend Products:</span>

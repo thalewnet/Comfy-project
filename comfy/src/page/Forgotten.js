@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import Navbar from '../component/Navbar.js'
 import Footer from '../component/Footer.js'
 import register2 from '../image/register2.jpg'
+import Forgotcomponent from '../component/Forgotcomponent.js'
 
 const Decoration = styled.div`
       padding-top: 64px;
    
-   .container {
+   .main-container {
        margin: 0 auto;
        margin-top: 40px;
        width: 80%;
@@ -15,68 +16,41 @@ const Decoration = styled.div`
        display: flex;
        background-color: #F8F8F8;
    }
-   img {
-       height: 550px;
+   .image-container{
+       width: 90%;
+       height: 100%;
+       background:red;
+       position: relative;
    }
 
-   .register  {
-       width: 80%;
-       display: flex;
-       flex-direction: column;
-        padding-top: 70px;
-       
+   .image-container img{
+      position: absolute;
+      width: 100%;
+      object-fit: cover;
+   }
+   .forgot-container {
+      background-color: #fff;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+      width: 50%; 
+   }
 
-       h1 {
-           text-align: center;
-           }
+   @media (max-width: 1090px ) {
+    .image-container{
+      display: none;
+    }
+    .forgot-container {
+       width: 100%;
+       margin: 0 auto;
 
-       a{
-            color: rgb(24, 119, 242);
-            text-decoration: none;
-            font-size: 12px;
-           
-         }
-        span {
-            font-size: 12px;
-        }
-       .form {
-         padding-left: 50px;
-         padding-bottom: 20px;
-       }
-      
-       input{
-           width: 85%;
-           margin-bottom: 15px;
-           line-height: 1.8;
-           border-radius: 5px;
-           box-sizing: border-box;
-           background: rgba(190, 188, 188, 0.33);
-           border: 1.5px solid #B29385;
-           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-       }
+   }
+   }
 
-       .btn {
-            width: 85%;
-            border-radius: 5px;
-            font-size: 19px;
-            line-height: 36px;
-            padding: 0 16px;
-            border: none;
-            background-color: #384937;
-            color: whitesmoke;
-            margin-top: 10px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-       }
-         
-       }
+   @media (max-width: 730px ) {
+    .image-container{
+      display: none;
+   }
 
-       .btn:hover{
-           background-color: #456044;
-       }
-
-       a:hover{
-                text-decoration: underline;
-            }
+}
         
 `
 
@@ -85,17 +59,21 @@ function Forgotten() {
         <Decoration>
         <Navbar/>
         <div>
-         <div className="container">
-                <div className="image">
+         <div className="main-container">
+                <div className="image-container">
                     <img src={register2} alt=""/>
                 </div>
-                <div className="register">
+
+                <div className="forgot-container">
+                <Forgotcomponent/>
+                </div>
+                {/* <div className="register">
                     <h1>Forgot password</h1>
                <form className="form">
                     <input type="text" placeholder="Email"/>
                     <button type="submit" className="btn">Send</button>
                 </form>
-            </div>
+            </div> */}
          </div>
         </div>
         <Footer/>

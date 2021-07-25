@@ -4,6 +4,8 @@ import Navbar from '../component/Navbar.js'
 import Footer from '../component/Footer.js'
 import Path from '../component/Path'
 import credit from '../image/credit.png'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 
 const Decoration = styled.div `
     padding-top: 64px;
@@ -97,7 +99,7 @@ const Decoration = styled.div `
 function Orderconfirm() {
     return (
         <Decoration>
-        <Navbar/>
+        <Navbarcomponent/>
         <Path/>
         <div>
             <div className="bar">
@@ -115,7 +117,7 @@ function Orderconfirm() {
                  </div>
              </div>
         </div>
-        <Footer/>
+        <Footercomponent/>
         </Decoration>
     )
 }

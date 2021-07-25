@@ -4,6 +4,9 @@ import Logo from '../image/comfylogo.png'
 import phone from '../image/telephone.png'
 import login from '../image/login.png'
 import cart from '../image/cart.png'
+import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 // import { Input,Button } from "@chakra-ui/react"
 
 
@@ -76,6 +79,11 @@ const Decoration = styled.div`
     .product {
         text-decoration: none;
         color: black;
+        transition: all 0.4s ease;
+    }
+
+    .product:hover {
+        text-decoration: underline;
     }
 
     .contact-us {
@@ -97,7 +105,34 @@ const Decoration = styled.div`
         text-decoration: none;
     }
 
-   
+    /* @media (max-width: 1135px ) {
+
+
+        ul.nav-product {
+            display: block;
+            position: fixed;
+            top:0;
+            left:0;
+            width: 100%;
+            max-width: 300px;
+            padding-top: 45px;
+            height: 100%;
+            background: #ecf0f3;
+            box-shadow: 0 3px 5px #b0b0b5;
+            z-index: 12;
+        }
+
+        ul.nav-product a.product {
+            display: block;
+            background: red;
+            margin-bottom: 20px;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            
+        }
+
+    } */
 `   
 
 
@@ -107,26 +142,28 @@ function Navbar() {
     <div>
      <nav>
          <div className="left">
-            <a className="logo" href="/homepage"><img className='logo' src={Logo} alt="logo"/></a>
-            <ul className="nav-product">
-                <li><a className="product" href="/allproducts">All Product</a></li>
-                <li><a className="product" href="/localproducts">Local Coffee Bean</a></li>
-                <li><a className="product" href="/importproducts">Imported Coffee Bean</a></li>
-            </ul>
+            <a className="logo" href="/homepage"><img className='logo' src={Logo} alt=""/></a>
+           
         </div>
 
         <div className="right">
-            <div className="contact-us">
-                <a href="/contact"><img className="right-icon" src={phone} alt="phone"/></a>
+
+        <ul className="nav-product">
+                <li><a className="product" href="/allproducts">All Products</a></li>
+                <li><a className="product" href="/localproducts">Local Coffee Bean</a></li>
+                <li><a className="product" href="/importproducts">Imported Coffee Bean</a></li>
+            </ul>
+             <div className="contact-us">
+                <a href="/contact"><img className="right-icon" src={phone} alt=""/></a>
                 <label><a className="btncontact" href="/contact">Contact us</a></label>
             </div>
         
             <div className="cart">
-               <a href="/cart"><img className="right-icon" src={cart} alt="cart"/></a> 
+               <a href="/cart"><img className="right-icon" src={cart} alt=""/></a> 
              </div>
             <div className="login">
-                 <a href="/login"><img className="right-icon" src={login} alt="login"/></a>
-                <label><a className="btnlogin" href="/login">Log - in</a></label>
+                 <a href="/login"><img className="right-icon" src={login} alt=""/></a>
+                 <label><a className="btnlogin" href="/login">Log - in</a></label>
              </div>
         </div>
      </nav>

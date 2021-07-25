@@ -24,6 +24,8 @@ import Logincomponent from './component/Logincomponent';
 import Registercomponent from './component/Registercomponent';
 import Footer from './component/Footer';
 import Footercomponent from './component/Footercomponent';
+import Navbarcomponent from './component/Navbarcomponent';
+import Card2 from './component/Card2';
 
 
 function App() {
@@ -46,8 +48,8 @@ function App() {
       <Route path="/contactus"  component={ContactUs}/>
       <Route path="/contact" component={Contact}/>
       <Route path="/myorder" component={Myorder}/>
-      <Route path="/test" component={Admintable}/>
-      <Route path="/test2" component={Footercomponent}/>
+      <Route path="/test" component={Card2}/>
+      <Route path="/test2" component={Navbarcomponent}/>
       
       
       </Switch>

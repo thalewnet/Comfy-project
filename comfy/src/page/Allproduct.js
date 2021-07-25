@@ -5,6 +5,8 @@ import Footer from '../component/Footer.js'
 import Path from '../component/Path'
 import all from '../image/all.png'
 import Card4 from '../component/Card4.js'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 
 const Decoration = styled.div`
       padding-top: 64px;
@@ -91,7 +93,7 @@ const Decoration = styled.div`
 function Allproduct() {
     return (
         <Decoration>
-        <Navbar2/>
+        <Navbarcomponent/>
         <Path/>
         <div>
         <div className="second-nav">
@@ -120,7 +122,7 @@ function Allproduct() {
             <div className="bs"><Card4 name={"Doi Chang"}/></div>
         </div>
         </div>
-        <Footer/>
+        <Footercomponent/>
         </Decoration>
     )
 }

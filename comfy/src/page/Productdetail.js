@@ -5,6 +5,9 @@ import Footer from '../component/Footer.js'
 import image from '../image/product.jpg'
 import Counter from '../Counter.js'
 import Path from '../component/Path'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
+
 const Decoration = styled.div`
    padding-top: 64px;
     
@@ -152,7 +155,7 @@ function Productdetail() {
     return (
         <Decoration>
         <div>
-        <Navbar/>
+        <Navbarcomponent/>
         <Path/>
         <div className="container"> 
                 <div className="col-left">
@@ -278,7 +281,7 @@ function Productdetail() {
                      </div>
                     </div>
         </div>
-        <Footer/>
+        <Footercomponent/>
         </div>
         </Decoration>
     )

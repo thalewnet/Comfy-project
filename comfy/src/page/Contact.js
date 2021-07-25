@@ -7,6 +7,8 @@ import telephone from '../image/telephone.png'
 import line from '../image/line.png'
 import facebook from '../image/facebook.png'
 import instagram from '../image/instagram.png'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 
 const Decoration = styled.div `
     padding-top: 64px;
@@ -93,7 +95,7 @@ const Decoration = styled.div `
 function Contact() {
     return (
         <Decoration>
-        <Navbar/>
+        <Navbarcomponent/>
         <Path/>
         <div>
             <div className="bar">
@@ -141,7 +143,7 @@ function Contact() {
                 </div>
             </div>
         </div>
-        <Footer/>
+        <Footercomponent/>
         </Decoration>
     )
 }

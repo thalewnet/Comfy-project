@@ -4,6 +4,8 @@ import Navbar from '../component/Navbar.js'
 import Footer from '../component/Footer.js'
 import register2 from '../image/register2.jpg'
 import Forgotcomponent from '../component/Forgotcomponent.js'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 
 const Decoration = styled.div`
       padding-top: 64px;
@@ -12,26 +14,22 @@ const Decoration = styled.div`
        margin: 0 auto;
        margin-top: 40px;
        width: 80%;
-       min-height: 550px;
        display: flex;
        background-color: #F8F8F8;
    }
-   .image-container{
-       width: 90%;
-       height: 100%;
-       background:red;
-       position: relative;
-   }
+   /* .image-container{
+       width:100% 
+   } */
 
    .image-container img{
-      position: absolute;
+     height: 100%;
       width: 100%;
       object-fit: cover;
    }
    .forgot-container {
       background-color: #fff;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.25);
-      width: 50%; 
+      box-shadow: 0 0px 5px rgba(0,0,0,0.25);
+      width: 40%; 
    }
 
    @media (max-width: 1090px ) {
@@ -49,7 +47,6 @@ const Decoration = styled.div`
     .image-container{
       display: none;
    }
-
 }
         
 `
@@ -57,26 +54,19 @@ const Decoration = styled.div`
 function Forgotten() {
     return (
         <Decoration>
-        <Navbar/>
+        <Navbarcomponent/>
         <div>
          <div className="main-container">
-                <div className="image-container">
+            <div className="image-container">
                     <img src={register2} alt=""/>
                 </div>
 
                 <div className="forgot-container">
                 <Forgotcomponent/>
                 </div>
-                {/* <div className="register">
-                    <h1>Forgot password</h1>
-               <form className="form">
-                    <input type="text" placeholder="Email"/>
-                    <button type="submit" className="btn">Send</button>
-                </form>
-            </div> */}
-         </div>
+            </div>
         </div>
-        <Footer/>
+        <Footercomponent/>
         </Decoration>
     )
 }

@@ -7,6 +7,8 @@ import Card3 from '../component/Card3.js'
 import Footer from '../component/Footer.js'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import Navbarcomponent from '../component/Navbarcomponent.js'
+import Footercomponent from '../component/Footercomponent.js'
 
 
 const Decoration = styled.div`
@@ -31,11 +33,24 @@ const Decoration = styled.div`
       display: flex;
       justify-content: space-between;
       padding-top : 15px ;
+      flex-wrap: wrap;
     }
     .lower{
       display: flex;
       margin-top: 80px;
       justify-content: space-evenly;
+    }
+
+    @media (max-width: 1050px ){
+      .lower {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lower .bs3{
+        margin-top: 30px;
+      }
     }
    `
 
@@ -43,7 +58,7 @@ function HomePage() {
   return (
     <Decoration>
     <div>
-        <Navbar/>
+        <Navbarcomponent/>
         <Branner/>
 
         <div className="main-container">
@@ -54,16 +69,16 @@ function HomePage() {
               <div className="bs"><Card name={"Mae Chan Tai"}/></div>
               <div className="bs"><Card name={"Doi Chang"}/></div>
               <div className="bs"><Card name={"Bann Bann"}/></div>
-              <div className="bs"><Card/></div>
+              <div className="bs"><Card name={"Chumphon"}/></div>
             </div>
             </div>
             <div className="lower">
-              <div className="bs2"><Card2/></div>
-              <div className="bs3"><Card3/></div>
+              <div className="bs2"><Card2 title={"Local Coffee Bean"} /></div>
+              <div className="bs3"><Card3 title={"Imported Coffee Bean"}/></div>
             </div>
-        </div>
-        <Footer/>
+        </div>  
     </div>
+    <Footercomponent/>
     </Decoration>
   )
 }

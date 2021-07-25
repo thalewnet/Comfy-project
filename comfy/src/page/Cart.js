@@ -5,6 +5,9 @@ import Footer from '../component/Footer.js'
 import Path from '../component/Path'
 import cart from '../image/cart.png'
 import Cardcart from '../component/Cardcart.js'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
+
 const Decoration = styled.div `
     padding-top: 64px;
     .bar {
@@ -139,7 +142,7 @@ const Decoration = styled.div `
 function Cart() {
     return (
         <Decoration>
-        <Navbar/>
+        <Navbarcomponent/>
         <Path/>
         <div>
          <div className="bar">
@@ -187,7 +190,7 @@ function Cart() {
         <div className="form"><a href="/cart-delivery"><button type='button' className="btn">Confirm Order</button></a></div>
         </div>
         
-        <Footer/>
+        <Footercomponent/>
         </Decoration>
     )
 }

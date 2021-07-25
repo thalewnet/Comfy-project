@@ -5,6 +5,8 @@ import Footer from '../component/Footer.js'
 import Path from '../component/Path'
 import Cargo from '../image/cargo.png'
 import Ordernubmer from '../component/Ordernumber'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 
 const Decoration = styled.div `
     padding-top: 64px;
@@ -97,7 +99,7 @@ const Decoration = styled.div `
 function Myorder() {
     return (
         <Decoration>
-        <Navbar/>
+        <Navbarcomponent/>
         <Path/>
         <div>
         <div className="bar">
@@ -116,7 +118,7 @@ function Myorder() {
                 </div>
             </div>
         </div>
-        <Footer/>
+        <Footercomponent/>
         </Decoration>
     )
 }

@@ -4,6 +4,8 @@ import Navbar from '../component/Navbar.js'
 import Footer from '../component/Footer.js'
 import Path from '../component/Path'
 import truck from '../image/truck.png'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 
 const Decoration = styled.div `
     padding-top: 64px;
@@ -63,16 +65,65 @@ const Decoration = styled.div `
         
     input {
             width: 100%;
-            line-height: 1.8;
+            height: 30px;
+            outline: none;
             border-radius: 5px;
+            padding-left: 10px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            font-size: 14px;
             box-sizing: border-box;
             background: rgba(190, 188, 188, 0.33);
-            border: 1.5px solid #B29385;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
             margin-top: 3px;
             margin-bottom: 18px;;
+            transition: all 0.3s ease;
         }
 
+
+    form.box .form label {
+        font-weight: 500;
+    }
+
+    select {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        outline: none;
+        font-size: 14px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: rgba(190, 188, 188, 0.33);
+        border: 1px solid #ccc;
+        border-bottom-width: 2px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+        margin-top: 3px;
+        margin-bottom: 18px;
+        transition: all 0.3s ease;
+    }
+  
+    textarea {
+        width: 100%;
+        height: 60px;
+        resize: none;
+        display: flex;
+        outline: none;
+        font-size: 13px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: rgba(190, 188, 188, 0.33);
+        border: 1px solid #ccc;
+        border-bottom-width: 2px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+        margin-top: 3px;
+        margin-bottom: 18px;;
+    }
+
+    input:focus, input:valid,
+    select:focus, select:valid, 
+    textarea:focus, textarea:valid{
+        border-color: #B29385;
+        }
     .btn {
              position: relative;
              width: 100%;
@@ -103,44 +154,12 @@ const Decoration = styled.div `
             background-color: #456044
      }
 
-    select {
-        width: 100%;
-        height: 25px;
-        display: flex;
-        font-size: 13px;
-        border-radius: 5px;
-        box-sizing: border-box;
-        background: rgba(190, 188, 188, 0.33);
-        border: 1.5px solid #B29385;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        margin-top: 3px;
-        margin-bottom: 18px;;
-    }
-    
-  
-         
-    textarea {
-        width: 100%;
-        height: 60px;
-        resize: none;
-        display: flex;
-        font-size: 13px;
-        border-radius: 5px;
-        box-sizing: border-box;
-        background: rgba(190, 188, 188, 0.33);
-        border: 1.5px solid #B29385;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        margin-top: 3px;
-        margin-bottom: 18px;;
-    }
-
-    
 `
 
 function Delivery() {
     return (
         <Decoration>
-        <Navbar/>
+        <Navbarcomponent/>
         <Path/>
         <div>
             <div className="bar">
@@ -153,14 +172,14 @@ function Delivery() {
             <div className="container">
             <form className='box'>
                 <div className="form">
-                    <label for="name">Name :</label>
-                    <input type="text" id="name" placeholder="Name - Lastname"/></div>
+                    <label for="name">Full Name :</label>
+                    <input type="text" id="name" placeholder="Enter your name"/></div>
                 <div className="form">
-                    <label for="phone">Phone number :</label>
-                    <input type="text" id="phone" placeholder="Phone number"/></div>
+                    <label for="phone">Phone Number :</label>
+                    <input type="text" id="phone" placeholder="Enter your phone number"/></div>
                 <div className="form">
                     <label for="address">Address :</label>
-                    <input type="text" id="address" placeholder="Address"/></div>
+                    <input type="text" id="address" placeholder="Enter your address"/></div>
                 <div className="form">
                     <label for="province">Province :</label>
                     <select name="province" id='province'>
@@ -195,7 +214,7 @@ function Delivery() {
                 </form>
             </div>
         </div>
-        <Footer/>
+        <Footercomponent/>
         </Decoration>
     )
 }

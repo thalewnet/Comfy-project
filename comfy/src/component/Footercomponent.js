@@ -6,9 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const Decoration = styled.div`
-  
+
    footer{
-     position: fixed;
+     /* position: fixed; */
+     margin-top: 50px;
      background: #B29385;
      width:100%;
      bottom:0;
@@ -121,10 +122,12 @@ const Decoration = styled.div`
   }
   .cr-text {
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 300;
     color: #fff;
     opacity: 0.8;
+    margin:0;
+    padding: 8px;
   }
 `   
 

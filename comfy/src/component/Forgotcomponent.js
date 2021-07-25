@@ -36,7 +36,7 @@ form .form-content .title:before {
     left: 0;
     bottom: 0;
     height: 3px;
-    width: 25px;
+    width: 32px;
     background: #CB925D;
 }
 
@@ -130,7 +130,7 @@ function Forgotcomponent() {
               <form action="#">
                 <div className="form-content">
                     <div className="forgot-form">
-                        <div className="title">Registration</div>
+                        <div className="title">Forgot password</div>
                         <div className="input-boxes">
                             <div className="input-box">
                                 <i><FontAwesomeIcon icon={faEnvelope}/></i>

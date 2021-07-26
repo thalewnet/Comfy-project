@@ -5,6 +5,7 @@ import Footer from '../component/Footer.js'
 import register1 from '../image/register1.jpg'
 import Logincompo from '../component/Logincomponent.js'
 import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 const Decoration = styled.div`
       padding-top: 64px;
    
@@ -59,7 +60,7 @@ const Decoration = styled.div`
 function Login() {
     return (
         <Decoration>
-        <Navbar/>
+        <Navbarcomponent/>
         <div>
          <div className="main-container">
             <div className="image-container">

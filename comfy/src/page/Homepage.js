@@ -27,23 +27,35 @@ const Decoration = styled.div`
         font-size: 24px;
         line-height: 42px;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-        
+        position: relative;
       }
 
+      .recommend:before {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          width: 100%;
+          border-bottom: 1px solid black;
+
+        }
+      
     .item-card {
       display: flex;
       justify-content: space-between;
-      padding-top : 15px ;
+      padding-top : 20px ;
       flex-wrap: wrap;
     }
 
     .lower{
       display: flex;
-      margin-top: 80px;
+      margin-top: 70px;
       justify-content: space-evenly;
     }
 
     @media (max-width: 1050px ){
+      .bs{
+        margin-bottom: 15px;
+      }
       .lower {
         flex-direction: column;
         justify-content: center;
@@ -52,6 +64,13 @@ const Decoration = styled.div`
 
       .lower .bs3{
         margin-top: 30px;
+      }
+    }
+
+    @media (max-width: 575px ) {
+      .item-card {
+        flex-direction: column;
+        align-items: center;
       }
     }
    `
@@ -73,7 +92,7 @@ function HomePage() {
               <div className="bs"><Card name={"Bann Bann"}/></div>
               <div className="bs"><Card name={"Chumphon"}/></div>
             </div>
-            </div>
+          </div>
             <div className="lower">
               <div className="bs2"><Card2 title={"Local Coffee Bean"} /></div>
               <div className="bs3"><Card3 title={"Imported Coffee Bean"}/></div>

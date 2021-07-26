@@ -27,6 +27,7 @@ import Footercomponent from './component/Footercomponent';
 import Navbarcomponent from './component/Navbarcomponent';
 import Card2 from './component/Card2';
 import Updatedproduct from './page/Updatedproduct';
+import Uploadimg from './component/Uploadimg';
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
       <Route path="/contact" component={Contact}/>
       <Route path="/myorder" component={Myorder}/>\
       <Route path="/admin-product-update" component={Updatedproduct}/>
-      <Route path="/test" component={Updatedproduct}/>
+      <Route path="/test" component={Uploadimg}/>
       <Route path="/test2" component={Navbarcomponent}/>
       
       

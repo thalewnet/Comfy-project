@@ -78,7 +78,7 @@ const Decoration = styled.div `
              color: whitesmoke;
              margin-top: 20px;
              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            
+             cursor: pointer;
              a {
                text-decoration: none; 
              }

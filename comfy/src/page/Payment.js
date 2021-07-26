@@ -6,6 +6,9 @@ import Path from '../component/Path'
 import credit from '../image/credit.png'
 import Footercomponent from '../component/Footercomponent.js'
 import Navbarcomponent from '../component/Navbarcomponent.js'
+import Uploadimg from '../component/Uploadimg.js'
+import {faFileUpload} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Decoration = styled.div `
     padding-top: 64px;
@@ -65,7 +68,7 @@ const Decoration = styled.div `
             width: 90%;
         }
         
-    input {
+    input[type="text"] {
             width: 100%;
             height: 35px;
             outline: none;
@@ -75,7 +78,7 @@ const Decoration = styled.div `
             border-bottom-width: 2px;
             font-size: 14px;
             box-sizing: border-box;
-            background: rgba(190, 188, 188, 0.33);
+            background: rgba(178, 147, 133, 0.2);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
             margin-top: 3px;
             margin-bottom: 18px;;
@@ -86,6 +89,35 @@ const Decoration = styled.div `
         border-color: #B29385;
         }
 
+        
+    /* input[type="file"] {
+            display: none;
+            
+        }
+
+        input[type="file"]:focus, input[type="file"]:valid{
+        border-color: #B29385;
+        }
+
+        .upload-label {
+            position: absolute;
+            color:black;
+            width: 50%;
+            height: 70px;
+            outline: none;
+            border-radius: 5px;
+            padding-left: 10px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: rgba(178, 147, 133, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+            margin-top: 3px;
+            margin-bottom: 18px;;
+            transition: all 0.3s ease;
+        } */
+   
     .btn {
             position: relative;
              width: 100%;
@@ -98,6 +130,7 @@ const Decoration = styled.div `
              color: whitesmoke;
              margin-top: 40px;
              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+             cursor: pointer;
 
              &::before {
             content: "";
@@ -153,8 +186,11 @@ function Payment() {
                     <label for="price">Price :</label>
                     <input type="text" id="price" value="580 Baht" readonly/></div>
                 <div className="form">
-                    <label for="upload">Upload Payment Slip :</label>
-                    <input type="file" id="upload" multiple/></div>
+                    <label for="upload">Upload Payment Slip :<br/></label>
+                    <Uploadimg/>
+                    {/* <input type="file" id="upload" multiple/>
+                    <label className="upload-label" for="upload"><i><FontAwesomeIcon icon={faFileUpload}/> Choose a slip-payment</i></label> */}
+                </div>
              <div className="form"><a href="/cart-delivery-payment-confirm"><button type='button' className="btn">Confirm payment</button></a></div>
             </form>
             </div>

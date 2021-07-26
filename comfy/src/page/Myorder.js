@@ -42,10 +42,13 @@ const Decoration = styled.div `
            font-weight: 500;
         }
 
-    .topics{
+        .text-box {
         width: 80%;
         margin: 0 auto;
-        padding-left: 120px;
+    }
+    .topics{
+        width: 90%;
+        margin: 0 auto;
         margin-top: 10px;
         font-weight: 500;
         font-size: 20px;
@@ -108,7 +111,10 @@ function Myorder() {
                 <p className="text-bar">My Order</p>
                 </div>
              </div>  
-             <p className="topics">Order status</p>
+             <div className="text-box">
+                 <p className="topics">Order status</p>
+             </div>  
+             
 
              <div className="container">
                 <div className="container-inside">

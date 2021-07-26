@@ -5,6 +5,7 @@ import Footer from '../component/Footer.js'
 import register from '../image/register.jpg'
 import Registercomponent from '../component/Registercomponent'
 import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 
 const Decoration = styled.div`
     padding-top: 64px;
@@ -55,7 +56,7 @@ const Decoration = styled.div`
 function Register() {
     return (
         <Decoration>
-        <Navbar/>
+        <Navbarcomponent/>
         <div>
             <div className="main-container">
                 <div className="image-container">

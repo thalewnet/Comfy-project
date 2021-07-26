@@ -40,11 +40,13 @@ const Decoration = styled.div `
     .text-bar{
            font-weight: 500;
         }
-
-    .topics{
+    .text-box {
         width: 80%;
         margin: 0 auto;
-        padding-left: 120px;
+    }
+    .topics{
+        width: 90%;
+        margin: 0 auto;
         margin-top: 10px;
         font-weight: 500;
         font-size: 20px;
@@ -54,13 +56,12 @@ const Decoration = styled.div `
         margin: 0 auto;
         margin-top: 5px;
         width: 80%;
-        min-height: 550px;
         display: flex;
         justify-content: center;
         /* background-color: #F8F8F8; */
         padding: 10px 0;
     }
-    .box{
+    .boxes{
             width: 90%;
         }
         
@@ -115,7 +116,11 @@ const Decoration = styled.div `
             background-color: #456044
      }
      
-
+     @media (max-width: 1100px ){
+        .topics {
+            padding-left: 0px;
+        }
+     }
 `
 
 function Payment() {
@@ -129,10 +134,12 @@ function Payment() {
                 <img className="all" src={credit} alt="credit"></img>
                 <p className="text-bar">Payment</p>
                 </div>
+             </div>
+             <div className="text-box">
+                <p className="topics">Payment</p>
              </div>  
-             <p className="topics">Payment</p>
              <div className="container">
-            <form className='box'>
+            <form className='boxes'>
                 <div className="form">
                     <label for="name">Account Name :</label>
                     <input type="text" id="name" value="Comfy Coffee Co., Ltd." readonly/></div>

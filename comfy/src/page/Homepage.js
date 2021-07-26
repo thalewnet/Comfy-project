@@ -18,15 +18,16 @@ const Decoration = styled.div`
       padding-top: 15px;
       width: 80%;
       margin: 0 auto;
-      height: 1000px;
-    
     }
     
       .recommend {
+        display: flex;
+       justify-content: center;
         font-weight: normal;
         font-size: 24px;
         line-height: 42px;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        
       }
 
     .item-card {
@@ -35,6 +36,7 @@ const Decoration = styled.div`
       padding-top : 15px ;
       flex-wrap: wrap;
     }
+
     .lower{
       display: flex;
       margin-top: 80px;
@@ -63,7 +65,7 @@ function HomePage() {
 
         <div className="main-container">
           <div className="upper">
-            <span className="recommend">ฺRecommend Products:</span>
+            <span className="recommend">Recommend Products</span>
             <div className="item-card">
               <div className="bs"><Card name={"Doi Mon Chong"}/></div>
               <div className="bs"><Card name={"Mae Chan Tai"}/></div>

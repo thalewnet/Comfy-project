@@ -26,7 +26,7 @@ import Footer from './component/Footer';
 import Footercomponent from './component/Footercomponent';
 import Navbarcomponent from './component/Navbarcomponent';
 import Card2 from './component/Card2';
-
+import Updatedproduct from './page/Updatedproduct';
 
 function App() {
   return (
@@ -47,8 +47,9 @@ function App() {
       <Route path="/cart-delivery-payment-confirm" component={Orderconfirm}/>
       <Route path="/contactus"  component={ContactUs}/>
       <Route path="/contact" component={Contact}/>
-      <Route path="/myorder" component={Myorder}/>
-      <Route path="/test" component={Card2}/>
+      <Route path="/myorder" component={Myorder}/>\
+      <Route path="/admin-product-update" component={Updatedproduct}/>
+      <Route path="/test" component={Updatedproduct}/>
       <Route path="/test2" component={Navbarcomponent}/>
       
       

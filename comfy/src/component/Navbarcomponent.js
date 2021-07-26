@@ -70,6 +70,9 @@ nav .nav-links .links li a {
     
 }
 
+nav .nav-links .links li a.product:hover{
+        text-decoration: underline;
+    }
 nav .nav-links .links li a .icon-phone {
     font-size: 18px;
 }
@@ -83,8 +86,15 @@ nav .nav-links .links li a .icon-login {
 nav .nav-links .links li a span {
     padding-left: 3px;
 }
-.btn-close , .btn-menu ,.mycart {
+.btn-close,.mycart {
     display: none;
+}
+
+.btn-check,#check {
+    display: none;
+}
+.btn-check {
+    cursor: pointer;
 }
 
 @media (max-width: 1070px ) {
@@ -97,6 +107,7 @@ nav .nav-links .links li a span {
     nav .nav-links .links li{
         font-size: 14px; 
     }
+  
     nav .nav-links .links li a .icon-phone {
     font-size: 15px;
     }
@@ -108,7 +119,10 @@ nav .nav-links .links li a span {
     font-size: 20px;
     }
 
-    .btn-close , .btn-menu {
+    .btn-close  {
+    display: none;
+}
+.btn-check,#check {
     display: none;
 }
 }
@@ -123,23 +137,27 @@ nav .nav-links .links li a span {
     right:-100%;
     max-width: 200px;
     width: 100%;
-    padding: 20px;
+    padding: 10px 15px 20px 20px;
     line-height: 50px;
+    transition: all 0.6s ease;    
     }
 
     .btn-close{
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding-bottom: 25px;
-        font-size: 20px;
+        font-size: 25px;
+      
     }
 
-    .btn-menu {
+    .btn-check {
         display: block;
         font-size: 25px;
     }
 
+    #check:checked ~ .links {
+        right:0;
+    }
     .mycart{
        display: block;
     }
@@ -164,9 +182,10 @@ function Navbarcomponent() {
              </div> 
 
              <div className="nav-links">
+             <input type="checkbox" id='check'/>
               <ul className="links">
                     <div className="btn-close">
-                    <FontAwesomeIcon icon={faTimes}/>
+                    <label for="check"><FontAwesomeIcon icon={faTimes}/></label>
                     </div>
                     <li><a className="product" href="/allproducts">All Products</a></li>
                     <li><a className="product" href="/localproducts">Local Coffee Bean</a></li>
@@ -176,7 +195,7 @@ function Navbarcomponent() {
                     <li><a className="contact" href="/login"><i className="icon-login"><FontAwesomeIcon icon={faUserCircle}/></i><span>Log - in</span></a></li>
                 </ul>
                 <div className="btn-menu">
-                <FontAwesomeIcon icon={faBars}/>
+                <label for="check" className="btn-check"><FontAwesomeIcon icon={faBars}/></label>
                 </div>
              </div>
              </div>

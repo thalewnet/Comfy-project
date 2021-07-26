@@ -105,34 +105,6 @@ const Decoration = styled.div`
         text-decoration: none;
     }
 
-    /* @media (max-width: 1135px ) {
-
-
-        ul.nav-product {
-            display: block;
-            position: fixed;
-            top:0;
-            left:0;
-            width: 100%;
-            max-width: 300px;
-            padding-top: 45px;
-            height: 100%;
-            background: #ecf0f3;
-            box-shadow: 0 3px 5px #b0b0b5;
-            z-index: 12;
-        }
-
-        ul.nav-product a.product {
-            display: block;
-            background: red;
-            margin-bottom: 20px;
-            font-size: 16px;
-            width: 100%;
-            text-align: center;
-            
-        }
-
-    } */
 `   
 
 

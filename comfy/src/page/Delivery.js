@@ -41,10 +41,13 @@ const Decoration = styled.div `
            font-weight: 500;
         }
 
-    .topics{
+    .text-box {
         width: 80%;
         margin: 0 auto;
-        padding-left: 120px;
+    }
+    .topics{
+        width: 90%;
+        margin: 0 auto;
         margin-top: 10px;
         font-weight: 500;
         font-size: 20px;
@@ -59,7 +62,7 @@ const Decoration = styled.div `
         /* background-color: #F8F8F8; */
         padding: 10px 0;
     }
-    .box{
+    .boxes{
             width: 90%;
         }
         
@@ -109,6 +112,7 @@ const Decoration = styled.div `
         display: flex;
         outline: none;
         font-size: 13px;
+        padding-left: 10px;
         border-radius: 5px;
         box-sizing: border-box;
         background: rgba(190, 188, 188, 0.33);
@@ -124,6 +128,7 @@ const Decoration = styled.div `
     textarea:focus, textarea:valid{
         border-color: #B29385;
         }
+
     .btn {
              position: relative;
              width: 100%;
@@ -168,9 +173,13 @@ function Delivery() {
                 <p className="text-bar">Shipping Address</p>
                 </div>
              </div>  
-             <p className="topics">Address</p>
+
+             <div className="text-box">
+                <p className="topics">Address</p>
+             </div>  
+
             <div className="container">
-            <form className='box'>
+            <form className='boxes'>
                 <div className="form">
                     <label for="name">Full Name :</label>
                     <input type="text" id="name" placeholder="Enter your name"/></div>
@@ -208,7 +217,7 @@ function Delivery() {
                     </select></div>
                     <div className="form">
                     <label for="details">Detail information:</label>
-                    <textarea id="details" name="details" placeholder="More information"></textarea>
+                    <textarea id="details" name="details" placeholder="More information..."></textarea>
                     </div>
                 <div className="form"><a href="/cart-delivery-payment"><button type='button' className="btn">Confirm Shipping Address</button></a></div>
                 </form>

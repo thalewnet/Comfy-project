@@ -7,6 +7,7 @@ import Counter from '../Counter.js'
 import Path from '../component/Path'
 import Footercomponent from '../component/Footercomponent.js'
 import Navbarcomponent from '../component/Navbarcomponent.js'
+import Adminproduct from '../component/Adminproduct.js'
 
 const Decoration = styled.div`
    padding-top: 64px;
@@ -59,11 +60,11 @@ const Decoration = styled.div`
             width: 90%;
         }
         .col-left{
-            width:60%
+            flex:60%;
         }
 
         .col-right{
-            width:40%;
+            flex:40%;
 
              h1 {
             position: relative;
@@ -151,7 +152,7 @@ const Decoration = styled.div`
         
         
 `
-function Productdetail() {
+function Updatedproduct() {
     return (
         <Decoration>
         <div>
@@ -167,14 +168,8 @@ function Productdetail() {
                        <button className="btnadd">+</button>
                      </div>
                     <div className="productdetail">
-                        <h3>Product details</h3>
-                        <p className="datail">เมล็ดกาแฟดอยม่อนจอง มาจากจังหวัดเชียงใหม่ โดยกาแฟดอยม่อนจองจะมีรสชาติดี หอมละมุน คล้ายกลิ่นดอกไม้ป่า และเมื่อผ่านกระบวนการ Process กาแฟ แต่ละ Process ยิ่งทำให้กาแฟมีเอกลักษณ์ของรสชาติที่แตกต่างกัน</p>
-                        <p className="datail">Altitude: 1,200 m</p>
-                        <p className="datail">taste note:</p>
-                        <p className="datail">Light roast:</p>
-                        <p className="datail">Medium roast:</p>
-                        <p className="datail">Dark roast:</p>
-                        <p className="datail">Brewing Methods: </p>
+                      <h3>Product details</h3>
+                      <Adminproduct/>
                     </div>
                 </div>
                 <div className='col-right'>
@@ -281,10 +276,10 @@ function Productdetail() {
                      </div>
                     </div>
         </div>
-        </div>
         <Footercomponent/>
+        </div>
         </Decoration>
     )
 }
 
-export default Productdetail
+export default Updatedproduct

@@ -129,6 +129,17 @@ const Decoration = styled.div`
     margin:0;
     padding: 8px;
   }
+  @media (max-width: 550px ){
+    .content{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content .link-boxes .box {
+    padding-left: 20px;
+    
+  }
+  }
 `   
 
 

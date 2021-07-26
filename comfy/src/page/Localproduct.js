@@ -15,7 +15,7 @@ const Decoration = styled.div`
           width: 80%;
           margin: 0 auto;
           background-color: #CDA58B;
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
       }
 
       ul.nav-product {
@@ -24,15 +24,17 @@ const Decoration = styled.div`
         display: flex;
         flex-wrap: nowrap;
         height: 40px;
-        
+        transition: all 1s ease;
         }
 
         .nav-product li {
-        margin: 0rem 2.5rem;
-        line-height: 1.5;
-        display: flex;
-        align-items: center;
-        position: relative;
+            margin: 0rem 2.5rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            position: relative;
+            white-space: nowrap;
+            transition: all 1s ease;
         
         a {
         text-decoration: none;
@@ -84,9 +86,31 @@ const Decoration = styled.div`
         width: 80%;
         margin: 0 auto;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         padding-top : 35px ;
         flex-wrap: wrap;
+        }
+
+        @media (max-width: 995px ) {
+        .item-card {
+                justify-content: space-around;
+            }
+        }
+        @media (max-width: 890px ){
+            .nav-product li {
+                font-size: 14px
+            }
+        }
+
+        @media (max-width: 765px ){
+           /* .second-nav{
+               display: none;
+           } */
+            .nav-product li a.allproduct,
+            .nav-product li a.importedproduct  {
+                display: none;
+            }
+            
         }
       `
 
@@ -100,7 +124,7 @@ function Localproduct() {
             <ul className="nav-product">
                 <li><a className="allproduct" href="/allproducts">All Product</a></li>
                 <li><a className="localproduct" href="/localproducts">Local Coffee Bean</a></li>
-                <li><a className="improtedproduct" href="/importproducts">Imported Coffee Bean</a></li>
+                <li><a className="importedproduct" href="/importproducts">Imported Coffee Bean</a></li>
             </ul>
         </div>
         <div className="productbar">

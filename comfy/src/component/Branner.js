@@ -51,7 +51,7 @@ const Decoration = styled.div`
         }
       }
 
-      .box {
+      .box-text {
         display: flex;
         flex-flow: column;
         justify-content: center;
@@ -102,7 +102,7 @@ function Branner() {
           <div className="branner">
             <img className="brannerMain"src={quote} alt="branner"/>
             <div className="quote">
-              <div className="box">
+              <div className="box-text">
                  <label>Coffee To Wake You Up<br/>Every Morning</label>
                  <span className="lowertext">Make your own Coffee style at Home</span>
                  <div class="btn">

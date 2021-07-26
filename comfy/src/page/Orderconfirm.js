@@ -49,7 +49,7 @@ const Decoration = styled.div `
         padding: 10px 0;
         
     }   
-    .box {
+    .boxes {
         width: 90%;
         margin: 0 auto;
     }
@@ -95,6 +95,32 @@ const Decoration = styled.div `
     .btn:hover{
             background-color: #456044
     }
+
+    @media (max-width: 780px ){
+        .text1 {
+        font-size: 36px;
+    }
+    .text2 {
+        font-size: 20px;
+      
+    }
+    }
+    @media (max-width: 693px ){
+        .text1 {
+        font-size: 28px;
+    }
+    .text2 {
+        font-size: 16px;
+    }
+    }
+    @media (max-width: 543px ){
+        .text1 {
+        font-size: 24px;
+    }
+    .text2 {
+        font-size: 14px;
+    }
+    }
 `
 function Orderconfirm() {
     return (
@@ -110,7 +136,7 @@ function Orderconfirm() {
             </div>  
 
             <div className="container">
-                <div className="box">
+                <div className="boxes">
                  <p className="text1">Your order has been confirmed </p>
                  <p className="text2">You can check order status on "My order" </p>
                  <a href="/homepage"><button type='button' className="btn">Back to homepage</button></a>

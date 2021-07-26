@@ -3,37 +3,71 @@ import styled from 'styled-components'
 import card from '../image/card5.jpg'
 
 const Decoration = styled.div`
-  a{
-    text-decoration: none;
-  }
-  .card {
-    width: 350px;
-    height: 410px;
-    text-decoration: none;
-    
+
+  .card-container {
+    width: 320px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    position: relative;
+    margin-bottom: 20px;
   }
 
-  .nameBox{
-      margin-top: -3px;
+  .card-container:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25) ;
+  }
+  
+  .image-container img {
+    overflow: hidden;
+    height: 390px;
+    width: 100%;
+  }
+
+    .card-title{
+      position: absolute;
+      width: 100%;
       height: 40px;
-      font-size: 10px;
-      background: white;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      margin: 0 auto;
-      display: flex;
+      bottom: 0;
+      background: #FFFFFF;
       align-items: center;
-      margin-bottom: 30px;
-
-      .product {
-        margin: 0 auto;
-        color: black;
+      
+  }
+  
+    .card-text {
+        margin:0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 40px;
+        padding-left: 10px;
+        font-size: 14px;
         font-weight: 400;
-        font-size: 20px;
-        line-height: 23px;
-    
-      }
-  } 
+        color: black;
+        text-decoration: none;
+    }
+ 
+  @media (max-width: 1330px ) {
+    .card {
+    width: 280px;
+    height: 340px;
+  }
+  }
+  @media (max-width: 1138px ) {
+    .card {
+    width: 260px;
+    height: 320px;
 
+  }
+  }
+
+  @media (max-width: 1055px ) {
+    .card {
+    width: 240px;
+    height: 300px;
+
+  }
+  }
 
 
 `
@@ -41,11 +75,14 @@ function Card4({name}) {
     return (
         <Decoration>
         <div>
-            <a href="./localproducts/productname"><img className="card" src={card} alt="productCard"/>
-            <div className="nameBox">
-              <span className="product">{name}</span>
-            </div>
-            </a>
+            <div className="card-container">
+              <div className="image-container">
+                <a href="./localproducts/productname"><img className="card" src={card} alt=""/></a>
+              </div>
+                <div className="card-title">
+                  <a className="card-text "href="./localproducts/productname">{name}</a>
+              </div>
+              </div>
         </div>
         </Decoration>
     )

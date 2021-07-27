@@ -13,7 +13,7 @@ const Decoration = styled.div`
    .path{
        display: flex;
        margin-top: 10px;
-    .ulpath {
+    .ul-path {
         display: flex;
         padding-left: 10px;
     }
@@ -38,6 +38,11 @@ const Decoration = styled.div`
            color:black
        }
    }
+   
+   /* .ul-path li a:hover{
+       text-decoration: underline;
+   } */
+   
 `
 
 
@@ -47,7 +52,7 @@ function Path() {
         <div>
         <div className="pathbox"> 
             <div className="path">
-            <ul className="ulpath"> 
+            <ul className="ul-path"> 
                 <li><a className="path2" href="/homepage">Homepage</a></li>
                 <li><a className="path2" href="/localproducts">Local Coffee Bean</a></li>
                 <li><a className="path2" href="/localproducts/productname">Doi Mon Chong</a></li>

@@ -8,6 +8,7 @@ import Path from '../component/Path'
 import Footercomponent from '../component/Footercomponent.js'
 import Navbarcomponent from '../component/Navbarcomponent.js'
 import Adminproduct from '../component/Adminproduct.js'
+import Uploadimg2 from '../component/Uploadimg2.js'
 
 const Decoration = styled.div`
    padding-top: 64px;
@@ -160,8 +161,8 @@ function Updatedproduct() {
         <Path/>
         <div className="container"> 
                 <div className="col-left">
-                    <div className="productfigure"></div>
-                    <img  src={image} alt="producrfigue"/>
+                    <div className="productfigure">
+                    <Uploadimg2/>
                     <div className="productamount">
                        <button className="btnsub">-</button>
                        <p>1</p>
@@ -175,7 +176,7 @@ function Updatedproduct() {
                 <div className='col-right'>
                      <div className="productchoice">
                         <div className="name"><h1>Doi Mon Chong</h1></div>
-                        <div className="processing"></div>
+                        <div className="processing">
                         <form>
                             <div className="topic">
                             <span>Coffee processing</span>
@@ -195,7 +196,7 @@ function Updatedproduct() {
                                 <label for="honeyprocess">Honey process</label>
                             </div>
                         </form>
-                        
+                        </div>
                         <div className="roasting">
                         <form>
                             <div className="topic">
@@ -264,17 +265,9 @@ function Updatedproduct() {
                             </div>
                         </form>
                         </div>
-                      <div className="totalprice">
-                      <div className='price'>Price</div>
-                      <div className='price'>500</div>
-                      <div className='price'>Baht</div>
-                      </div>
-                      <div className="btn-group">
-                          <a className="btn" href="/localproducts">Continue Shopping</a>
-                          <button className="btnaddtocart">Add to cart</button>
-                      </div>
                      </div>
-                    </div>
+                 </div>
+            </div>
         </div>
         <Footercomponent/>
         </div>

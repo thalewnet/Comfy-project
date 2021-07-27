@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import Navbar from '../component/Navbar.js'
-import Footer from '../component/Footer.js'
+import Footercomponent from '../component/Footercomponent.js'
+import Navbarcomponent from '../component/Navbarcomponent.js'
 import Path from '../component/Path'
 import cart from '../image/cart.png'
 import Cardcart from '../component/Cardcart.js'
-import Footercomponent from '../component/Footercomponent.js'
-import Navbarcomponent from '../component/Navbarcomponent.js'
+import Cartdetailcomponent from '../component/Cartdetailcomponent.js'
 
 const Decoration = styled.div `
     padding-top: 64px;
@@ -38,19 +37,25 @@ const Decoration = styled.div `
         }
 
     .text-bar{
-           font-weight: 500;
+        font-weight: 500;
         }
 
-    .topics{
+    .text-box {
         width: 80%;
         margin: 0 auto;
-        padding-left: 50px;
+    }
+    .topics{
+        width: 100%;
+        margin: 0 auto;
         margin-top: 10px;
         font-weight: 500;
         font-size: 20px;
-        margin-bottom: 10px;
-        
     }
+    .component-container{
+        width: 80%;
+        margin: 0 auto;
+    }
+
 
     .container-ship {
         margin: 0 auto;
@@ -107,36 +112,6 @@ const Decoration = styled.div `
             background-color: #456044
      }
 
-     .summary {
-         margin: 0 auto;
-         width: 80%;
-         display: flex;
-         flex-direction: column;
-         justify-content: flex-end;
-         align-items: flex-end;
-         margin-top: 10px;
-
-         .line{
-             display: flex;
-             justify-content: space-between;
-             width: 30%;
-             
-           
-         }
-            * {
-             margin:0;
-             font-size: 16px;
-             font-weight: 500;
-             margin-bottom: 5px;
-
-             .total, .totalform {
-                 font-size: 20px;
-                 font-weight: 700;
-             }
-         }
-
-
-     }
     `
 
 
@@ -152,45 +127,16 @@ function Cart() {
                 <p className="text-bar">Shopping cart</p>
                 </div>
              </div>
-         <p className="topics">Check out</p>
-         <Cardcart/>
-         <Cardcart/>
-         <div className="container-ship">
-             <div className="shipping">
-                <p className="typeship">Select shipping type :</p>
-             </div>
-            <form>
-            <div className="controlinput">
-                <input type="radio" id="regular" name="shippingtype" value="regular"/>
-                <label for="regular">Send a package regularly </label><br/>
-            </div>
-            <div className="controlinput">
-                <input type="radio" id="ems" name="shippingtype" value="EMS"/>
-                <label for="ems">Send a package express</label><br/>
-                </div>
-             </form>
+             <div className="text-box">
+                <p className="topics">Check out</p>
+             </div> 
+        <div className="component-container">
+         <Cartdetailcomponent/>
          </div>
-         <div className="summary">
-             <div className="line">
-                <p className="priceform">Sub-total</p>
-                <p className="subtotal">860 Baht</p>
-            </div>
-            <div className="line">
-                <p className="priceform">Discount</p>
-                <p className="discount">0 Baht</p>
-            </div>
-            <div className="line">
-                <p className="priceform">Shipping fee</p>
-                <p className="shippingfee">0 Baht</p>
-            </div>
-            <div className="line">
-                <p className="totalform">Total</p>
-                <p className="total">860 Baht</p>
-            </div>
-         </div>
-        <div className="form"><a href="/cart-delivery"><button type='button' className="btn">Confirm Order</button></a></div>
+        <div className="form"><a href="/cart-delivery">
+            <button type='button' className="btn">Confirm Order</button></a>
         </div>
-        
+        </div>
         <Footercomponent/>
         </Decoration>
     )

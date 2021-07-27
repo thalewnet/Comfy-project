@@ -8,6 +8,7 @@ const Decoration = styled.div `
 .admintable{
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .admintable td, .admintable th {
@@ -27,12 +28,16 @@ const Decoration = styled.div `
   color: white;
 }
 
+td:last-child {
+    text-align:center;
+}
 .edit-btn {
     width:100px;
     color: whitesmoke;
     background: #204D48;
     border-radius: 5px;
-    display: block;
+    padding: 3px 20px;
+    text-decoration: none;
     margin: auto;
 }
 `
@@ -44,7 +49,7 @@ function Admintable() {
         <table className="admintable">
             <tr>
                 <th>Order</th>
-                <th>Name</th>
+                <th>Customer</th>
                 <th>Order amount</th>
                 <th>Order status</th>
                 <th></th>
@@ -54,28 +59,28 @@ function Admintable() {
                 <td>Thapanaphong</td>
                 <td>860</td>
                 <td>Waiting for confirm</td>
-                <td><button className="edit-btn">Edit</button></td>
+                <td><a className="edit-btn" href="/admin-ordercheck">Edit</a></td>
             </tr>   
             <tr>
                 <td>CFF-002</td>
                 <td>Thapanaphong</td>
                 <td>860</td>
                 <td>Waiting for confirm</td>
-                <td><button className="edit-btn">Edit</button></td>
+                <td><a className="edit-btn" href="/admin-ordercheck">Edit</a></td>
             </tr>   
             <tr>
                 <td>CFF-003</td>
                 <td>Thapanaphong</td>
                 <td>860</td>
                 <td>Waiting for confirm</td>
-                <td><button className="edit-btn">Edit</button></td>
+                <td><a className="edit-btn" href="/admin-ordercheck">Edit</a></td>
             </tr>   
             <tr>
                 <td>CFF-004</td>
                 <td>Thapanaphong</td>
                 <td>860</td>
                 <td>Waiting for confirm</td>
-                <td><button className="edit-btn">Edit</button></td>
+                <td><a className="edit-btn" href="/admin-ordercheck">Edit</a></td>
             </tr>   
             </table>   
         </div>

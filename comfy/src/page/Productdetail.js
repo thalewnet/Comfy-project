@@ -13,15 +13,17 @@ const Decoration = styled.div`
     
    .container {
        display: flex;
-       justify-content: space-between;
+       justify-content: center;
        margin: 0 auto;
        width: 80%;
    }
-    
-   .productamount {
+   
+  
+   .product-amount {
        display: flex;
        justify-content: flex-end;
        align-items: center;
+       max-width: 500px;
        border-bottom: 1px solid black;
     
         button{
@@ -43,38 +45,38 @@ const Decoration = styled.div`
         p {
            margin: 20px 20px 15px 20px;
            font-size: 24px;
-           text-align:justify;
+           
          
         }
     }
-        .productdetail {
-            width: 600px;
+        .product-detail {
+            max-width: 500px;
+            font-size: 14px;
         }
 
-        .productchoice {
+        .product-choice {
             margin: 0 auto;
+            max-width: 500px;
             background-color: #F8F8F8;
+            margin-left: 40px;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            min-height: 900px;
+            padding: 20px;
             width: 90%;
-        }
-        .col-left{
-            width:60%
+           
         }
 
-        .col-right{
-            width:40%;
-
-             h1 {
+         h1 {
             position: relative;
             top: 10px;
             margin:0 0 0 15px;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
             }
-        }
+        
+
        form {
          margin: 30px 0 20px 20px;
        }
+
         .topic{
             display: flex;
             margin-bottom: 10px;
@@ -106,15 +108,16 @@ const Decoration = styled.div`
             }
         .totalprice {
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start;
 
             .price {
                 font-size:  24px;
                 font-weight: 700;
-                padding: 25px 15px 25px 15px;
+                padding: 20px 15px 20px 15px;
                 
             }
         }
+
         .btn-group {
            display: flex;
            justify-content: center;
@@ -148,8 +151,45 @@ const Decoration = styled.div`
         .btn:hover{
       background-color: #245855;
      }
-        
-        
+
+     @media (max-width: 1110px )  {
+        .container {
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+            width: 80%;
+            }
+
+            .col-right{
+           max-width: 500px;
+       }
+
+       .product-choice {
+           margin:0;
+           padding: 0;
+           background: none;
+           box-shadow: none;
+       }     
+       
+       h1 {
+           margin:0;
+       }
+       .btn-group{
+           justify-content: flex-start;
+       }
+
+       .product-detail{
+           padding-bottom: 10px;
+           border-bottom: 1px solid black;
+       }
+       
+       form{
+            margin-left:0px
+        }
+     
+     }
+       
+     
 `
 function Productdetail() {
     return (
@@ -159,28 +199,31 @@ function Productdetail() {
         <Path/>
         <div className="container"> 
                 <div className="col-left">
-                    <div className="productfigure"></div>
-                    <img  src={image} alt="producrfigue"/>
-                    <div className="productamount">
+                    <div className="product-figure">
+                        <img src={image} alt="producrfigue"/>
+                    </div>
+                    <div className="product-amount">
                        <button className="btnsub">-</button>
                        <p>1</p>
                        <button className="btnadd">+</button>
                      </div>
-                    <div className="productdetail">
+                    <div className="product-info">
                         <h3>Product details</h3>
-                        <p className="datail">เมล็ดกาแฟดอยม่อนจอง มาจากจังหวัดเชียงใหม่ โดยกาแฟดอยม่อนจองจะมีรสชาติดี หอมละมุน คล้ายกลิ่นดอกไม้ป่า และเมื่อผ่านกระบวนการ Process กาแฟ แต่ละ Process ยิ่งทำให้กาแฟมีเอกลักษณ์ของรสชาติที่แตกต่างกัน</p>
-                        <p className="datail">Altitude: 1,200 m</p>
-                        <p className="datail">taste note:</p>
-                        <p className="datail">Light roast:</p>
-                        <p className="datail">Medium roast:</p>
-                        <p className="datail">Dark roast:</p>
-                        <p className="datail">Brewing Methods: </p>
+                        <div className="product-detail">
+                        เมล็ดกาแฟดอยม่อนจอง มาจากจังหวัดเชียงใหม่ โดยกาแฟดอยม่อนจองจะมีรสชาติดี หอมละมุน คล้ายกลิ่นดอกไม้ป่า และเมื่อผ่านกระบวนการ Process กาแฟ แต่ละ Process ยิ่งทำให้กาแฟมีเอกลักษณ์ของรสชาติที่แตกต่างกัน
+                        <br/>Altitude: 1,200 m
+                        <br/>Taste note: Chocolate, Nutty Sweet and Low acidity
+                        <br/>Light roast:  Berry , Orange , Flower , BrownSugar
+                        <br/>Medium roast: Chocolate , Caramel , Nutty
+                        <br/>Dark roast: Chocolate , Caramel , Nutty
+                        <br/>Brewing Methods: Fillter, Espresso, Moka Pot, 
+                        </div>
                     </div>
                 </div>
                 <div className='col-right'>
-                     <div className="productchoice">
-                        <div className="name"><h1>Doi Mon Chong</h1></div>
-                        <div className="processing"></div>
+                     <div className="product-choice">
+                        <div className="product-name"><h1>Doi Mon Chong</h1></div>
+                        <div className="processing">
                         <form>
                             <div className="topic">
                             <span>Coffee processing</span>
@@ -200,7 +243,7 @@ function Productdetail() {
                                 <label for="honeyprocess">Honey process</label>
                             </div>
                         </form>
-                        
+                        </div>
                         <div className="roasting">
                         <form>
                             <div className="topic">
@@ -270,9 +313,9 @@ function Productdetail() {
                         </form>
                         </div>
                       <div className="totalprice">
-                      <div className='price'>Price</div>
-                      <div className='price'>500</div>
-                      <div className='price'>Baht</div>
+                        <div className='price'>Price</div>
+                        <div className='price'>500</div>
+                        <div className='price'>Baht</div>
                       </div>
                       <div className="btn-group">
                           <a className="btn" href="/localproducts">Continue Shopping</a>

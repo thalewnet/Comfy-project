@@ -76,7 +76,7 @@ const Decoration = styled.div `
             border-bottom-width: 2px;
             font-size: 14px;
             box-sizing: border-box;
-            background: rgba(190, 188, 188, 0.33);
+            background: rgba(178, 147, 133, 0.2);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
             margin-top: 3px;
             margin-bottom: 18px;;
@@ -96,7 +96,7 @@ const Decoration = styled.div `
         font-size: 14px;
         border-radius: 5px;
         box-sizing: border-box;
-        background: rgba(190, 188, 188, 0.33);
+        background: rgba(178, 147, 133, 0.2);
         border: 1px solid #ccc;
         border-bottom-width: 2px;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
@@ -115,7 +115,7 @@ const Decoration = styled.div `
         padding-left: 10px;
         border-radius: 5px;
         box-sizing: border-box;
-        background: rgba(190, 188, 188, 0.33);
+        background: rgba(178, 147, 133, 0.2);
         border: 1px solid #ccc;
         border-bottom-width: 2px;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);

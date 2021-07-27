@@ -49,8 +49,10 @@ function Uploadimg() {
             <div className="upload-area">
             <div className="upload-icon"><i><FontAwesomeIcon icon={faFileUpload}/></i></div>
             {/* <p className="text">Slip upload here!</p> */}
+            <form action="">
             <label for="upload"><button className="browse">Browse File</button></label>
             <input type="file" id="upload" multiple hidden/>
+            </form>
         </div>
         </div>
         </Decoration>

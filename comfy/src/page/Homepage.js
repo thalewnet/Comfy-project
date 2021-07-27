@@ -52,7 +52,7 @@ const Decoration = styled.div`
       justify-content: space-evenly;
     }
 
-    @media (max-width: 1050px ){
+    @media (max-width: 1050px){
       .bs{
         margin-bottom: 15px;
       }
@@ -67,6 +67,12 @@ const Decoration = styled.div`
       }
     }
 
+    @media (max-width: 820px ) {
+      .item-card {
+        justify-content: space-around;
+        align-items: center;
+      }
+    }
     @media (max-width: 575px ) {
       .item-card {
         flex-direction: column;

@@ -28,6 +28,11 @@ import Navbarcomponent from './component/Navbarcomponent';
 import Card2 from './component/Card2';
 import Updatedproduct from './page/Updatedproduct';
 import Uploadimg from './component/Uploadimg';
+import Cartdetailcomponent from './component/Cartdetailcomponent';
+import Adminupdatedproduct from './page/Adminupdateproduct';
+import Adminorderstatus from './page/Adminorderstatus';
+import Adminorderedit from './component/Adminorderedit';
+import Adminordercheck from './page/Adminordercheck';
 
 function App() {
   return (
@@ -49,9 +54,11 @@ function App() {
       <Route path="/contactus"  component={ContactUs}/>
       <Route path="/contact" component={Contact}/>
       <Route path="/myorder" component={Myorder}/>\
-      <Route path="/admin-product-update" component={Updatedproduct}/>
-      <Route path="/test" component={Uploadimg}/>
-      <Route path="/test2" component={Navbarcomponent}/>
+      <Route path="/admin-product-update" component={Adminupdatedproduct}/>
+      <Route path="/admin-orderstatus" component={Adminorderstatus}/>
+      <Route path="/admin-ordercheck" component={Adminordercheck}/>
+      <Route path="/test" component={Adminorderstatus}/>
+      <Route path="/test2" component={Adminordercheck}/>
       
       
       </Switch>

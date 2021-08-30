@@ -1,58 +1,55 @@
-import React from 'react'
-import { faEnvelope, faUser, faMobileAlt, faKey } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from 'styled-components'
+import React from 'react';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
 
-const Decoration = styled.div `
- 
-
-.container {
+const Decoration = styled.div`
+  .container {
     position: relative;
     max-width: 850px;
     width: 100%;
     /* background-color: #fff;
     box-shadow: 0 5px 10px rgba(0,0,0,0.25); */
     padding: 70px 0px;
-}
+  }
 
-
-.container form{
-    margin:0 auto;
+  .container form {
+    margin: 0 auto;
     height: 100%;
     width: 90%;
     background: #fff;
-}
+  }
 
-form .form-content .title {
+  form .form-content .title {
     position: relative;
     font-size: 24px;
     font-weight: 500;
     color: #333;
-}
+  }
 
-form .form-content .title:before {
+  form .form-content .title:before {
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
     height: 3px;
     width: 32px;
-    background: #CB925D;
-}
+    background: #cb925d;
+  }
 
-form .form-content .input-boxes{
+  form .form-content .input-boxes {
     margin-top: 30px;
-}
+  }
 
-form  .form-content .input-box{
+  form .form-content .input-box {
     display: flex;
     align-items: center;
     height: 50px;
     width: 100%;
     margin: 3px 0px;
-}
+  }
 
-.form-content .input-box input{
+  .form-content .input-box input {
     height: 100%;
     width: 100%;
     outline: none;
@@ -60,94 +57,92 @@ form  .form-content .input-box{
     padding: 0 30px;
     font-size: 17px;
     font-weight: 500;
-    border-bottom: 2px solid rgba(0,0,0,0.25) ;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.25);
     transition: all 0.3s ease;
-}
+  }
 
-.form-content .input-box i {
+  .form-content .input-box i {
     position: absolute;
-    color: #CB925D;
+    color: #cb925d;
     font-size: 17px;
-}
+  }
 
-form .form-content .text1,
-form .form-content .text2 {
+  form .form-content .text1,
+  form .form-content .text2 {
     font-size: 14px;
     font-weight: 500;
     color: #333;
     margin-top: 10px;
-}
+  }
 
-form .form-content .text1 {
-    text-align:right
-}
-form .form-content .text2 {
-    text-align:center
-}
-form .form-content .text1 a,
-form .form-content .text2 a{
+  form .form-content .text1 {
+    text-align: right;
+  }
+  form .form-content .text2 {
+    text-align: center;
+  }
+  form .form-content .text1 a,
+  form .form-content .text2 a {
     text-decoration: none;
     color: blue;
-}
+  }
 
-form .form-content .text1 a:hover{
+  form .form-content .text1 a:hover {
     text-decoration: underline;
-}
-form .form-content .text2 a:hover{
+  }
+  form .form-content .text2 a:hover {
     text-decoration: underline;
-}
+  }
 
-.form-content .input-box input:focus,
-.form-content .input-box input:valid{
-    border-color: #CB925D; 
-}
+  .form-content .input-box input:focus,
+  .form-content .input-box input:valid {
+    border-color: #cb925d;
+  }
 
-form .form-content .button{
+  form .form-content .button {
     color: #fff;
     margin-top: 40px;
-}
+  }
 
-form .form-content .button input{
+  form .form-content .button input {
     color: #fff;
     background: #384937;
     border-radius: 6px;
     padding: 0;
     cursor: pointer;
     transition: all 0.4s ease;
-}
+  }
 
-form .form-content .button input:hover{
+  form .form-content .button input:hover {
     background: #456044;
-}
-
-`
+  }
+`;
 function Forgotcomponent() {
-    return (
-        <Decoration>
-        <div>
-            <div className="container">
-                
-              <form action="#">
-                <div className="form-content">
-                    <div className="forgot-form">
-                        <div className="title">Forgot password</div>
-                        <div className="input-boxes">
-                            <div className="input-box">
-                                <i><FontAwesomeIcon icon={faEnvelope}/></i>
-                                <input type="email" placeholder="Enter your email" required/>
-                            </div>
-                        
-                            <div className="button input-box">
-                                <input type="button" value="Send"/>
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <Decoration>
+      <div className="container">
+        <form action="#">
+          <div className="form-content">
+            <div className="forgot-form">
+              <div className="title">Forgot password</div>
+              <div className="input-boxes">
+                <div className="input-box">
+                  <i>
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </i>
+                  <input type="email" placeholder="Enter your email" required />
                 </div>
-              </form>    
+
+                <div className="button input-box">
+                  <input type="button" value="Send" />
+                </div>
+              </div>
             </div>
-        </div>
-        </Decoration>
-    )
+          </div>
+        </form>
+      </div>
+    </Decoration>
+  );
 }
 
-export default Forgotcomponent
+export default Forgotcomponent;

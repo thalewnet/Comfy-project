@@ -1,196 +1,203 @@
-import React from 'react'
-import styled from 'styled-components'
-import Footercomponent from '../component/Footercomponent.js'
-import Navbarcomponent from '../component/Navbarcomponent.js'
-import Path from '../component/Path'
-import Cartcard from '../image/product.jpg'
-import Cartcard2 from '../image/product2.jpg'
-import Cartcard3 from '../image/product3.jpg'
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import Cartcard from '../image/product.jpg';
+import Cartcard2 from '../image/product2.jpg';
+import Cartcard3 from '../image/product3.jpg';
 
 const Decoration = styled.div`
-    * {
-        margin: 0;
-    }
+  * {
+    margin: 0;
+  }
 
-.cart-container {
+  .cart-container {
     margin: 0 auto;
     margin-top: 10px;
-}
+  }
 
-.cart-table {
+  .cart-table {
     margin: auto;
     width: 100%;
     border-collapse: collapse;
-}
+  }
 
-.cart-info {
+  .cart-info {
     display: flex;
     flex-wrap: wrap;
-}
+  }
 
-td .img-info {
+  td .img-info {
     width: 170px;
     height: 150px;
     margin: 0 10px 0 0px;
-}
+  }
 
-th {
+  th {
     text-align: left;
     padding: 5px;
     color: #fff;
-    background: #B29385;
+    background: #b29385;
     font-weight: 400;
-}
+  }
 
-td {
+  td {
     padding: 10px 5px;
-}
+  }
 
-td input {
+  td input {
     width: 60px;
     height: 20px;
     padding: 5px 8px;
-}
-.info-details{
+  }
+  .info-details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
-}
-.info-name {
+  }
+  .info-name {
     font-size: 24px;
     font-weight: 500;
-}
-.info-choice {
+  }
+  .info-choice {
     font-size: 12px;
-}
-.info-price {
+  }
+  .info-price {
     margin-top: 10px;
-    font-weight:500;
-}
-td a.btn-remove {
+    font-weight: 500;
+  }
+  td a.btn-remove {
     color: #ff523b;
     font-size: 12px;
     text-decoration: none;
-}
-td a.btn-edit {
+  }
+  td a.btn-edit {
     color: blue;
     font-size: 12px;
     margin-left: 5px;
     text-decoration: none;
-}
+  }
 
-.total-price {
+  .total-price {
     display: flex;
     justify-content: flex-end;
     width: 100%;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-}
+  }
 
-.total-table {
+  .total-table {
     /* border-top: 2px solid black; */
     width: 100%;
     max-width: 380px;
-}
+  }
 
-td:last-child {
+  td:last-child {
     text-align: right;
-}
-th:last-child {
+  }
+  th:last-child {
     text-align: right;
-}
+  }
 
-.total-price .total-table td:first-child {
+  .total-price .total-table td:first-child {
     font-weight: 600;
-}
+  }
 
-
-@media (max-width: 800px ){
-    p.info-name{
-        font-size: 16px;
+  @media (max-width: 800px) {
+    p.info-name {
+      font-size: 16px;
     }
 
-    p.info-choice{
-        font-size:10px ;
+    p.info-choice {
+      font-size: 10px;
     }
-    p.info-price{
-        display: none;
+    p.info-price {
+      display: none;
     }
-}
-`
+  }
+`;
 
 function Cartdetailcomponent() {
-    return (
-        <Decoration>
-        <div>
-            <div className="cart-container">
-                <table className="cart-table">
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                    {/* Product1 */}
-                    <tr>
-                       <td>
-                           <div className="cart-info">
-                               <img className="img-info"src={Cartcard} alt=""/>
-                               <div className="info-details">
-                                   <p className="info-name">Doi Mon Chong</p>
-                                   <p className="info-choice">Honey process Light roast Whole bean 500 grams</p>
-                                   <p className="info-price">Price : 500 &#3647;</p>
-                                <div className="btn-rmv-edt">
-                                   <a className="btn-remove" href="">Remove</a>
-                                   <a className="btn-edit" href="./localproducts/productname">Edit</a>
-                                </div>
-                               </div>
-                           </div>
-                       </td>
-                       <td><input type="number" value="1"/></td>
-                       <td>500 &#3647;</td>
-                    </tr>
-                    {/* Product2 */}
-                    <tr>
-                       <td>
-                           <div className="cart-info">
-                               <img className="img-info"src={Cartcard3} alt=""/>
-                               <div className="info-details">
-                                   <p className="info-name">Mae Chan Tai</p>
-                                   <p className="info-choice">Washed / Wat process Light roast Medium ground 500 grams</p>
-                                   <p className="info-price">Price : 350 &#3647;</p>
-                                <div className="btn-rmv-edt">
-                                   <a className="btn-remove" href="">Remove</a>
-                                   <a className="btn-edit" href="./localproducts/productname">Edit</a>
-                                </div>
-                               </div>
-                           </div>
-                       </td>
-                       <td><input type="number" value="1"/></td>
-                       <td>350 &#3647;</td>
-                    </tr>
-                    {/* Prodcut 3 */}
-                    <tr>
-                       <td>
-                           <div className="cart-info">
-                               <img className="img-info"src={Cartcard2} alt=""/>
-                               <div className="info-details">
-                                   <p className="info-name">Doi Chang</p>
-                                   <p className="info-choice">Washed / Wat process Light roast Fined ground 250 grams</p>
-                                   <p className="info-price">Price : 240 &#3647;</p>
-                                <div className="btn-rmv-edt">
-                                   <a className="btn-remove" href="">Remove</a>
-                                   <a className="btn-edit" href="./localproducts/productname">Edit</a>
-                                </div>
-                               </div>
-                           </div>
-                       </td>
-                       <td><input type="number" value="1"/></td>
-                       <td>240 &#3647;</td>
-                    </tr>
-                </table>
+  return (
+    <Decoration>
+      <div className="cart-container">
+        <table className="cart-table">
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+          {/* Product1 */}
+          <tr>
+            <td>
+              <div className="cart-info">
+                <img className="img-info" src={Cartcard} alt="" />
+                <div className="info-details">
+                  <p className="info-name">Doi Mon Chong</p>
+                  <p className="info-choice">Honey process Light roast Whole bean 500 grams</p>
+                  <p className="info-price">Price : 500 &#3647;</p>
+                  <div className="btn-rmv-edt">
+                    <p className="btn-remove">Remove</p>
+                    <Link to={'/localproducts/productname'} className="btn-edit">
+                      Edit
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <input type="number" value="1" />
+            </td>
+            <td>500 &#3647;</td>
+          </tr>
+          {/* Product2 */}
+          <tr>
+            <td>
+              <div className="cart-info">
+                <img className="img-info" src={Cartcard3} alt="" />
+                <div className="info-details">
+                  <p className="info-name">Mae Chan Tai</p>
+                  <p className="info-choice">Washed / Wat process Light roast Medium ground 500 grams</p>
+                  <p className="info-price">Price : 350 &#3647;</p>
+                  <div className="btn-rmv-edt">
+                    <p className="btn-remove">Remove</p>
+                    <Link to={'/localproducts/productname'} className="btn-edit">
+                      Edit
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <input type="number" value="1" />
+            </td>
+            <td>350 &#3647;</td>
+          </tr>
+          {/* Prodcut 3 */}
+          <tr>
+            <td>
+              <div className="cart-info">
+                <img className="img-info" src={Cartcard2} alt="" />
+                <div className="info-details">
+                  <p className="info-name">Doi Chang</p>
+                  <p className="info-choice">Washed / Wat process Light roast Fined ground 250 grams</p>
+                  <p className="info-price">Price : 240 &#3647;</p>
+                  <div className="btn-rmv-edt">
+                    <p className="btn-remove">Remove</p>
+                    <Link to={'/localproducts/productname'} className="btn-edit">
+                      Edit
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <input type="number" value="1" />
+            </td>
+            <td>240 &#3647;</td>
+          </tr>
+        </table>
 
-                {/* <div className="shipping">
+        {/* <div className="shipping">
                     <table className="shipping-table">
                         <tr>
                             <td>
@@ -209,30 +216,29 @@ function Cartdetailcomponent() {
                     </table>
                 </div> */}
 
-                <div className="total-price">
-                    <table className="total-table">
-                        <tr>
-                            <td>Subtotal</td>
-                            <td>1,090 &#3647;</td>
-                        </tr>
-                        <tr>
-                            <td>Discount</td>
-                            <td>0 &#3647;</td>
-                        </tr>
-                        <tr>
-                            <td>Shipping fee</td>
-                            <td>0 &#3647;</td>
-                        </tr>
-                        <tr>
-                            <td>Total</td>
-                            <td>1,090 &#3647;</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+        <div className="total-price">
+          <table className="total-table">
+            <tr>
+              <td>Subtotal</td>
+              <td>1,090 &#3647;</td>
+            </tr>
+            <tr>
+              <td>Discount</td>
+              <td>0 &#3647;</td>
+            </tr>
+            <tr>
+              <td>Shipping fee</td>
+              <td>0 &#3647;</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>1,090 &#3647;</td>
+            </tr>
+          </table>
         </div>
-        </Decoration>
-    )
+      </div>
+    </Decoration>
+  );
 }
 
-export default Cartdetailcomponent
+export default Cartdetailcomponent;

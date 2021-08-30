@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
-import card from '../image/card5.jpg'
+import React from 'react';
+import styled from 'styled-components';
+import card from '../image/card5.jpg';
+import { Link } from 'react-router-dom';
 
 const Decoration = styled.div`
-
   .card-container {
     width: 320px;
     overflow: hidden;
@@ -13,79 +13,76 @@ const Decoration = styled.div`
     margin-bottom: 20px;
   }
 
-  .card-container:hover{
+  .card-container:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25) ;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
   }
-  
+
   .image-container img {
     overflow: hidden;
     height: 390px;
     width: 100%;
   }
 
-    .card-title{
-      position: absolute;
-      width: 100%;
-      height: 40px;
-      bottom: 0;
-      background: #FFFFFF;
-      align-items: center;
-      
+  .card-title {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    background: #ffffff;
+    align-items: center;
   }
-  
-    .card-text {
-        margin:0 auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        line-height: 40px;
-        padding-left: 10px;
-        font-size: 14px;
-        font-weight: 400;
-        color: black;
-        text-decoration: none;
+
+  .card-text {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 40px;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+    text-decoration: none;
+  }
+
+  @media (max-width: 1330px) {
+    .card {
+      width: 280px;
+      height: 340px;
     }
- 
-  @media (max-width: 1330px ) {
+  }
+  @media (max-width: 1138px) {
     .card {
-    width: 280px;
-    height: 340px;
+      width: 260px;
+      height: 320px;
+    }
   }
-  }
-  @media (max-width: 1138px ) {
+
+  @media (max-width: 1055px) {
     .card {
-    width: 260px;
-    height: 320px;
-
+      width: 240px;
+      height: 300px;
+    }
   }
-  }
-
-  @media (max-width: 1055px ) {
-    .card {
-    width: 240px;
-    height: 300px;
-
-  }
-  }
-
-
-`
-function Card4({name}) {
-    return (
-        <Decoration>
-        <div>
-            <div className="card-container">
-              <div className="image-container">
-                <a href="./localproducts/productname"><img className="card" src={card} alt=""/></a>
-              </div>
-                <div className="card-title">
-                  <a className="card-text "href="./localproducts/productname">{name}</a>
-              </div>
-              </div>
+`;
+function Card4({ name }) {
+  return (
+    <Decoration>
+      <div className="card-container">
+        <div className="image-container">
+          <Link to={'/localproducts/productname'}>
+            <img className="card" src={card} alt="" />
+          </Link>
         </div>
-        </Decoration>
-    )
+        <div className="card-title">
+          <Link to={'/localproducts/productname'} className="card-text ">
+            {name}
+          </Link>
+        </div>
+      </div>
+    </Decoration>
+  );
 }
 
-export default Card4
+export default Card4;

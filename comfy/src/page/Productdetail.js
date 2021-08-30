@@ -1,333 +1,333 @@
-import React from 'react'
-import Navbar from '../component/Navbar.js'
-import styled from 'styled-components'
-import Footer from '../component/Footer.js'
-import image from '../image/product.jpg'
-import Counter from '../Counter.js'
-import Path from '../component/Path'
-import Footercomponent from '../component/Footercomponent.js'
-import Navbarcomponent from '../component/Navbarcomponent.js'
+import React from 'react';
+import styled from 'styled-components';
+import image from '../image/product.jpg';
+import Path from '../component/Path';
 
 const Decoration = styled.div`
-   padding-top: 64px;
-    
-   .container {
-       display: flex;
-       justify-content: center;
-       margin: 0 auto;
-       width: 80%;
-   }
-   
-  
-   .product-amount {
-       display: flex;
-       justify-content: flex-end;
-       align-items: center;
-       max-width: 500px;
-       border-bottom: 1px solid black;
-    
-        button{
-            width: 45px;
-            height: 40px;
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-            border: none;
-            background-color: #C4C4C4;
-        }
+  padding-top: 64px;
 
-        .btnadd{
-                background-color: #EECB14;
-            }
+  .container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 80%;
+  }
 
-        p {
-           margin: 20px 20px 15px 20px;
-           font-size: 24px;
-           
-         
-        }
+  .product-amount {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 500px;
+    border-bottom: 1px solid black;
+
+    button {
+      width: 45px;
+      height: 40px;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      border: none;
+      background-color: #c4c4c4;
     }
-        .product-detail {
-            max-width: 500px;
-            font-size: 14px;
-        }
 
-        .product-choice {
-            margin: 0 auto;
-            max-width: 500px;
-            background-color: #F8F8F8;
-            margin-left: 40px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            padding: 20px;
-            width: 90%;
-           
-        }
+    .btnadd {
+      background-color: #eecb14;
+    }
 
-         h1 {
-            position: relative;
-            top: 10px;
-            margin:0 0 0 15px;
-            /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-            }
-        
+    p {
+      margin: 20px 20px 15px 20px;
+      font-size: 24px;
+    }
+  }
+  .product-detail {
+    max-width: 500px;
+    font-size: 14px;
+  }
 
-       form {
-         margin: 30px 0 20px 20px;
-       }
+  .product-choice {
+    margin: 0 auto;
+    max-width: 500px;
+    background-color: #f8f8f8;
+    margin-left: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    width: 90%;
+  }
 
-        .topic{
-            display: flex;
-            margin-bottom: 10px;
+  h1 {
+    position: relative;
+    top: 10px;
+    margin: 0 0 0 15px;
+    /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  }
 
-            span {
-                margin: 0;
-                font-size: 16px ;
-                font-weight: 500;
-            }
-            .specific {
-                color:red;
-                font-size: 12px;
-            }
-        }
+  form {
+    margin: 30px 0 20px 20px;
+  }
 
-         .specific {
-            color: lime;
-            font-weight: 300;
-            font-size: 8px;
-            padding-left: 5px;
-            }
+  .topic {
+    display: flex;
+    margin-bottom: 10px;
 
-        .controlinput {
-            margin: 10px 7px;
-        } 
+    span {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .specific {
+      color: red;
+      font-size: 12px;
+    }
+  }
 
-        label {
-                padding-left: 10px;
-            }
-        .totalprice {
-            display: flex;
-            justify-content: flex-start;
+  .specific {
+    color: lime;
+    font-weight: 300;
+    font-size: 8px;
+    padding-left: 5px;
+  }
 
-            .price {
-                font-size:  24px;
-                font-weight: 700;
-                padding: 20px 15px 20px 15px;
-                
-            }
-        }
+  .controlinput {
+    margin: 10px 7px;
+  }
 
-        .btn-group {
-           display: flex;
-           justify-content: center;
-           margin-top: 10px;
-           
-           .btn{
-               text-decoration: none;
-               margin-right: 20px;
-               color: whitesmoke;
-               background: #204D48;
-               border: 2px solid #204D48;
-               padding: 8px 16px;
-               border-radius: 8px;
-               
-           }
+  label {
+    padding-left: 10px;
+  }
+  .totalprice {
+    display: flex;
+    justify-content: flex-start;
 
-           .btnaddtocart{
-                background-color: #204D48;
-                color: whitesmoke;
-                border-radius: 8px;
-                font-family: Roboto;
-                font-style: normal;
-                padding: 0 16px;
-                font-size: 16px
-            }
-        }
+    .price {
+      font-size: 24px;
+      font-weight: 700;
+      padding: 20px 15px 20px 15px;
+    }
+  }
 
-        .btnaddtocart:hover{
-      background-color: #245855;
-     }
-        .btn:hover{
-      background-color: #245855;
-     }
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 
-     @media (max-width: 1110px )  {
-        .container {
-            flex-direction: column;
-            justify-content: center;
-            margin: 0 auto;
-            width: 80%;
-            }
+    .btn {
+      text-decoration: none;
+      margin-right: 20px;
+      color: whitesmoke;
+      background: #204d48;
+      border: 2px solid #204d48;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
 
-            .col-right{
-           max-width: 500px;
-       }
+    .btnaddtocart {
+      background-color: #204d48;
+      color: whitesmoke;
+      border-radius: 8px;
+      font-family: Roboto;
+      font-style: normal;
+      padding: 0 16px;
+      font-size: 16px;
+    }
+  }
 
-       .product-choice {
-           margin:0;
-           padding: 0;
-           background: none;
-           box-shadow: none;
-       }     
-       
-       h1 {
-           margin:0;
-       }
-       .btn-group{
-           justify-content: flex-start;
-       }
+  .btnaddtocart:hover {
+    background-color: #245855;
+  }
+  .btn:hover {
+    background-color: #245855;
+  }
 
-       .product-detail{
-           padding-bottom: 10px;
-           border-bottom: 1px solid black;
-       }
-       
-       form{
-            margin-left:0px
-        }
-     
-     }
-       
-     
-`
+  @media (max-width: 1110px) {
+    .container {
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .col-right {
+      max-width: 500px;
+    }
+
+    .product-choice {
+      margin: 0;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+    }
+
+    h1 {
+      margin: 0;
+    }
+    .btn-group {
+      justify-content: flex-start;
+    }
+
+    .product-detail {
+      padding-bottom: 10px;
+      border-bottom: 1px solid black;
+    }
+
+    form {
+      margin-left: 0px;
+    }
+  }
+`;
 function Productdetail() {
-    return (
-        <Decoration>
-        <div>
-        <Navbarcomponent/>
-        <Path/>
-        <div className="container"> 
-                <div className="col-left">
-                    <div className="product-figure">
-                        <img src={image} alt="producrfigue"/>
-                    </div>
-                    <div className="product-amount">
-                       <button className="btnsub">-</button>
-                       <p>1</p>
-                       <button className="btnadd">+</button>
-                     </div>
-                    <div className="product-info">
-                        <h3>Product details</h3>
-                        <div className="product-detail">
-                        เมล็ดกาแฟดอยม่อนจอง มาจากจังหวัดเชียงใหม่ โดยกาแฟดอยม่อนจองจะมีรสชาติดี หอมละมุน คล้ายกลิ่นดอกไม้ป่า และเมื่อผ่านกระบวนการ Process กาแฟ แต่ละ Process ยิ่งทำให้กาแฟมีเอกลักษณ์ของรสชาติที่แตกต่างกัน
-                        <br/>Altitude: 1,200 m
-                        <br/>Taste note: Chocolate, Nutty Sweet and Low acidity
-                        <br/>Light roast:  Berry , Orange , Flower , BrownSugar
-                        <br/>Medium roast: Chocolate , Caramel , Nutty
-                        <br/>Dark roast: Chocolate , Caramel , Nutty
-                        <br/>Brewing Methods: Fillter, Espresso, Moka Pot, 
-                        </div>
-                    </div>
+  return (
+    <Decoration>
+      <Path />
+      <div className="container">
+        <div className="col-left">
+          <div className="product-figure">
+            <img src={image} alt="producrfigue" />
+          </div>
+          <div className="product-amount">
+            <button className="btnsub">-</button>
+            <p>1</p>
+            <button className="btnadd">+</button>
+          </div>
+          <div className="product-info">
+            <h3>Product details</h3>
+            <div className="product-detail">
+              เมล็ดกาแฟดอยม่อนจอง มาจากจังหวัดเชียงใหม่ โดยกาแฟดอยม่อนจองจะมีรสชาติดี หอมละมุน คล้ายกลิ่นดอกไม้ป่า
+              และเมื่อผ่านกระบวนการ Process กาแฟ แต่ละ Process ยิ่งทำให้กาแฟมีเอกลักษณ์ของรสชาติที่แตกต่างกัน
+              <br />
+              Altitude: 1,200 m
+              <br />
+              Taste note: Chocolate, Nutty Sweet and Low acidity
+              <br />
+              Light roast: Berry , Orange , Flower , BrownSugar
+              <br />
+              Medium roast: Chocolate , Caramel , Nutty
+              <br />
+              Dark roast: Chocolate , Caramel , Nutty
+              <br />
+              Brewing Methods: Fillter, Espresso, Moka Pot,
+            </div>
+          </div>
+        </div>
+        <div className="col-right">
+          <div className="product-choice">
+            <div className="product-name">
+              <h1>Doi Mon Chong</h1>
+            </div>
+            <div className="processing">
+              <form>
+                <div className="topic">
+                  <span>Coffee processing</span>
+                  <span className="specific">*</span>
                 </div>
-                <div className='col-right'>
-                     <div className="product-choice">
-                        <div className="product-name"><h1>Doi Mon Chong</h1></div>
-                        <div className="processing">
-                        <form>
-                            <div className="topic">
-                            <span>Coffee processing</span>
-                            <span className="specific">*</span>
-                            </div>
-                            <div className="controlinput">
-                                <input  type="radio" id="wetprocess" name="coffeeprocessing" value="wetprocess"/>
-                                <label for="wetprocess">Washed / Wet process</label><br/>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="dryprocess" name="coffeeprocessing" value="naturalprocess"/>
-                                <label for="dryprocess">Natural/ Dry process</label><br/>
-                            </div>
+                <div className="controlinput">
+                  <input type="radio" id="wetprocess" name="coffeeprocessing" value="wetprocess" />
+                  <label for="wetprocess">Washed / Wet process</label>
+                  <br />
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="dryprocess" name="coffeeprocessing" value="naturalprocess" />
+                  <label for="dryprocess">Natural/ Dry process</label>
+                  <br />
+                </div>
 
-                            <div className="controlinput">
-                                <input type="radio" id="honeyprocess" name="coffeeprocessing" value="honeyprocess"/>
-                                <label for="honeyprocess">Honey process</label>
-                            </div>
-                        </form>
-                        </div>
-                        <div className="roasting">
-                        <form>
-                            <div className="topic">
-                            <span>Roasting Level</span>
-                            <span className="specific">*</span>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="light" name="roastinglevel" value="lightroast"/>
-                                <label for="light">Light roast</label><br/>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="medium" name="roastinglevel" value="mediumroast"/>
-                                <label for="medium">Medium roast</label><br/>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="dark" name="roastinglevel" value="darkroast"/>
-                                <label for="dark">Dark roast</label>
-                            </div>
-                        </form>
-                        </div>
-                        <div className="grinding">
-                             <form>
-                            <div className="topic">
-                            <span>Grind Level</span>
-                            <span className="specific">*</span>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="whole" name="grindlevel" value="wholebean"/>
-                                <label for="whole">Whole bean</label><br/>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="fined" name="grindlevel" value="finedground"/>
-                                <label for="fined">Fined ground</label><br/>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="dark" name="grindlevel" value="mediumground"/>
-                                <label for="dark">Medium ground</label>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="dark" name="grindlevel" value="coarseground"/>
-                                <label for="dark">Coarse ground</label>
-                            </div>
-                        </form>
-                        </div>
-                        <div className="weighing">
-                        <form>
-                            <div className="topic">
-                            <span>Weight</span>
-                            <span className="specific">*</span>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="100" name="weight" value="100gram"/>
-                                <label for="100">100 grams</label><br/>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="250" name="weight" value="250gram"/>
-                                <label for="250">250 grams</label><br/>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="500" name="weight" value="500gram"/>
-                                <label for="500">500 grams</label>
-                            </div>
-                            <div className="controlinput">
-                                <input type="radio" id="1000" name="weight" value="1kilogram"/>
-                                <label for="1000">1 kilogram</label>
-                            </div>
-                        </form>
-                        </div>
-                      <div className="totalprice">
-                        <div className='price'>Price</div>
-                        <div className='price'>500</div>
-                        <div className='price'>Baht</div>
-                      </div>
-                      <div className="btn-group">
-                          <a className="btn" href="/localproducts">Continue Shopping</a>
-                          <button className="btnaddtocart">Add to cart</button>
-                      </div>
-                     </div>
-                    </div>
+                <div className="controlinput">
+                  <input type="radio" id="honeyprocess" name="coffeeprocessing" value="honeyprocess" />
+                  <label for="honeyprocess">Honey process</label>
+                </div>
+              </form>
+            </div>
+            <div className="roasting">
+              <form>
+                <div className="topic">
+                  <span>Roasting Level</span>
+                  <span className="specific">*</span>
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="light" name="roastinglevel" value="lightroast" />
+                  <label for="light">Light roast</label>
+                  <br />
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="medium" name="roastinglevel" value="mediumroast" />
+                  <label for="medium">Medium roast</label>
+                  <br />
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="dark" name="roastinglevel" value="darkroast" />
+                  <label for="dark">Dark roast</label>
+                </div>
+              </form>
+            </div>
+            <div className="grinding">
+              <form>
+                <div className="topic">
+                  <span>Grind Level</span>
+                  <span className="specific">*</span>
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="whole" name="grindlevel" value="wholebean" />
+                  <label for="whole">Whole bean</label>
+                  <br />
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="fined" name="grindlevel" value="finedground" />
+                  <label for="fined">Fined ground</label>
+                  <br />
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="dark" name="grindlevel" value="mediumground" />
+                  <label for="dark">Medium ground</label>
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="dark" name="grindlevel" value="coarseground" />
+                  <label for="dark">Coarse ground</label>
+                </div>
+              </form>
+            </div>
+            <div className="weighing">
+              <form>
+                <div className="topic">
+                  <span>Weight</span>
+                  <span className="specific">*</span>
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="100" name="weight" value="100gram" />
+                  <label for="100">100 grams</label>
+                  <br />
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="250" name="weight" value="250gram" />
+                  <label for="250">250 grams</label>
+                  <br />
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="500" name="weight" value="500gram" />
+                  <label for="500">500 grams</label>
+                </div>
+                <div className="controlinput">
+                  <input type="radio" id="1000" name="weight" value="1kilogram" />
+                  <label for="1000">1 kilogram</label>
+                </div>
+              </form>
+            </div>
+            <div className="totalprice">
+              <div className="price">Price</div>
+              <div className="price">500</div>
+              <div className="price">Baht</div>
+            </div>
+            <div className="btn-group">
+              <a className="btn" href="/localproducts">
+                Continue Shopping
+              </a>
+              <button className="btnaddtocart">Add to cart</button>
+            </div>
+          </div>
         </div>
-        </div>
-        <Footercomponent/>
-        </Decoration>
-    )
+      </div>
+    </Decoration>
+  );
 }
 
-export default Productdetail
+export default Productdetail;

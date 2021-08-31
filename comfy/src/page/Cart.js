@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Cartdetailcomponent from '../component/Cartdetailcomponent';
 import Path from '../component/Path';
 import cart from '../image/cart.png';
-import Cartdetailcomponent from '../component/Cartdetailcomponent.js';
 
 const Decoration = styled.div`
   padding-top: 64px;

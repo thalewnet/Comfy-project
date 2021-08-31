@@ -181,7 +181,7 @@ function Navbarcomponent() {
             <input type="checkbox" id="check" />
             <ul className="links">
               <div className="btn-close">
-                <label for="check">
+                <label htmlFor="check">
                   <FontAwesomeIcon icon={faTimes} />
                 </label>
               </div>
@@ -226,7 +226,7 @@ function Navbarcomponent() {
               </li>
             </ul>
             <div className="btn-menu">
-              <label for="check" className="btn-check">
+              <label htmlFor="check" className="btn-check">
                 <FontAwesomeIcon icon={faBars} />
               </label>
             </div>

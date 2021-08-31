@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import Cartcard from '../image/product.jpg';
 import Cartcard2 from '../image/product2.jpg';
 import Cartcard3 from '../image/product3.jpg';
-
+import CartItem from '../component/cart/CartItem';
+import SummaryCart from './cart/SummaryCart';
 const Decoration = styled.div`
   * {
     margin: 0;
@@ -65,12 +65,15 @@ const Decoration = styled.div`
     margin-top: 10px;
     font-weight: 500;
   }
-  td a.btn-remove {
+  .btn-rmv-edt {
+    display: flex;
+  }
+  td p.btn-remove {
     color: #ff523b;
     font-size: 12px;
     text-decoration: none;
   }
-  td a.btn-edit {
+  td .btn-edit {
     color: blue;
     font-size: 12px;
     margin-left: 5px;
@@ -115,7 +118,29 @@ const Decoration = styled.div`
     }
   }
 `;
-
+const MOCK_DATA = [
+  {
+    img: Cartcard,
+    id: 1,
+    name: 'Doi Mon Chong',
+    choice: 'Honey process Light roast Whole bean 500 grams',
+    price: 500,
+  },
+  {
+    img: Cartcard3,
+    id: 2,
+    name: 'Mae Chan Tai',
+    choice: 'Washed / Wet Process Light roast Medium ground 500 grams',
+    price: 350,
+  },
+  {
+    img: Cartcard2,
+    id: 3,
+    name: 'Doi Chang',
+    choice: 'Washed / Wat process Light roast Fined ground 250 grams',
+    price: 240,
+  },
+];
 function Cartdetailcomponent() {
   return (
     <Decoration>
@@ -127,74 +152,9 @@ function Cartdetailcomponent() {
             <th>Subtotal</th>
           </tr>
           {/* Product1 */}
-          <tr>
-            <td>
-              <div className="cart-info">
-                <img className="img-info" src={Cartcard} alt="" />
-                <div className="info-details">
-                  <p className="info-name">Doi Mon Chong</p>
-                  <p className="info-choice">Honey process Light roast Whole bean 500 grams</p>
-                  <p className="info-price">Price : 500 &#3647;</p>
-                  <div className="btn-rmv-edt">
-                    <p className="btn-remove">Remove</p>
-                    <Link to={'/localproducts/productname'} className="btn-edit">
-                      Edit
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <input type="number" value="1" />
-            </td>
-            <td>500 &#3647;</td>
-          </tr>
-          {/* Product2 */}
-          <tr>
-            <td>
-              <div className="cart-info">
-                <img className="img-info" src={Cartcard3} alt="" />
-                <div className="info-details">
-                  <p className="info-name">Mae Chan Tai</p>
-                  <p className="info-choice">Washed / Wat process Light roast Medium ground 500 grams</p>
-                  <p className="info-price">Price : 350 &#3647;</p>
-                  <div className="btn-rmv-edt">
-                    <p className="btn-remove">Remove</p>
-                    <Link to={'/localproducts/productname'} className="btn-edit">
-                      Edit
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <input type="number" value="1" />
-            </td>
-            <td>350 &#3647;</td>
-          </tr>
-          {/* Prodcut 3 */}
-          <tr>
-            <td>
-              <div className="cart-info">
-                <img className="img-info" src={Cartcard2} alt="" />
-                <div className="info-details">
-                  <p className="info-name">Doi Chang</p>
-                  <p className="info-choice">Washed / Wat process Light roast Fined ground 250 grams</p>
-                  <p className="info-price">Price : 240 &#3647;</p>
-                  <div className="btn-rmv-edt">
-                    <p className="btn-remove">Remove</p>
-                    <Link to={'/localproducts/productname'} className="btn-edit">
-                      Edit
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <input type="number" value="1" />
-            </td>
-            <td>240 &#3647;</td>
-          </tr>
+          {MOCK_DATA.map((item) => (
+            <CartItem key={item.id} info={item} />
+          ))}
         </table>
 
         {/* <div className="shipping">
@@ -216,26 +176,7 @@ function Cartdetailcomponent() {
                     </table>
                 </div> */}
 
-        <div className="total-price">
-          <table className="total-table">
-            <tr>
-              <td>Subtotal</td>
-              <td>1,090 &#3647;</td>
-            </tr>
-            <tr>
-              <td>Discount</td>
-              <td>0 &#3647;</td>
-            </tr>
-            <tr>
-              <td>Shipping fee</td>
-              <td>0 &#3647;</td>
-            </tr>
-            <tr>
-              <td>Total</td>
-              <td>1,090 &#3647;</td>
-            </tr>
-          </table>
-        </div>
+        <SummaryCart />
       </div>
     </Decoration>
   );

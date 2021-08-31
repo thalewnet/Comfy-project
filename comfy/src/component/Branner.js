@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import quote from '../image/brannermain.jpg';
 import { Link } from 'react-router-dom';
+
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -35,7 +36,7 @@ const Decoration = styled.div`
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       }
 
-      label {
+      .text-inner {
         display: block;
         position: relative;
         margin-bottom: 20px;
@@ -107,7 +108,7 @@ const Decoration = styled.div`
     .branner .quote .box-text {
       padding: 50px 0;
     }
-    .box-text label {
+    .box-text .text-inner {
       font-size: 40px;
     }
     .branner .quote .lowertext {
@@ -122,7 +123,7 @@ const Decoration = styled.div`
     .branner .quote .box-text {
       padding: 40px 0;
     }
-    .box-text label {
+    .box-text .text-inner {
       font-size: 36px;
     }
     .branner .quote .lowertext {
@@ -134,7 +135,7 @@ const Decoration = styled.div`
     .branner .quote .box-text {
       padding: 30px 10px;
     }
-    .box-text label {
+    .box-text .text-inner {
       font-size: 32px;
     }
 
@@ -155,7 +156,7 @@ const Decoration = styled.div`
       padding: 10px 10px;
     }
 
-    .box-text label {
+    .box-text .text-inner {
       font-size: 28px;
     }
 
@@ -175,7 +176,7 @@ const Decoration = styled.div`
       padding: 5px 0;
     }
 
-    .box-text label {
+    .box-text .text-inner {
       font-size: 20px;
     }
 
@@ -196,7 +197,7 @@ const Decoration = styled.div`
       padding: 5px 0;
     }
 
-    .box-text label {
+    .box-text .text-inner {
       font-size: 14px;
     }
 
@@ -218,11 +219,11 @@ function Branner() {
         <img className="brannerMain" src={quote} alt="branner" />
         <div className="quote">
           <div className="box-text">
-            <label>
+            <div className="text-inner">
               Coffee To Wake You Up
               <br />
               Every Morning
-            </label>
+            </div>
             <span className="lowertext">Make your own Coffee style at Home</span>
             <div class="btn">
               <Link to={'/allproducts'} className="btnshop">

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import image from '../image/product.jpg';
 import Path from '../component/Path';
-
+import { Link } from 'react-router-dom';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -223,18 +223,18 @@ function Productdetail() {
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="wetprocess" name="coffeeprocessing" value="wetprocess" />
-                  <label for="wetprocess">Washed / Wet process</label>
+                  <label htmlFor="wetprocess">Washed / Wet process</label>
                   <br />
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="dryprocess" name="coffeeprocessing" value="naturalprocess" />
-                  <label for="dryprocess">Natural/ Dry process</label>
+                  <label htmlFor="dryprocess">Natural/ Dry process</label>
                   <br />
                 </div>
 
                 <div className="controlinput">
                   <input type="radio" id="honeyprocess" name="coffeeprocessing" value="honeyprocess" />
-                  <label for="honeyprocess">Honey process</label>
+                  <label htmlFor="honeyprocess">Honey process</label>
                 </div>
               </form>
             </div>
@@ -246,17 +246,17 @@ function Productdetail() {
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="light" name="roastinglevel" value="lightroast" />
-                  <label for="light">Light roast</label>
+                  <label htmlFor="light">Light roast</label>
                   <br />
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="medium" name="roastinglevel" value="mediumroast" />
-                  <label for="medium">Medium roast</label>
+                  <label htmlFor="medium">Medium roast</label>
                   <br />
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="dark" name="roastinglevel" value="darkroast" />
-                  <label for="dark">Dark roast</label>
+                  <label htmlFor="dark">Dark roast</label>
                 </div>
               </form>
             </div>
@@ -268,21 +268,21 @@ function Productdetail() {
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="whole" name="grindlevel" value="wholebean" />
-                  <label for="whole">Whole bean</label>
+                  <label htmlFor="whole">Whole bean</label>
                   <br />
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="fined" name="grindlevel" value="finedground" />
-                  <label for="fined">Fined ground</label>
+                  <label htmlFor="fined">Fined ground</label>
                   <br />
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="dark" name="grindlevel" value="mediumground" />
-                  <label for="dark">Medium ground</label>
+                  <label htmlFor="dark">Medium ground</label>
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="dark" name="grindlevel" value="coarseground" />
-                  <label for="dark">Coarse ground</label>
+                  <label htmlFor="dark">Coarse ground</label>
                 </div>
               </form>
             </div>
@@ -294,21 +294,21 @@ function Productdetail() {
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="100" name="weight" value="100gram" />
-                  <label for="100">100 grams</label>
+                  <label htmlFor="100">100 grams</label>
                   <br />
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="250" name="weight" value="250gram" />
-                  <label for="250">250 grams</label>
+                  <label htmlFor="250">250 grams</label>
                   <br />
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="500" name="weight" value="500gram" />
-                  <label for="500">500 grams</label>
+                  <label htmlFor="500">500 grams</label>
                 </div>
                 <div className="controlinput">
                   <input type="radio" id="1000" name="weight" value="1kilogram" />
-                  <label for="1000">1 kilogram</label>
+                  <label htmlFor="1000">1 kilogram</label>
                 </div>
               </form>
             </div>
@@ -318,9 +318,9 @@ function Productdetail() {
               <div className="price">Baht</div>
             </div>
             <div className="btn-group">
-              <a className="btn" href="/localproducts">
+              <Link to={'/localproducts'} className="btn">
                 Continue Shopping
-              </a>
+              </Link>
               <button className="btnaddtocart">Add to cart</button>
             </div>
           </div>

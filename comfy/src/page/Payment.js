@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Path from '../component/Path';
 import credit from '../image/credit.png';
 import Uploadimg from '../component/Uploadimg.js';
-
+import { Link } from 'react-router-dom';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -166,23 +166,23 @@ function Payment() {
       <div className="container">
         <form className="boxes">
           <div className="form">
-            <label for="name">Account Name :</label>
+            <label htmlFor="name">Account Name :</label>
             <input type="text" id="name" value="Comfy Coffee Co., Ltd." readonly />
           </div>
           <div className="form">
-            <label for="accnum">Banking Account Number:</label>
+            <label htmlFor="accnum">Banking Account Number:</label>
             <input type="text" id="accnum" value="123-234563" readonly />
           </div>
           <div className="form">
-            <label for="bank">Bank :</label>
+            <label htmlFor="bank">Bank :</label>
             <input type="text" id="bank" value="KBank" readonly />
           </div>
           <div className="form">
-            <label for="price">Price :</label>
+            <label htmlFor="price">Price :</label>
             <input type="text" id="price" value="580 Baht" readonly />
           </div>
           <div className="form">
-            <label for="upload">
+            <label htmlFor="upload">
               Upload Payment Slip :<br />
             </label>
             <Uploadimg />
@@ -190,11 +190,11 @@ function Payment() {
                     <label className="upload-label" for="upload"><i><FontAwesomeIcon icon={faFileUpload}/> Choose a slip-payment</i></label> */}
           </div>
           <div className="form">
-            <a href="/cart-delivery-payment-confirm">
+            <Link to={'/cart-delivery-payment-confirm"'}>
               <button type="button" className="btn">
                 Confirm payment
               </button>
-            </a>
+            </Link>
           </div>
         </form>
       </div>

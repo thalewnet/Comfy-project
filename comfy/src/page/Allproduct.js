@@ -4,6 +4,7 @@ import Path from '../component/Path';
 import all from '../image/all.png';
 import Card4 from '../component/Card4.js';
 import { Link } from 'react-router-dom';
+import ProductMenu from '../component/product/ProductMenu';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -125,26 +126,7 @@ function Allproduct() {
   return (
     <Decoration>
       <Path />
-
-      <div className="second-nav">
-        <ul className="nav-product">
-          <li>
-            <Link to={'/allproduct'} className="allproduct">
-              All Product
-            </Link>
-          </li>
-          <li>
-            <Link to={'/localproducts'} className="localproduct">
-              Local Coffee Bean
-            </Link>
-          </li>
-          <li>
-            <Link to={'/importproducts'} className="importedproduct">
-              Imported Coffee Bean
-            </Link>
-          </li>
-        </ul>
-      </div>
+      <ProductMenu />
       <div className="productbar">
         <div className="inside">
           <img className="all" src={all} alt="allrpoduct"></img>

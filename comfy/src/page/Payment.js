@@ -167,7 +167,12 @@ function Payment() {
         <form className="boxes">
           <div className="form">
             <label htmlFor="name">Account Name :</label>
-            <input type="text" id="name" value="Comfy Coffee Co., Ltd." readonly />
+            <input
+              type="text"
+              id="name"
+              value="Comfy Coffee Co., Ltd."
+              readonly
+            />
           </div>
           <div className="form">
             <label htmlFor="accnum">Banking Account Number:</label>
@@ -190,7 +195,7 @@ function Payment() {
                     <label className="upload-label" for="upload"><i><FontAwesomeIcon icon={faFileUpload}/> Choose a slip-payment</i></label> */}
           </div>
           <div className="form">
-            <Link to={'/cart-delivery-payment-confirm"'}>
+            <Link to={'/cart-delivery-payment-confirm'}>
               <button type="button" className="btn">
                 Confirm payment
               </button>

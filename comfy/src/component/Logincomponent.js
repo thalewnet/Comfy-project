@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
+import InputAuth from './ui/InputAuth';
 
 const Decoration = styled.div`
   .container {
     position: relative;
     max-width: 850px;
     width: 100%;
-    /* background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.25); */
     padding: 70px 0px;
   }
 
@@ -68,30 +66,30 @@ const Decoration = styled.div`
     font-size: 17px;
   }
 
-  form .form-content .text1,
-  form .form-content .text2 {
+  .text1,
+  .text2 {
     font-size: 14px;
     font-weight: 500;
     color: #333;
     margin-top: 10px;
   }
 
-  form .form-content .text1 {
+  .text1 {
     text-align: right;
   }
-  form .form-content .text2 {
+  .text2 {
     text-align: center;
   }
-  form .form-content .text1 a,
-  form .form-content .text2 a {
+  .text1 a,
+  .text2 a {
     text-decoration: none;
     color: blue;
   }
 
-  form .form-content .text1 a:hover {
+  .text1 a:hover {
     text-decoration: underline;
   }
-  form .form-content .text2 a:hover {
+  .text2 a:hover {
     text-decoration: underline;
   }
 
@@ -124,32 +122,31 @@ function Logincomponent() {
       <div className="container">
         <form action="#">
           <div className="form-content">
-            <div className="login-form">
-              <div className="title">Login</div>
-              <div className="input-boxes">
-                <div className="input-box">
-                  <i>
-                    <FontAwesomeIcon icon={faEnvelope} />
-                  </i>
-                  <input type="text" placeholder="Enter your email" required />
-                </div>
-                <div className="input-box">
-                  <i>
-                    <FontAwesomeIcon icon={faKey} />
-                  </i>
-                  <input type="password" placeholder="Enter your password" required />
-                </div>
-                <div className="text1">
-                  <Link to={'/forgot'} className="text-forget">
-                    Forgot passsword?
-                  </Link>
-                </div>
-                <div className="button input-box">
-                  <input type="button" value="Login" />
-                </div>
-                <div className="text2">
-                  Don't have an account?<a href="./register"> Signup now</a>
-                </div>
+            <div className="title">Login</div>
+            <div className="input-boxes">
+              <InputAuth
+                icon={faEnvelope}
+                text="Enter your email"
+                type="text"
+              />
+              <InputAuth
+                icon={faKey}
+                text="Enter your password"
+                type="password"
+              />
+
+              <div className="text1">
+                <Link to={'/forgot'} className="text-forget">
+                  Forgot passsword?
+                </Link>
+              </div>
+
+              <div className="button input-box">
+                <input type="button" value="Login" />
+              </div>
+
+              <div className="text2">
+                Don't have an account?<Link to={'/register'}> Signup now</Link>
               </div>
             </div>
           </div>

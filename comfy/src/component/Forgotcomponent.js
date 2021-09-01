@@ -2,6 +2,7 @@ import React from 'react';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
+import InputAuth from './ui/InputAuth';
 
 const Decoration = styled.div`
   .container {
@@ -123,19 +124,16 @@ function Forgotcomponent() {
       <div className="container">
         <form action="#">
           <div className="form-content">
-            <div className="forgot-form">
-              <div className="title">Forgot password</div>
-              <div className="input-boxes">
-                <div className="input-box">
-                  <i>
-                    <FontAwesomeIcon icon={faEnvelope} />
-                  </i>
-                  <input type="email" placeholder="Enter your email" required />
-                </div>
+            <div className="title">Forgot password</div>
+            <div className="input-boxes">
+              <InputAuth
+                icon={faEnvelope}
+                type="email"
+                text="Enter your email"
+              />
 
-                <div className="button input-box">
-                  <input type="button" value="Send" />
-                </div>
+              <div className="button input-box">
+                <input type="button" value="Send" />
               </div>
             </div>
           </div>

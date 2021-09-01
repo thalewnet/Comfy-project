@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
+import InputTextInfo from '../component/ui/InputInfo';
 import truck from '../image/truck.png';
-
+import { Link } from 'react-router-dom';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -177,56 +178,68 @@ function Delivery() {
 
       <div className="container">
         <form className="boxes">
+          <InputTextInfo
+            title="Full Name :"
+            type="text"
+            id="fullname"
+            text="Enter your fullname"
+          />
+          <InputTextInfo
+            title="Phone Number :"
+            type="text"
+            id="phone"
+            text="Enter your phone number"
+          />
+
+          <InputTextInfo
+            title="Address :"
+            type="text"
+            id="address"
+            text="Enter your address"
+          />
+
           <div className="form">
-            <label for="name">Full Name :</label>
-            <input type="text" id="name" placeholder="Enter your name" />
-          </div>
-          <div className="form">
-            <label for="phone">Phone Number :</label>
-            <input type="text" id="phone" placeholder="Enter your phone number" />
-          </div>
-          <div className="form">
-            <label for="address">Address :</label>
-            <input type="text" id="address" placeholder="Enter your address" />
-          </div>
-          <div className="form">
-            <label for="province">Province :</label>
+            <label htmlFor="province">Province :</label>
             <select name="province" id="province">
               <option value="">Please Select</option>
               <option value="Bangkok">Bangkok</option>
             </select>
           </div>
           <div className="form">
-            <label for="district">District :</label>
+            <label htmlFor="district">District :</label>
             <select name="district" id="district">
               <option value="">Please Select</option>
               <option value="Bangsue">Bang Sue</option>
             </select>
           </div>
           <div className="form">
-            <label for="sub-district">Sub-district :</label>
+            <label htmlFor="sub-district">Sub-district :</label>
             <select name="sub-district" id="sub-district">
               <option value="">Please Select</option>
               <option value="Bangsue">Bang Sue</option>
             </select>
           </div>
           <div className="form">
-            <label for="postnum">Post number:</label>
+            <label htmlFor="postnum">Post number:</label>
             <select name="postnum" id="postnum">
               <option value="">Please Select</option>
               <option value="10800">10800</option>
             </select>
           </div>
           <div className="form">
-            <label for="details">Detail information:</label>
-            <textarea id="details" name="details" placeholder="More information..."></textarea>
+            <label htmlFor="details">Detail information:</label>
+            <textarea
+              id="details"
+              name="details"
+              placeholder="More information..."
+            ></textarea>
           </div>
           <div className="form">
-            <a href="/cart-delivery-payment">
+            <Link to={'/cart-delivery-payment'}>
               <button type="button" className="btn">
                 Confirm Shipping Address
               </button>
-            </a>
+            </Link>
           </div>
         </form>
       </div>

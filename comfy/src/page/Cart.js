@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Cartdetailcomponent from '../component/Cartdetailcomponent';
 import Path from '../component/Path';
@@ -129,11 +130,11 @@ function Cart() {
       </div>
 
       <div className="form">
-        <a href="/cart-delivery">
+        <Link to={'/cart-delivery'}>
           <button type="button" className="btn">
             Confirm Order
           </button>
-        </a>
+        </Link>
       </div>
     </Decoration>
   );

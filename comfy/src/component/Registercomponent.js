@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+
+import axios from '../config/axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEnvelope,
   faUser,
   faMobileAlt,
   faKey,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import InputAuth from './ui/InputAuth';
+
+import { validateInput, validateRegisterObject } from '../services/validation';
 
 const Decoration = styled.div`
   .container {
@@ -122,8 +126,49 @@ const Decoration = styled.div`
   form .form-content .button input:hover {
     background: #456044;
   }
+
+  .error-text {
+    color: red;
+    font-size: 12px;
+    font-style: oblique;
+  }
 `;
 function Registercomponent() {
+  const history = useHistory();
+  const [input, setInput] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    confirmpassword: '',
+    phonenumber: '',
+  });
+  const [error, setError] = useState({});
+
+  const handleChangeInput = (e) => {
+    const errMessage = validateInput(e.target.name, e.target.value);
+    setError((cur) => ({ ...cur, [e.target.name]: errMessage }));
+    setInput((cur) => ({ ...cur, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmitRegister = async (e) => {
+    e.preventDefault();
+    console.log(input);
+    const errMessage = validateRegisterObject(input);
+    setError(errMessage);
+
+    if (Object.keys(errMessage).length === 0) {
+      try {
+        console.log('ready for req');
+        const res = await axios.post('/register', input);
+        console.log(res.data);
+        history.push('/login');
+      } catch (err) {
+        console.log('Login error:', err);
+        console.dir(err);
+      }
+    }
+  };
   return (
     <Decoration>
       <div>
@@ -133,35 +178,108 @@ function Registercomponent() {
               <div className="register-form">
                 <div className="title">Registration</div>
                 <div className="input-boxes">
-                  <InputAuth icon={faUser} type="text" text="Enter your name" />
-                  <InputAuth
-                    icon={faUser}
-                    type="text"
-                    text="Enter your lastname"
-                  />
-                  <InputAuth
-                    icon={faEnvelope}
-                    type="email"
-                    text="Enter your email"
-                  />
-                  <InputAuth
-                    icon={faMobileAlt}
-                    type="text"
-                    text="Enter your phonenumber"
-                  />
-                  <InputAuth
-                    icon={faKey}
-                    type="password"
-                    text="Enter your password"
-                  />
-                  <InputAuth
-                    icon={faKey}
-                    type="password"
-                    text="Confirn password"
-                  />
+                  <div className="input-box">
+                    <i>
+                      <FontAwesomeIcon icon={faUser} />
+                    </i>
+                    <input
+                      type="text"
+                      placeholder="Enter firstname"
+                      name="firstname"
+                      value={input.firstname}
+                      onChange={handleChangeInput}
+                      required
+                      maxLength="10"
+                    />
+                  </div>
+                  {error.firstname && (
+                    <p className="error-text">{error.firstname}</p>
+                  )}
+                  <div className="input-box">
+                    <i>
+                      <FontAwesomeIcon icon={faUser} />
+                    </i>
+                    <input
+                      type="text"
+                      placeholder="Enter lastname"
+                      name="lastname"
+                      value={input.lastname}
+                      onChange={handleChangeInput}
+                      required
+                    />
+                  </div>
+                  {error.lastname && (
+                    <p className="error-text">{error.lastname}</p>
+                  )}
+                  <div className="input-box">
+                    <i>
+                      <FontAwesomeIcon icon={faEnvelope} />
+                    </i>
+                    <input
+                      type="email"
+                      placeholder="Enter an email"
+                      name="email"
+                      value={input.email}
+                      onChange={handleChangeInput}
+                      required
+                    />
+                  </div>
+                  {error.email && <p className="error-text">{error.email}</p>}
+                  <div className="input-box">
+                    <i>
+                      <FontAwesomeIcon icon={faMobileAlt} />
+                    </i>
+                    <input
+                      type="text"
+                      placeholder="Enter your phonenumber"
+                      name="phonenumber"
+                      value={input.phonenumber}
+                      onChange={handleChangeInput}
+                      required
+                    />
+                  </div>
+                  {error.phonenumber && (
+                    <p className="error-text">{error.phonenumber}</p>
+                  )}
+                  <div className="input-box">
+                    <i>
+                      <FontAwesomeIcon icon={faKey} />
+                    </i>
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      value={input.password}
+                      onChange={handleChangeInput}
+                      required
+                    />
+                  </div>
+                  {error.password && (
+                    <p className="error-text">{error.password}</p>
+                  )}
+                  <div className="input-box">
+                    <i>
+                      <FontAwesomeIcon icon={faKey} />
+                    </i>
+                    <input
+                      type="password"
+                      placeholder="Confirm password"
+                      name="confirmpassword"
+                      value={input.confirmpassword}
+                      onChange={handleChangeInput}
+                      required
+                    />
+                  </div>
+                  {error.confirmpassword && (
+                    <p className="error-text">{error.confirmpassword}</p>
+                  )}
 
                   <div className="button input-box">
-                    <input type="button" value="Register" />
+                    <input
+                      type="button"
+                      value="Submit"
+                      onClick={handleSubmitRegister}
+                    />
                   </div>
                   <div className="text2">
                     Already have an account?

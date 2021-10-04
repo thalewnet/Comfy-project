@@ -19,34 +19,46 @@ import Navbarcomponent from './component/Navbarcomponent';
 import Adminupdatedproduct from './page/Adminupdateproduct';
 import Adminorderstatus from './page/Adminorderstatus';
 import Adminordercheck from './page/Adminordercheck';
+import { AuthProvider } from './contexts/authContext';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbarcomponent />
-        <Switch>
-          <Route path="/localproducts/productname" component={Productdetail} />
-          <Route path="/localproducts" component={Localproduct} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/forgot" component={Forgotten} />
-          <Route path="/allproducts" component={Allproduct} />
-          <Route path="/importproducts" component={Importproduct} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/cart-delivery-payment-confirm" component={Orderconfirm} />
-          <Route path="/cart-delivery-payment" component={Payment} />
-          <Route path="/cart-delivery" component={Delivery} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/myorder" component={Myorder} />\
-          <Route path="/admin-product-update" component={Adminupdatedproduct} />
-          <Route path="/admin-orderstatus" component={Adminorderstatus} />
-          <Route path="/admin-ordercheck" component={Adminordercheck} />
-          <Route path="/test" component={Adminorderstatus} />
-          <Route path="/test2" component={Adminordercheck} />
-          <Route path="/" component={Homepage} />
-        </Switch>
-        <Footercomponent />
+        <AuthProvider>
+          <Navbarcomponent />
+          <Switch>
+            <Route
+              path="/localproducts/productname"
+              component={Productdetail}
+            />
+            <Route path="/localproducts" component={Localproduct} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgot" component={Forgotten} />
+            <Route path="/allproducts" component={Allproduct} />
+            <Route path="/importproducts" component={Importproduct} />
+            <Route path="/cart" component={Cart} />
+            <Route
+              path="/cart-delivery-payment-confirm"
+              component={Orderconfirm}
+            />
+            <Route path="/cart-delivery-payment" component={Payment} />
+            <Route path="/cart-delivery" component={Delivery} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/myorder" component={Myorder} />\
+            <Route
+              path="/admin-product-update"
+              component={Adminupdatedproduct}
+            />
+            <Route path="/admin-orderstatus" component={Adminorderstatus} />
+            <Route path="/admin-ordercheck" component={Adminordercheck} />
+            <Route path="/test" component={Adminorderstatus} />
+            <Route path="/test2" component={Adminordercheck} />
+            <Route path="/" component={Homepage} />
+          </Switch>
+          <Footercomponent />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

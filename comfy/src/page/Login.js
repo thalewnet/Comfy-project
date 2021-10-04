@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import register1 from '../image/register1.jpg';
-import Logincompo from '../component/Logincomponent.js';
+import LoginForm from '../component/Logincomponent.js';
 
 const Decoration = styled.div`
   padding-top: 64px;
@@ -60,7 +60,7 @@ function Login() {
         </div>
 
         <div className="login-container">
-          <Logincompo />
+          <LoginForm />
         </div>
       </div>
     </Decoration>

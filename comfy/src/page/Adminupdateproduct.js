@@ -210,18 +210,33 @@ function Adminupdatedproduct() {
                   <span className="specific">*</span>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="wetprocess" name="coffeeprocessing" value="wetprocess" />
+                  <input
+                    type="radio"
+                    id="wetprocess"
+                    name="coffeeprocessing"
+                    value="wetprocess"
+                  />
                   <label for="wetprocess">Washed / Wet process</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="dryprocess" name="coffeeprocessing" value="naturalprocess" />
+                  <input
+                    type="radio"
+                    id="dryprocess"
+                    name="coffeeprocessing"
+                    value="naturalprocess"
+                  />
                   <label for="dryprocess">Natural/ Dry process</label>
                   <br />
                 </div>
 
                 <div className="controlinput">
-                  <input type="radio" id="honeyprocess" name="coffeeprocessing" value="honeyprocess" />
+                  <input
+                    type="radio"
+                    id="honeyprocess"
+                    name="coffeeprocessing"
+                    value="honeyprocess"
+                  />
                   <label for="honeyprocess">Honey process</label>
                 </div>
               </form>
@@ -233,17 +248,32 @@ function Adminupdatedproduct() {
                   <span className="specific">*</span>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="light" name="roastinglevel" value="lightroast" />
+                  <input
+                    type="radio"
+                    id="light"
+                    name="roastinglevel"
+                    value="lightroast"
+                  />
                   <label for="light">Light roast</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="medium" name="roastinglevel" value="mediumroast" />
+                  <input
+                    type="radio"
+                    id="medium"
+                    name="roastinglevel"
+                    value="mediumroast"
+                  />
                   <label for="medium">Medium roast</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="dark" name="roastinglevel" value="darkroast" />
+                  <input
+                    type="radio"
+                    id="dark"
+                    name="roastinglevel"
+                    value="darkroast"
+                  />
                   <label for="dark">Dark roast</label>
                 </div>
               </form>
@@ -255,21 +285,41 @@ function Adminupdatedproduct() {
                   <span className="specific">*</span>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="whole" name="grindlevel" value="wholebean" />
+                  <input
+                    type="radio"
+                    id="whole"
+                    name="grindlevel"
+                    value="wholebean"
+                  />
                   <label for="whole">Whole bean</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="fined" name="grindlevel" value="finedground" />
+                  <input
+                    type="radio"
+                    id="fined"
+                    name="grindlevel"
+                    value="finedground"
+                  />
                   <label for="fined">Fined ground</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="dark" name="grindlevel" value="mediumground" />
+                  <input
+                    type="radio"
+                    id="dark"
+                    name="grindlevel"
+                    value="mediumground"
+                  />
                   <label for="dark">Medium ground</label>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="dark" name="grindlevel" value="coarseground" />
+                  <input
+                    type="radio"
+                    id="dark"
+                    name="grindlevel"
+                    value="coarseground"
+                  />
                   <label for="dark">Coarse ground</label>
                 </div>
               </form>
@@ -295,7 +345,12 @@ function Adminupdatedproduct() {
                   <label for="500">500 grams</label>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="1000" name="weight" value="1kilogram" />
+                  <input
+                    type="radio"
+                    id="1000"
+                    name="weight"
+                    value="1kilogram"
+                  />
                   <label for="1000">1 kilogram</label>
                 </div>
               </form>

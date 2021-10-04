@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Logo from '../image/comfylogo.png';
-import { Link } from 'react-router-dom';
-import { faTimes, faBars, faPhoneAlt, faShoppingCart, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { Link, useHistory } from 'react-router-dom';
+import {
+  faTimes,
+  faBars,
+  faPhoneAlt,
+  faShoppingCart,
+  faUserCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AuthContext } from '../contexts/authContext';
+import { removeToken } from '../services/localStorage';
 
 const Decoration = styled.div`
   nav {
@@ -58,13 +66,15 @@ const Decoration = styled.div`
     transition: all 0.4s ease;
   }
 
-  nav .nav-links .links li a {
+  nav .nav-links .links li a,
+  nav .nav-links .links li div {
     color: black;
     text-decoration: none;
     white-space: nowrap;
     font-weight: 400;
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
   nav .nav-links .links li a.product:hover {
@@ -95,7 +105,11 @@ const Decoration = styled.div`
   .btn-check {
     cursor: pointer;
   }
-
+  .name-tag {
+    color: black;
+    font-size: 16px;
+    margin-left: 10px;
+  }
   @media (max-width: 1070px) {
     nav .logo-detail img.logo {
       height: 75%;
@@ -163,10 +177,22 @@ const Decoration = styled.div`
     nav .nav-links .links li a .icon-login {
       display: none;
     }
+    nav .nav-links .links li div {
+      display: none;
+    }
   }
 `;
 
 function Navbarcomponent() {
+  const { user, setUser } = useContext(AuthContext);
+  const history = useHistory();
+
+  const handleClickLogout = (e) => {
+    e.preventDefault();
+    removeToken();
+    setUser(null);
+    history.push('/login');
+  };
   return (
     <Decoration>
       <nav>
@@ -208,22 +234,47 @@ function Navbarcomponent() {
                   <span>Contact us</span>
                 </a>
               </li>
-              <li>
-                <Link to={'/cart'} className="contact">
-                  <i className="icon-cart">
-                    <FontAwesomeIcon icon={faShoppingCart} />
-                  </i>
-                  <span className="mycart">My cart</span>
-                </Link>
-              </li>
-              <li>
-                <a className="contact" href="/login">
-                  <i className="icon-login">
-                    <FontAwesomeIcon icon={faUserCircle} />
-                  </i>
-                  <span>Log - in</span>
-                </a>
-              </li>
+              {user && (
+                <>
+                  <li>
+                    <Link to={'/cart'} className="contact">
+                      <i className="icon-cart">
+                        <FontAwesomeIcon icon={faShoppingCart} />
+                      </i>
+                      <span className="mycart">My cart</span>
+                      {false && <span>1</span>}
+                    </Link>
+                  </li>
+                  <li>
+                    <div className="name-tag">{`Welcome ${user.firstName} `}</div>
+                  </li>
+                  <li>
+                    <Link to={'/login'} onClick={handleClickLogout}>
+                      Log - out
+                    </Link>
+                  </li>
+                </>
+              )}
+              {!user && (
+                <>
+                  <li>
+                    <a className="contact" href="/register">
+                      <i className="icon-login">
+                        <FontAwesomeIcon icon={faUserCircle} />
+                      </i>
+                      <span>Register</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a className="contact" href="/login">
+                      <i className="icon-login">
+                        <FontAwesomeIcon icon={faUserCircle} />
+                      </i>
+                      <span>Log - in</span>
+                    </a>
+                  </li>
+                </>
+              )}
             </ul>
             <div className="btn-menu">
               <label htmlFor="check" className="btn-check">

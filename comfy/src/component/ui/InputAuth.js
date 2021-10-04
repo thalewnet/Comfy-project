@@ -28,14 +28,24 @@ const Decoration = styled.div`
     font-size: 17px;
   }
 `;
-function InputAuth({ icon, type, text }) {
+function InputAuth({ icon, type, text, name, value, setUser }) {
+  const handleChangeInput = (e) => {
+    setUser((cur) => ({ ...cur, [e.target.name]: e.target.value }));
+  };
   return (
     <Decoration>
       <div className="input-box">
         <i>
           <FontAwesomeIcon icon={icon} />
         </i>
-        <input type={type} placeholder={text} required />
+        <input
+          type={type}
+          placeholder={text}
+          name={name}
+          value={value}
+          onChange={handleChangeInput}
+          required
+        />
       </div>
     </Decoration>
   );

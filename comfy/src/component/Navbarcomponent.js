@@ -143,7 +143,8 @@ const Decoration = styled.div`
     nav .nav-links .links {
       display: block;
       position: fixed;
-      background: lime;
+      background: #cb925d;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       top: 0;
       right: -100%;
       max-width: 200px;
@@ -152,7 +153,8 @@ const Decoration = styled.div`
       line-height: 50px;
       transition: all 0.6s ease;
     }
-
+    .nav-links .links li {
+    }
     .btn-close {
       display: flex;
       justify-content: flex-end;

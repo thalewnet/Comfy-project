@@ -48,6 +48,36 @@ const validateInput = (name, value) => {
       }
       return '';
     }
+    case 'address': {
+      if (isEmpty(value)) {
+        return 'Address is required';
+      }
+      return '';
+    }
+    case 'province': {
+      if (isEmpty(value)) {
+        return 'Province is required';
+      }
+      return '';
+    }
+    case 'district': {
+      if (isEmpty(value)) {
+        return 'District is required';
+      }
+      return '';
+    }
+    case 'subdistrict': {
+      if (isEmpty(value)) {
+        return 'Subdistrict is required';
+      }
+      return '';
+    }
+    case 'zipcode': {
+      if (isEmpty(value)) {
+        return 'Zipcode is required';
+      }
+      return '';
+    }
     default:
       return '';
   }
@@ -83,4 +113,27 @@ const validateLoginObject = (value) => {
 
   return error;
 };
-export { validateInput, validateRegisterObject, validateLoginObject };
+
+const validateShipmentObject = (value) => {
+  const errorAddress = validateInput('address', value.address);
+  const errorProvince = validateInput('province', value.province);
+  const errorDistrict = validateInput('district', value.district);
+  const errorSubdistrict = validateInput('subdistrict', value.subdistrict);
+  const errorZipCode = validateInput('zipcode', value.zipcode);
+  const errorPhonenumber = validateInput('phonenumber', value.phonenumber);
+  const error = {};
+  if (errorAddress) error.address = errorAddress;
+  if (errorProvince) error.province = errorProvince;
+  if (errorDistrict) error.district = errorDistrict;
+  if (errorSubdistrict) error.subdistrict = errorSubdistrict;
+  if (errorZipCode) error.zipcode = errorZipCode;
+  if (errorPhonenumber) error.phonenumber = errorPhonenumber;
+
+  return error;
+};
+export {
+  validateInput,
+  validateRegisterObject,
+  validateLoginObject,
+  validateShipmentObject,
+};

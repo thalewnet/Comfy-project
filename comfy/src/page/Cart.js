@@ -130,7 +130,7 @@ function Cart() {
       </div>
 
       <div className="form">
-        <Link to={'/cart-delivery'}>
+        <Link to={'/cart/delivery'}>
           <button type="button" className="btn">
             Confirm Order
           </button>

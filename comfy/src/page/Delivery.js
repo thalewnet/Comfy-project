@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
-import InputTextInfo from '../component/ui/InputInfo';
 import truck from '../image/truck.png';
 import { Link } from 'react-router-dom';
+import { validateInput, validateShipmentObject } from '../services/validation';
+import { OrderContext } from '../contexts/orderContext';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -76,7 +77,7 @@ const Decoration = styled.div`
     background: rgba(178, 147, 133, 0.2);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     margin-top: 3px;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
     transition: all 0.3s ease;
   }
 
@@ -158,9 +159,33 @@ const Decoration = styled.div`
   .btn:hover {
     background-color: #456044;
   }
+  .error-text {
+    color: red;
+    font-size: 12px;
+    font-style: oblique;
+    padding-left: 5px;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
 `;
 
 function Delivery() {
+  const [error, setError] = useState({});
+  const { shipment, setShipment } = useContext(OrderContext);
+
+  console.log(shipment);
+  const handleChangeShipment = (e) => {
+    const errMessage = validateInput(e.target.name, e.target.value);
+    setError((cur) => ({ ...cur, [e.target.name]: errMessage }));
+    setShipment((cur) => ({ ...cur, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmitShipment = (e) => {
+    e.preventDefault();
+    const errMessage = validateShipmentObject(shipment);
+    setError(errMessage);
+    console.log(shipment);
+  };
   return (
     <Decoration>
       <Path />
@@ -178,65 +203,106 @@ function Delivery() {
 
       <div className="container">
         <form className="boxes">
-          <InputTextInfo
-            title="Full Name :"
-            type="text"
-            id="fullname"
-            text="Enter your fullname"
-          />
-          <InputTextInfo
-            title="Phone Number :"
-            type="text"
-            id="phone"
-            text="Enter your phone number"
-          />
-
-          <InputTextInfo
-            title="Address :"
+          <label htmlFor="address">Address :</label>
+          {error.address && <span className="error-text">{error.address}</span>}
+          <input
             type="text"
             id="address"
-            text="Enter your address"
+            name="address"
+            placeholder="Enter your address"
+            value={shipment.address}
+            onChange={handleChangeShipment}
           />
-
           <div className="form">
             <label htmlFor="province">Province :</label>
-            <select name="province" id="province">
+            {error.province && (
+              <span className="error-text">{error.province}</span>
+            )}
+            <select
+              name="province"
+              id="province"
+              value={shipment.province}
+              onChange={handleChangeShipment}
+            >
               <option value="">Please Select</option>
               <option value="Bangkok">Bangkok</option>
             </select>
           </div>
           <div className="form">
             <label htmlFor="district">District :</label>
-            <select name="district" id="district">
+            {error.district && (
+              <span className="error-text">{error.district}</span>
+            )}
+            <select
+              name="district"
+              id="district"
+              value={shipment.district}
+              onChange={handleChangeShipment}
+            >
               <option value="">Please Select</option>
               <option value="Bangsue">Bang Sue</option>
             </select>
           </div>
           <div className="form">
-            <label htmlFor="sub-district">Sub-district :</label>
-            <select name="sub-district" id="sub-district">
+            <label htmlFor="subdistrict">Sub-district :</label>
+            {error.subdistrict && (
+              <span className="error-text">{error.subdistrict}</span>
+            )}
+            <select
+              name="subdistrict"
+              id="subdistrict"
+              value={shipment.subdistrct}
+              onChange={handleChangeShipment}
+            >
               <option value="">Please Select</option>
               <option value="Bangsue">Bang Sue</option>
             </select>
           </div>
           <div className="form">
-            <label htmlFor="postnum">Post number:</label>
-            <select name="postnum" id="postnum">
+            <label htmlFor="zipcode">Post number:</label>
+            {error.zipcode && (
+              <span className="error-text">{error.zipcode}</span>
+            )}
+            <select
+              name="zipcode"
+              id="zipcode"
+              value={shipment.zipcode}
+              onChange={handleChangeShipment}
+            >
               <option value="">Please Select</option>
               <option value="10800">10800</option>
             </select>
           </div>
+          <label htmlFor="phone">Phone Number :</label>
+          {error.phonenumber && (
+            <span className="error-text">{error.phonenumber}</span>
+          )}
+          <input
+            type="text"
+            id="phone"
+            name="phonenumber"
+            placeholder="Enter your phone number"
+            value={shipment.phonenumber}
+            onChange={handleChangeShipment}
+          />
+
           <div className="form">
             <label htmlFor="details">Detail information:</label>
             <textarea
               id="details"
-              name="details"
+              name="comment"
               placeholder="More information..."
+              value={shipment.comment}
+              onChange={handleChangeShipment}
             ></textarea>
           </div>
           <div className="form">
-            <Link to={'/cart-delivery-payment'}>
-              <button type="button" className="btn">
+            <Link to={'/cart/delivery/payment'}>
+              <button
+                type="button"
+                className="btn"
+                onClick={handleSubmitShipment}
+              >
                 Confirm Shipping Address
               </button>
             </Link>

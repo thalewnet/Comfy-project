@@ -182,7 +182,7 @@ const Decoration = styled.div`
     }
   }
 `;
-function Adminupdatedproduct() {
+function AdminCreateProduct() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -229,8 +229,10 @@ function Adminupdatedproduct() {
 
   const handleSubmitProduct = async (e) => {
     try {
+      console.log('Insubmit', product);
       e.preventDefault();
       const formData = new FormData();
+
       formData.append('name', product.name);
       formData.append('type', product.type);
       formData.append('description', product.description);
@@ -246,8 +248,11 @@ function Adminupdatedproduct() {
         product.drystatus,
         product.honeystatus,
       ]);
-      // const res = await axios.post('/create-product', formData);
-      // console.log(res);
+      //   for (var pair of formData.entries()) {
+      //     console.log(pair[0] + ', ' + pair[1]);
+      //   }
+      const res = await axios.post('/products/create-product', formData);
+      console.log('Front-End', res.data);
     } catch (err) {
       console.log(err);
     }
@@ -434,11 +439,11 @@ function Adminupdatedproduct() {
                   className="details-input"
                   type="text"
                   placeholder="Specific Product description"
-                  name="descriptions"
+                  name="description"
                   value={product.description}
                   onChange={handleChangeProduct}
                 />
-                <button className="update-btn">Updated</button>
+                <button className="update-btn">Create</button>
               </div>
             </div>
           </div>
@@ -448,4 +453,4 @@ function Adminupdatedproduct() {
   );
 }
 
-export default Adminupdatedproduct;
+export default AdminCreateProduct;

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Path from '../component/Path';
 import local from '../image/thailand.png';
 import Card4 from '../component/Card4.js';
-import { Link } from 'react-router-dom';
 import ProductMenu from '../component/product/ProductMenu';
 const Decoration = styled.div`
   padding-top: 64px;
@@ -109,7 +108,14 @@ const Decoration = styled.div`
   }
 `;
 
-const MOCK_LOCAL = ['Doi Mon Chong', 'Mae Chan Tai', 'Doi Chang', 'Doi Chang', 'Doi Chang', 'Doi Chang'];
+const MOCK_LOCAL = [
+  'Doi Mon Chong',
+  'Mae Chan Tai',
+  'Doi Chang',
+  'Doi Chang',
+  'Doi Chang',
+  'Doi Chang',
+];
 function Localproduct() {
   return (
     <Decoration>

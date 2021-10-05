@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Path from '../component/Path';
 import all from '../image/all.png';
 import Card4 from '../component/Card4.js';
-import { Link } from 'react-router-dom';
+
 import ProductMenu from '../component/product/ProductMenu';
 const Decoration = styled.div`
   padding-top: 64px;

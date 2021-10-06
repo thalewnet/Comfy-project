@@ -47,10 +47,13 @@ const Decoration = styled.div`
     justify-content: space-evenly;
   }
 
+  .bs {
+    margin-left: 15px;
+  }
   @media (max-width: 1050px) {
-    .bs {
+    /* .bs {
       margin-bottom: 15px;
-    }
+    } */
     .lower {
       flex-direction: column;
       justify-content: center;
@@ -63,7 +66,13 @@ const Decoration = styled.div`
   }
 `;
 
-const suggest = ['Doi Mon Chong', 'Mae Chan Tai', 'Doi Chang', 'Bann Bann', 'Chumphon'];
+const suggest = [
+  'Doi Mon Chong',
+  'Mae Chan Tai',
+  'Doi Chang',
+  'Bann Bann',
+  'Chumphon',
+];
 function HomePage() {
   return (
     <Decoration>

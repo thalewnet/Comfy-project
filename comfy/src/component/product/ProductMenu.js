@@ -5,7 +5,7 @@ function ProductMenu() {
     <div className="second-nav">
       <ul className="nav-product">
         <li>
-          <Link to={'/allproduct'} className="allproduct">
+          <Link to={'/allproducts'} className="allproduct">
             All Product
           </Link>
         </li>

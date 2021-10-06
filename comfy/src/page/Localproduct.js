@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from '../config/axios';
 import styled from 'styled-components';
 import Path from '../component/Path';
 import local from '../image/thailand.png';
 import Card4 from '../component/Card4.js';
 import ProductMenu from '../component/product/ProductMenu';
+
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -78,12 +80,22 @@ const Decoration = styled.div`
   }
 
   .item-card {
+    /* max-width: 1200px; */
     width: 80%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding-top: 35px;
     flex-wrap: wrap;
+  }
+  .productCard {
+    margin-right: 15px;
+  }
+
+  @media (max-width: 995px) {
+    .item-card {
+      justify-content: space-around;
+    }
   }
 
   @media (max-width: 995px) {
@@ -117,6 +129,14 @@ const MOCK_LOCAL = [
   'Doi Chang',
 ];
 function Localproduct() {
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get('/products?type=local');
+      setProduct(res.data.products);
+    };
+    fetchData();
+  }, []);
   return (
     <Decoration>
       <Path />
@@ -129,11 +149,16 @@ function Localproduct() {
       </div>
 
       <div className="item-card">
-        {MOCK_LOCAL.map((item, idx) => (
+        {product.map((item) => (
+          <div className="productCard" key={item.id}>
+            <Card4 item={item} />
+          </div>
+        ))}
+        {/* {MOCK_LOCAL.map((item, idx) => (
           <div className="bs" key={idx}>
             <Card4 name={item} />
           </div>
-        ))}
+        ))} */}
       </div>
     </Decoration>
   );

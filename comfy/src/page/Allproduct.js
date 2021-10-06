@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
 import all from '../image/all.png';
 import Card4 from '../component/Card4.js';
 
 import ProductMenu from '../component/product/ProductMenu';
+import axios from 'axios';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -78,12 +79,16 @@ const Decoration = styled.div`
   }
 
   .item-card {
+    /* max-width: 1200px; */
     width: 80%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding-top: 35px;
     flex-wrap: wrap;
+  }
+  .productCard {
+    margin-right: 15px;
   }
 
   @media (max-width: 995px) {
@@ -123,6 +128,15 @@ const MOCK_ALL = [
   'Doi Chang',
 ];
 function Allproduct() {
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get('/products');
+      // console.log(res.data.products);
+      setProduct(res.data.products);
+    };
+    fetchData();
+  }, []);
   return (
     <Decoration>
       <Path />
@@ -134,11 +148,16 @@ function Allproduct() {
         </div>
       </div>
       <div className="item-card">
-        {MOCK_ALL.map((item, idx) => (
+        {product.map((item) => (
+          <div className="productCard" key={item.id}>
+            <Card4 item={item} />
+          </div>
+        ))}
+        {/* {MOCK_ALL.map((item, idx) => (
           <div className="bs" key={idx}>
             <Card4 name={item} />
           </div>
-        ))}
+        ))} */}
       </div>
     </Decoration>
   );

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
-import image from '../image/product.jpg';
 import Path from '../component/Path';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from '../config/axios';
+import { OrderContext } from '../contexts/orderContext';
+import { AuthContext } from '../contexts/authContext';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -139,7 +141,18 @@ const Decoration = styled.div`
   .btn:hover {
     background-color: #245855;
   }
+  .image-size {
+    width: 500px;
+    height: 400px;
+  }
 
+  .option-text-active {
+    color: black;
+  }
+
+  .option-text-inactive {
+    color: lightgray;
+  }
   @media (max-width: 1110px) {
     .container {
       flex-direction: column;
@@ -177,43 +190,114 @@ const Decoration = styled.div`
   }
 `;
 function Productdetail() {
+  // const { setProductOption } = useContext(OrderContext);
+  const { user } = useContext(AuthContext);
+  const { id } = useParams();
+
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(`/products/${id}`);
+      setProduct(res.data.products);
+    };
+    fetchData();
+  }, []);
+  console.log(product);
+  const [productOption, setProductOption] = useState({
+    roast: '',
+    grind: '',
+    weight: '',
+    price: 0,
+    skuId: '',
+    amount: 1,
+    productId: id,
+    userId: user.id,
+  });
+  console.log(productOption);
+  const handleChangeOptions = (e) => {
+    const idx = product.Skus.findIndex(
+      (item) => item.id == productOption.skuId
+    );
+
+    if (e.target.name === 'weight') {
+      setProductOption((cur) => {
+        let price;
+        console.log(e.target.value);
+        console.log(e.target.name);
+        switch (e.target.value) {
+          case '100': {
+            price = product?.Skus?.[idx].price * 1;
+            break;
+          }
+          case '250': {
+            price = product?.Skus?.[idx].price * 2.5;
+            break;
+          }
+          case '500': {
+            price = product?.Skus?.[idx].price * 5 * 0.95;
+            break;
+          }
+          case '1000': {
+            price = product?.Skus?.[idx].price * 10 * 0.85;
+            break;
+          }
+          default: {
+            price = 0;
+          }
+        }
+        return { ...cur, price: price };
+      });
+    }
+    setProductOption((cur) => ({ ...cur, [e.target.name]: e.target.value }));
+  };
+
+  const handleClickAddAmount = () => {
+    setProductOption((cur) => ({ ...cur, amount: cur.amount + 1 }));
+  };
+  const handleClickDownAmount = () => {
+    if (productOption.amount > 1) {
+      setProductOption((cur) => ({ ...cur, amount: cur.amount - 1 }));
+    }
+  };
+
+  const handleSumbitToCart = (e) => {
+    try {
+      e.preventDefault();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Decoration>
       <Path />
       <div className="container">
         <div className="col-left">
           <div className="product-figure">
-            <img src={image} alt="producrfigue" />
+            <img
+              className="image-size"
+              src={product?.imageUrl}
+              alt="productfigue"
+            />
           </div>
           <div className="product-amount">
-            <button className="btnsub">-</button>
-            <p>1</p>
-            <button className="btnadd">+</button>
+            <button className="btnsub" onClick={handleClickDownAmount}>
+              -
+            </button>
+            <p>{productOption.amount}</p>
+            <button className="btnadd" onClick={handleClickAddAmount}>
+              +
+            </button>
           </div>
           <div className="product-info">
             <h3>Product details</h3>
-            <div className="product-detail">
-              เมล็ดกาแฟดอยม่อนจอง มาจากจังหวัดเชียงใหม่ โดยกาแฟดอยม่อนจองจะมีรสชาติดี หอมละมุน คล้ายกลิ่นดอกไม้ป่า
-              และเมื่อผ่านกระบวนการ Process กาแฟ แต่ละ Process ยิ่งทำให้กาแฟมีเอกลักษณ์ของรสชาติที่แตกต่างกัน
-              <br />
-              Altitude: 1,200 m
-              <br />
-              Taste note: Chocolate, Nutty Sweet and Low acidity
-              <br />
-              Light roast: Berry , Orange , Flower , BrownSugar
-              <br />
-              Medium roast: Chocolate , Caramel , Nutty
-              <br />
-              Dark roast: Chocolate , Caramel , Nutty
-              <br />
-              Brewing Methods: Fillter, Espresso, Moka Pot,
-            </div>
+            <div className="product-detail">{product?.description}</div>
           </div>
         </div>
         <div className="col-right">
           <div className="product-choice">
             <div className="product-name">
-              <h1>Doi Mon Chong</h1>
+              <h1>{product?.name}</h1>
             </div>
             <div className="processing">
               <form>
@@ -222,19 +306,61 @@ function Productdetail() {
                   <span className="specific">*</span>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="wetprocess" name="coffeeprocessing" value="wetprocess" />
-                  <label htmlFor="wetprocess">Washed / Wet process</label>
+                  <input
+                    type="radio"
+                    id="wetprocess"
+                    name="skuId"
+                    value={product?.Skus?.[0].id}
+                    disabled={!product?.Skus?.[0].status ? true : false}
+                    onChange={handleChangeOptions}
+                  />
+                  <label
+                    className={`option-text-${
+                      product?.Skus?.[0].status ? 'active' : 'inactive'
+                    }`}
+                    htmlFor="wetprocess"
+                  >
+                    Washed / Wet process
+                  </label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="dryprocess" name="coffeeprocessing" value="naturalprocess" />
-                  <label htmlFor="dryprocess">Natural/ Dry process</label>
+                  <input
+                    type="radio"
+                    id="dryprocess"
+                    name="skuId"
+                    value={product?.Skus?.[1].id}
+                    disabled={!product?.Skus?.[1].status ? true : false}
+                    onChange={handleChangeOptions}
+                  />
+                  <label
+                    htmlFor="dryprocess"
+                    className={`option-text-${
+                      product?.Skus?.[1].status ? 'active' : 'inactive'
+                    }`}
+                  >
+                    Natural/ Dry process
+                  </label>
                   <br />
                 </div>
 
                 <div className="controlinput">
-                  <input type="radio" id="honeyprocess" name="coffeeprocessing" value="honeyprocess" />
-                  <label htmlFor="honeyprocess">Honey process</label>
+                  <input
+                    type="radio"
+                    id="honeyprocess"
+                    name="skuId"
+                    value={product?.Skus?.[2].id}
+                    disabled={!product?.Skus?.[2].status ? true : false}
+                    onChange={handleChangeOptions}
+                  />
+                  <label
+                    htmlFor="honeyprocess"
+                    className={`option-text-${
+                      product?.Skus?.[2].status ? 'active' : 'inactive'
+                    }`}
+                  >
+                    Honey process
+                  </label>
                 </div>
               </form>
             </div>
@@ -245,17 +371,35 @@ function Productdetail() {
                   <span className="specific">*</span>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="light" name="roastinglevel" value="lightroast" />
+                  <input
+                    type="radio"
+                    id="light"
+                    name="roast"
+                    value="light"
+                    onChange={handleChangeOptions}
+                  />
                   <label htmlFor="light">Light roast</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="medium" name="roastinglevel" value="mediumroast" />
+                  <input
+                    type="radio"
+                    id="medium"
+                    name="roast"
+                    value="medium"
+                    onChange={handleChangeOptions}
+                  />
                   <label htmlFor="medium">Medium roast</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="dark" name="roastinglevel" value="darkroast" />
+                  <input
+                    type="radio"
+                    id="dark"
+                    name="roast"
+                    value="dark"
+                    onChange={handleChangeOptions}
+                  />
                   <label htmlFor="dark">Dark roast</label>
                 </div>
               </form>
@@ -267,21 +411,45 @@ function Productdetail() {
                   <span className="specific">*</span>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="whole" name="grindlevel" value="wholebean" />
+                  <input
+                    type="radio"
+                    id="whole"
+                    name="grind"
+                    value="wholebean"
+                    onChange={handleChangeOptions}
+                  />
                   <label htmlFor="whole">Whole bean</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="fined" name="grindlevel" value="finedground" />
+                  <input
+                    type="radio"
+                    id="fined"
+                    name="grind"
+                    value="finedground"
+                    onChange={handleChangeOptions}
+                  />
                   <label htmlFor="fined">Fined ground</label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="dark" name="grindlevel" value="mediumground" />
+                  <input
+                    type="radio"
+                    id="dark"
+                    name="grind"
+                    value="mediumground"
+                    onChange={handleChangeOptions}
+                  />
                   <label htmlFor="dark">Medium ground</label>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="dark" name="grindlevel" value="coarseground" />
+                  <input
+                    type="radio"
+                    id="dark"
+                    name="grind"
+                    value="coarseground"
+                    onChange={handleChangeOptions}
+                  />
                   <label htmlFor="dark">Coarse ground</label>
                 </div>
               </form>
@@ -293,35 +461,93 @@ function Productdetail() {
                   <span className="specific">*</span>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="100" name="weight" value="100gram" />
-                  <label htmlFor="100">100 grams</label>
+                  <input
+                    type="radio"
+                    id="100"
+                    name="weight"
+                    value="100"
+                    onChange={handleChangeOptions}
+                    disabled={productOption.skuId ? false : true}
+                  />
+                  <label
+                    htmlFor="100"
+                    className={`option-text-${
+                      productOption.skuId ? 'active' : 'inactive'
+                    }`}
+                  >
+                    100 grams
+                  </label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="250" name="weight" value="250gram" />
-                  <label htmlFor="250">250 grams</label>
+                  <input
+                    type="radio"
+                    id="250"
+                    name="weight"
+                    value="250"
+                    onChange={handleChangeOptions}
+                    disabled={productOption.skuId ? false : true}
+                  />
+                  <label
+                    htmlFor="250"
+                    className={`option-text-${
+                      productOption.skuId ? 'active' : 'inactive'
+                    }`}
+                  >
+                    250 grams
+                  </label>
                   <br />
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="500" name="weight" value="500gram" />
-                  <label htmlFor="500">500 grams</label>
+                  <input
+                    type="radio"
+                    id="500"
+                    name="weight"
+                    value="500"
+                    onChange={handleChangeOptions}
+                    disabled={productOption.skuId ? false : true}
+                  />
+                  <label
+                    htmlFor="500"
+                    className={`option-text-${
+                      productOption.skuId ? 'active' : 'inactive'
+                    }`}
+                  >
+                    500 grams
+                  </label>
                 </div>
                 <div className="controlinput">
-                  <input type="radio" id="1000" name="weight" value="1kilogram" />
-                  <label htmlFor="1000">1 kilogram</label>
+                  <input
+                    type="radio"
+                    id="1000"
+                    name="weight"
+                    value="1000"
+                    onChange={handleChangeOptions}
+                    disabled={productOption.skuId ? false : true}
+                  />
+                  <label
+                    className={`option-text-${
+                      productOption.skuId ? 'active' : 'inactive'
+                    }`}
+                    htmlFor="1000"
+                  >
+                    1 kilogram
+                  </label>
                 </div>
               </form>
             </div>
             <div className="totalprice">
               <div className="price">Price</div>
-              <div className="price">500</div>
+              <div className="price">{productOption.price.toFixed(0)}</div>
               <div className="price">Baht</div>
             </div>
             <div className="btn-group">
-              <Link to={'/localproducts'} className="btn">
+              <Link to={'/allproducts'} className="btn">
                 Continue Shopping
               </Link>
-              <button className="btnaddtocart">Add to cart</button>
+              <button className="btnaddtocart" onClick={handleSumbitToCart}>
+                Add to cart
+              </button>
             </div>
           </div>
         </div>

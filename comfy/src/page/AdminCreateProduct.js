@@ -208,8 +208,7 @@ function AdminCreateProduct() {
     // I've kept this example simple by using the first image instead of multiple
     setSelectedFile(e.target.files[0]);
   };
-
-  const [product, setProduct] = useState({
+  const INITIAL_STATE = {
     name: '',
     type: '',
     description: '',
@@ -220,8 +219,8 @@ function AdminCreateProduct() {
     wetstatus: false,
     drystatus: false,
     honeystatus: false,
-  });
-  console.log(product);
+  };
+  const [product, setProduct] = useState(INITIAL_STATE);
 
   const handleChangeProduct = (e) => {
     setProduct((cur) => ({ ...cur, [e.target.name]: e.target.value }));
@@ -229,7 +228,6 @@ function AdminCreateProduct() {
 
   const handleSubmitProduct = async (e) => {
     try {
-      console.log('Insubmit', product);
       e.preventDefault();
       const formData = new FormData();
 
@@ -237,21 +235,34 @@ function AdminCreateProduct() {
       formData.append('type', product.type);
       formData.append('description', product.description);
       formData.append('cloudinput', selectedFile); // ชื่อ key จะต้องตรงกับชื่อใน Middleware จะต้องตรงกับใน '' ของ upload.sigle('xxxxxxxx')
-      formData.append('process', product.process);
-      formData.append('price', [
-        product.wetprice,
-        product.dryprice,
-        product.honeyprice,
-      ]);
-      formData.append('status', [
-        product.wetstatus,
-        product.drystatus,
-        product.honeystatus,
-      ]);
-      //   for (var pair of formData.entries()) {
-      //     console.log(pair[0] + ', ' + pair[1]);
-      //   }
+      formData.append('wetprocess', product.process[0]);
+      formData.append('dryprocess', product.process[1]);
+      formData.append('honeyprocess', product.process[2]);
+      formData.append('wetstatus', product.wetstatus);
+      formData.append('drystatus', product.drystatus);
+      formData.append('honeystatus', product.honeystatus);
+      formData.append('wetprice', product.wetprice);
+      formData.append('dryprice', product.dryprice);
+      formData.append('honeyprice', product.honeyprice);
+      // formData.append(
+      //   'price',
+      //   JSON.stringify([product.wetprice, product.dryprice, product.honeyprice])
+      // );
+      // formData.append(
+      //   'status',
+      //   JSON.stringify([
+      //     product.wetstatus,
+      //     product.drystatus,
+      //     product.honeystatus,
+      //   ])
+      // );
+      // console.log(formData);
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0] + ', ' + pair[1]);
+      // }
+
       const res = await axios.post('/products/create-product', formData);
+      window.location.reload();
       console.log('Front-End', res.data);
     } catch (err) {
       console.log(err);
@@ -341,6 +352,7 @@ function AdminCreateProduct() {
                     disabled={!product.wetstatus}
                   />
                   <button
+                    type="button"
                     className="btn-active"
                     onClick={() =>
                       setProduct((cur) => ({ ...cur, wetstatus: true }))
@@ -349,6 +361,7 @@ function AdminCreateProduct() {
                     Active
                   </button>
                   <button
+                    type="button"
                     className="btn-inactive"
                     onClick={() =>
                       setProduct((cur) => ({ ...cur, wetstatus: false }))
@@ -378,6 +391,7 @@ function AdminCreateProduct() {
                     disabled={!product.drystatus}
                   />
                   <button
+                    type="button"
                     className="btn-active"
                     onClick={() =>
                       setProduct((cur) => ({ ...cur, drystatus: true }))
@@ -386,6 +400,7 @@ function AdminCreateProduct() {
                     Active
                   </button>
                   <button
+                    type="button"
                     className="btn-inactive"
                     onClick={() =>
                       setProduct((cur) => ({ ...cur, drystatus: false }))
@@ -416,6 +431,7 @@ function AdminCreateProduct() {
                     disabled={!product.honeystatus}
                   />
                   <button
+                    type="button"
                     className="btn-active"
                     onClick={() =>
                       setProduct((cur) => ({ ...cur, honeystatus: true }))
@@ -424,6 +440,7 @@ function AdminCreateProduct() {
                     Active
                   </button>
                   <button
+                    type="button"
                     className="btn-inactive"
                     onClick={() =>
                       setProduct((cur) => ({ ...cur, honeystatus: false }))

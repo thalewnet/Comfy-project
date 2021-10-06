@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import card from '../image/card5.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Decoration = styled.div`
   .card-container {
@@ -66,17 +65,35 @@ const Decoration = styled.div`
     }
   }
 `;
-function Card4({ name }) {
+function Card4({ item }) {
+  const { name, imageUrl, id } = item;
+  const history = useHistory();
+  const handleClickToProduct = (e) => {
+    try {
+      e.preventDefault();
+
+      history.push(`/productname/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Decoration>
       <div className="card-container">
         <div className="image-container">
-          <Link to={'/localproducts/productname'}>
-            <img className="card" src={card} alt="" />
+          <Link
+            to={'/localproducts/productname'}
+            onClick={handleClickToProduct}
+          >
+            <img className="card" src={imageUrl} alt="" />
           </Link>
         </div>
         <div className="card-title">
-          <Link to={'/localproducts/productname'} className="card-text ">
+          <Link
+            to={'/localproducts/productname'}
+            className="card-text "
+            onClick={handleClickToProduct}
+          >
             {name}
           </Link>
         </div>

@@ -235,17 +235,15 @@ function Adminupdatedproduct() {
       formData.append('type', product.type);
       formData.append('description', product.description);
       formData.append('cloudinput', selectedFile); // ชื่อ key จะต้องตรงกับชื่อใน Middleware จะต้องตรงกับใน '' ของ upload.sigle('xxxxxxxx')
-      formData.append('process', product.process);
-      formData.append('price', [
-        product.wetprice,
-        product.dryprice,
-        product.honeyprice,
-      ]);
-      formData.append('status', [
-        product.wetstatus,
-        product.drystatus,
-        product.honeystatus,
-      ]);
+      formData.append('wetprocess', product.process[0]);
+      formData.append('dryprocess', product.process[1]);
+      formData.append('honeyprocess', product.process[2]);
+      formData.append('wetstatus', product.wetstatus);
+      formData.append('drystatus', product.drystatus);
+      formData.append('honeystatus', product.honeystatus);
+      formData.append('wetprice', product.wetprice);
+      formData.append('dryprice', product.dryprice);
+      formData.append('honeyprice', product.honeyprice);
       // const res = await axios.post('/create-product', formData);
       // console.log(res);
     } catch (err) {

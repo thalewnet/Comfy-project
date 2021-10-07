@@ -1,4 +1,4 @@
-// import axios from '../../config/axios';
+import axios from '../../config/axios';
 import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { OrderContext } from '../../contexts/orderContext';
@@ -43,7 +43,7 @@ function CartItem({ item, setCartLists, cartLists, setCalPrice, calPrice }) {
         setCalPrice(cloneCalPrice);
       }
 
-      // await axios.delete(`/carts/${item.id}`);
+      await axios.delete(`/carts/${item.id}`);
     } catch (err) {
       console.log(err);
     }

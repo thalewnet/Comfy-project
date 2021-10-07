@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
 import truck from '../image/truck.png';
 import { Link } from 'react-router-dom';
 import { validateInput, validateShipmentObject } from '../services/validation';
 import { OrderContext } from '../contexts/orderContext';
+import axios from '../config/axios';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -172,11 +173,46 @@ const Decoration = styled.div`
 function Delivery() {
   const [error, setError] = useState({});
   const { shipment, setShipment } = useContext(OrderContext);
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [subdistricts, setSubDistricts] = useState([]);
+  const [zipCode, setZipCode] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('/services/provinces');
+        setProvinces(res.data.provinces);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
 
-  console.log(shipment);
-  const handleChangeShipment = (e) => {
+  const handleChangeShipment = async (e) => {
     const errMessage = validateInput(e.target.name, e.target.value);
     setError((cur) => ({ ...cur, [e.target.name]: errMessage }));
+
+    if (e.target.name === 'province') {
+      const res = await axios.get(
+        `/services/districts?province=${e.target.value}`
+      );
+      console.log(res.data.amphoeList);
+      setSubDistricts([]);
+      setZipCode([]);
+      setDistricts(res.data.amphoeList);
+      setShipment((cur) => ({ ...cur, [e.target.name]: e.target.value }));
+    }
+    if (e.target.name === 'district') {
+      setSubDistricts([]);
+      setZipCode([]);
+      const res = await axios.get(
+        `services/subdistricts?province=${shipment.province}&amphoe=${e.target.value}`
+      );
+      setSubDistricts(res.data.districtLists);
+      setZipCode([res.data.zipcode]);
+      setShipment((cur) => ({ ...cur, [e.target.name]: e.target.value }));
+    }
     setShipment((cur) => ({ ...cur, [e.target.name]: e.target.value }));
   };
 
@@ -218,13 +254,13 @@ function Delivery() {
             {error.province && (
               <span className="error-text">{error.province}</span>
             )}
-            <select
-              name="province"
-              id="province"
-              value={shipment.province}
-              onChange={handleChangeShipment}
-            >
-              <option value="">Please Select</option>
+            <select name="province" onChange={handleChangeShipment}>
+              <option value="">Please select </option>
+              {provinces.map((item, idx) => (
+                <option key={idx} value={item}>
+                  {item}
+                </option>
+              ))}
               <option value="Bangkok">Bangkok</option>
             </select>
           </div>
@@ -233,14 +269,13 @@ function Delivery() {
             {error.district && (
               <span className="error-text">{error.district}</span>
             )}
-            <select
-              name="district"
-              id="district"
-              value={shipment.district}
-              onChange={handleChangeShipment}
-            >
-              <option value="">Please Select</option>
-              <option value="Bangsue">Bang Sue</option>
+            <select name="district" onChange={handleChangeShipment}>
+              <option value="">Please select </option>
+              {districts.map((item, idx) => (
+                <option key={idx} value={item}>
+                  {item}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form">
@@ -248,14 +283,13 @@ function Delivery() {
             {error.subdistrict && (
               <span className="error-text">{error.subdistrict}</span>
             )}
-            <select
-              name="subdistrict"
-              id="subdistrict"
-              value={shipment.subdistrct}
-              onChange={handleChangeShipment}
-            >
-              <option value="">Please Select</option>
-              <option value="Bangsue">Bang Sue</option>
+            <select name="subdistrict" onChange={handleChangeShipment}>
+              <option value="">Please select </option>
+              {subdistricts.map((item, idx) => (
+                <option key={idx} value={item}>
+                  {item}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form">
@@ -263,14 +297,13 @@ function Delivery() {
             {error.zipcode && (
               <span className="error-text">{error.zipcode}</span>
             )}
-            <select
-              name="zipcode"
-              id="zipcode"
-              value={shipment.zipcode}
-              onChange={handleChangeShipment}
-            >
-              <option value="">Please Select</option>
-              <option value="10800">10800</option>
+            <select name="zipcode" onChange={handleChangeShipment}>
+              <option value="">Please select </option>
+              {zipCode.map((item, idx) => (
+                <option key={idx} value={item}>
+                  {item}
+                </option>
+              ))}
             </select>
           </div>
           <label htmlFor="phone">Phone Number :</label>

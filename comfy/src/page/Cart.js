@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Cartdetailcomponent from '../component/Cartdetailcomponent';
 import Path from '../component/Path';
@@ -113,9 +113,11 @@ const Decoration = styled.div`
 
 function Cart() {
   const { checkOutItems, setCheckOutItems } = useContext(OrderContext);
+  const history = useHistory();
   const handleSummaryOrder = (e) => {
     e.preventDefault();
-    console.log('From Cart page', checkOutItems);
+    history.push('/delivery');
+    console.log(checkOutItems);
   };
   return (
     <Decoration>

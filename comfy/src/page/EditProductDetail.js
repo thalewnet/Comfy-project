@@ -3,10 +3,9 @@ import styled from 'styled-components';
 import Path from '../component/Path';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import axios from '../config/axios';
-import { OrderContext } from '../contexts/orderContext';
 import { AuthContext } from '../contexts/authContext';
 import { validateInput, validateProductOption } from '../services/validation';
-import { getToken } from '../services/localStorage';
+
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -193,7 +192,6 @@ const Decoration = styled.div`
 `;
 
 function EditProductDetail() {
-  const { setCartItem } = useContext(OrderContext);
   const { user } = useContext(AuthContext);
   const { productId, cartId } = useParams();
   const history = useHistory();
@@ -313,21 +311,19 @@ function EditProductDetail() {
       setProductOption((cur) => ({ ...cur, amount: cur.amount - 1 }));
     }
   };
-
+  console.log(productOption);
   const handleUpdateCart = async (e) => {
     e.preventDefault();
     try {
       const errMessage = validateProductOption(productOption);
       setError(errMessage);
       console.log('submit', productOption);
-      // const res = await axios.put('/carts', productOption, {
-      //   headers: { authorization: `Bearer ${getToken()}` },
-      // });
-      const res = await axios.put(`/carts/${cartId}`, productOption);
-      alert('done');
-      // console.log(res.data.cart);
-      //   setCartItem((cur) => [...cur, res.data.cart]);
-      //   history.push('/cart');
+
+      await axios.put(`/carts/${cartId}`, {
+        ...productOption,
+        price: productOption?.price * productOption.amount,
+      });
+      history.push('/cart');
     } catch (err) {
       console.log(err);
     }

@@ -312,8 +312,9 @@ function Productdetail() {
       const errMessage = validateProductOption(productOption);
       setError(errMessage);
       console.log('submit', productOption);
-      const res = await axios.post('/carts', productOption, {
-        headers: { authorization: `Bearer ${getToken()}` },
+      const res = await axios.post('/carts', {
+        ...productOption,
+        price: productOption?.price * productOption.amount,
       });
       console.log(res.data.cart);
       setCartItem((cur) => [...cur, res.data.cart]);

@@ -49,8 +49,8 @@ function App() {
                   path="/cart/delivery/payment/confirm"
                   component={Orderconfirm}
                 />
-                <Route path="/cart/delivery/payment" component={Payment} />
-                <Route path="/cart/delivery" component={Delivery} />
+                <Route path="/payment" component={Payment} />
+                <Route path="/delivery" component={Delivery} />
                 <Route path="/cart" component={Cart} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/myorder" component={Myorder} />\

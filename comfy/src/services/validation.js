@@ -50,31 +50,31 @@ const validateInput = (name, value) => {
     }
     case 'address': {
       if (isEmpty(value)) {
-        return 'Address is required';
+        return 'required';
       }
       return '';
     }
     case 'province': {
       if (isEmpty(value)) {
-        return 'Province is required';
+        return 'required';
       }
       return '';
     }
     case 'district': {
       if (isEmpty(value)) {
-        return 'District is required';
+        return 'required';
       }
       return '';
     }
     case 'subdistrict': {
       if (isEmpty(value)) {
-        return 'Subdistrict is required';
+        return 'required';
       }
       return '';
     }
     case 'zipcode': {
       if (isEmpty(value)) {
-        return 'Zipcode is required';
+        return 'required';
       }
       return '';
     }

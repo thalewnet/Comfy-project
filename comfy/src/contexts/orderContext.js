@@ -23,7 +23,8 @@ function OrderProvider({ children }) {
     price: '',
     userId: '',
   });
-  const [checkOutItems, setCheckOutItems] = useState({}); // ไว้ใช้ตอนหน้า cart
+  const [checkOutItems, setCheckOutItems] = useState([]); // item selected and record with ID
+  // console.log(checkOutItems);
   return (
     <OrderContext.Provider
       value={{

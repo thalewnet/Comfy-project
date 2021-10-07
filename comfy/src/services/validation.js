@@ -78,6 +78,30 @@ const validateInput = (name, value) => {
       }
       return '';
     }
+    case 'skuId': {
+      if (isEmpty(value)) {
+        return 'กรุณาระบุ';
+      }
+      return '';
+    }
+    case 'roast': {
+      if (isEmpty(value)) {
+        return 'กรุณาระบุ';
+      }
+      return '';
+    }
+    case 'grind': {
+      if (isEmpty(value)) {
+        return 'กรุณาระบุ';
+      }
+      return '';
+    }
+    case 'weight': {
+      if (isEmpty(value)) {
+        return 'กรุณาระบุ';
+      }
+      return '';
+    }
     default:
       return '';
   }
@@ -131,9 +155,26 @@ const validateShipmentObject = (value) => {
 
   return error;
 };
+
+const validateProductOption = (value) => {
+  const errorSkuId = validateInput('skuId', value.skuId + '');
+  const errorRoast = validateInput('roast', value.roast);
+  const errorGrind = validateInput('grind', value.grind);
+  const errorWeight = validateInput('weight', value.weight);
+
+  const error = {};
+  if (errorSkuId) error.skuId = errorSkuId;
+  if (errorRoast) error.roast = errorRoast;
+  if (errorGrind) error.grind = errorGrind;
+  if (errorWeight) error.weight = errorWeight;
+
+  return error;
+};
+
 export {
   validateInput,
   validateRegisterObject,
   validateLoginObject,
   validateShipmentObject,
+  validateProductOption,
 };

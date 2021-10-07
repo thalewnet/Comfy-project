@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Cartcard from '../image/product.jpg';
-import Cartcard2 from '../image/product2.jpg';
-import Cartcard3 from '../image/product3.jpg';
 import CartItem from '../component/cart/CartItem';
 import SummaryCart from './cart/SummaryCart';
+import axios from '../config/axios';
+import { getToken } from '../services/localStorage';
 const Decoration = styled.div`
   * {
     margin: 0;
@@ -79,7 +78,19 @@ const Decoration = styled.div`
     margin-left: 5px;
     text-decoration: none;
   }
-
+  .btn-add {
+    font-size: 12px;
+    margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 30%;
+    background-color: #eecb14;
+  }
+  .btn-subtract {
+    font-size: 12px;
+    margin-left: 10px;
+    border-radius: 30%;
+    border: 1px solid black;
+  }
   .total-price {
     display: flex;
     justify-content: flex-end;
@@ -118,65 +129,48 @@ const Decoration = styled.div`
     }
   }
 `;
-const MOCK_DATA = [
-  {
-    img: Cartcard,
-    id: 1,
-    name: 'Doi Mon Chong',
-    choice: 'Honey process Light roast Whole bean 500 grams',
-    price: 500,
-  },
-  {
-    img: Cartcard3,
-    id: 2,
-    name: 'Mae Chan Tai',
-    choice: 'Washed / Wet Process Light roast Medium ground 500 grams',
-    price: 350,
-  },
-  {
-    img: Cartcard2,
-    id: 3,
-    name: 'Doi Chang',
-    choice: 'Washed / Wat process Light roast Fined ground 250 grams',
-    price: 240,
-  },
-];
+
 function Cartdetailcomponent() {
+  const [cartLists, setCartLists] = useState([]);
+  const [calPrice, setCalPrice] = useState([]);
+  const totalPrice = calPrice.reduce((acc, item) => acc + +item, 0).toFixed(2);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('/carts', {
+          headers: { authorization: `Bearer ${getToken()}` },
+        });
+        setCartLists(res.data.cartlist);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <Decoration>
       <div className="cart-container">
         <table className="cart-table">
           <tr>
+            <th></th>
             <th>Product</th>
             <th>Quantity</th>
             <th>Subtotal</th>
           </tr>
-          {/* Product1 */}
-          {MOCK_DATA.map((item) => (
-            <CartItem key={item.id} info={item} />
+          {cartLists?.map((item, idx) => (
+            <CartItem
+              key={item.id}
+              item={item}
+              setCartLists={setCartLists}
+              cartLists={cartLists}
+              setCalPrice={setCalPrice}
+              calPrice={calPrice}
+            />
           ))}
         </table>
-
-        {/* <div className="shipping">
-                    <table className="shipping-table">
-                        <tr>
-                            <td>
-                                <input  type="radio" id="regular" name="shipping" value="regular"/>
-                                <label for="regular">Regular shipping</label>
-                            </td>
-                            <td>30 &#3647;</td> 
-                        </tr>
-                        <tr>
-                            <td> 
-                                <input type="radio" id="express" name="shipping" value="ems"/>
-                                <label for="express">EMS shipping</label>
-                                </td>
-                            <td>50 &#3647;</td>
-                        </tr>
-                    </table>
-                </div> */}
-
-        <SummaryCart />
+        <SummaryCart totalPrice={totalPrice} />
       </div>
     </Decoration>
   );

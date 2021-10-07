@@ -23,6 +23,7 @@ import { AuthProvider } from './contexts/authContext';
 import AdminCreateProduct from './page/AdminCreateProduct';
 import { OrderProvider } from './contexts/orderContext';
 import { ProductProvider } from './contexts/productContext';
+import EditProductDetail from './page/EditProductDetail';
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
               <Navbarcomponent />
               <Switch>
                 <Route path="/productname/:id" component={Productdetail} />
+                <Route
+                  path="/editcart/:productId/:cartId"
+                  component={EditProductDetail}
+                />
                 <Route path="/localproducts" component={Localproduct} />
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />

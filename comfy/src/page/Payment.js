@@ -213,21 +213,21 @@ function Payment() {
             <input
               type="text"
               id="name"
-              value="Comfy Coffee Co., Ltd."
+              defaultValue="Comfy Coffee Co., Ltd."
               readonly
             />
           </div>
           <div className="form">
             <label htmlFor="accnum">Banking Account Number:</label>
-            <input type="text" id="accnum" value="123-234563" readonly />
+            <input type="text" id="accnum" defaultValue="123-234563" readonly />
           </div>
           <div className="form">
             <label htmlFor="bank">Bank :</label>
-            <input type="text" id="bank" value="KBank" readonly />
+            <input type="text" id="bank" defaultValue="KBank" readonly />
           </div>
           <div className="form">
             <label htmlFor="price">Price :</label>
-            <input type="text" id="price" value="580 Baht" readonly />
+            <input type="text" id="price" defaultValue="580 Baht" readonly />
           </div>
           <div className="form">
             <label htmlFor="upload">

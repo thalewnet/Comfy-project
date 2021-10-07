@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Cartdetailcomponent from '../component/Cartdetailcomponent';
 import Path from '../component/Path';
+import { OrderContext } from '../contexts/orderContext';
 import cart from '../image/cart.png';
 
 const Decoration = styled.div`
@@ -111,6 +112,11 @@ const Decoration = styled.div`
 `;
 
 function Cart() {
+  const { checkOutItems, setCheckOutItems } = useContext(OrderContext);
+  const handleSummaryOrder = (e) => {
+    e.preventDefault();
+    console.log('From Cart page', checkOutItems);
+  };
   return (
     <Decoration>
       <Path />
@@ -131,7 +137,7 @@ function Cart() {
 
       <div className="form">
         <Link to={'/cart/delivery'}>
-          <button type="button" className="btn">
+          <button type="button" className="btn" onClick={handleSummaryOrder}>
             Confirm Order
           </button>
         </Link>

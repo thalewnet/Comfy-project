@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import axios from '../config/axios';
 import { OrderContext } from '../contexts/orderContext';
 import { AuthContext } from '../contexts/authContext';
@@ -191,10 +191,12 @@ const Decoration = styled.div`
     }
   }
 `;
-function Productdetail() {
+
+function EditProductDetail() {
   const { setCartItem } = useContext(OrderContext);
   const { user } = useContext(AuthContext);
-  const { id } = useParams();
+  const { productId, cartId } = useParams();
+  const history = useHistory();
   const INITAIL_PRODUCROPTION = {
     roast: '',
     grind: '',
@@ -202,7 +204,7 @@ function Productdetail() {
     price: 0,
     skuId: '',
     amount: 1,
-    productId: id,
+    productId: productId,
     userId: user.id,
   };
   const [error, setError] = useState({});
@@ -211,8 +213,10 @@ function Productdetail() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`/products/${id}`);
+      const res = await axios.get(`/products/${productId}`);
       setProduct(res.data.products);
+      const res2 = await axios.get(`/carts/${cartId}`);
+      setProductOption(res2.data.cart);
     };
     fetchData();
   }, []);
@@ -292,6 +296,10 @@ function Productdetail() {
     } else {
       setProductOption((cur) => ({ ...cur, [e.target.name]: e.target.value }));
     }
+
+    if (e.target.name === 'skuId') {
+      setProductOption((cur) => ({ ...cur, [e.target.name]: +e.target.value }));
+    }
   };
 
   const handleClickAddAmount = () => {
@@ -306,18 +314,20 @@ function Productdetail() {
     }
   };
 
-  const handleSumbitToCart = async (e) => {
+  const handleUpdateCart = async (e) => {
     e.preventDefault();
     try {
       const errMessage = validateProductOption(productOption);
       setError(errMessage);
       console.log('submit', productOption);
-      const res = await axios.post('/carts', productOption, {
-        headers: { authorization: `Bearer ${getToken()}` },
-      });
-      console.log(res.data.cart);
-      setCartItem((cur) => [...cur, res.data.cart]);
-      window.location.reload();
+      // const res = await axios.put('/carts', productOption, {
+      //   headers: { authorization: `Bearer ${getToken()}` },
+      // });
+      const res = await axios.put(`/carts/${cartId}`, productOption);
+      alert('done');
+      // console.log(res.data.cart);
+      //   setCartItem((cur) => [...cur, res.data.cart]);
+      //   history.push('/cart');
     } catch (err) {
       console.log(err);
     }
@@ -368,6 +378,7 @@ function Productdetail() {
                     value={product?.Skus?.[0].id}
                     disabled={!product?.Skus?.[0].status ? true : false}
                     onChange={handleChangeOptions}
+                    checked={productOption.skuId === product?.Skus?.[0].id}
                   />
                   <label
                     className={`option-text-${
@@ -387,6 +398,7 @@ function Productdetail() {
                     value={product?.Skus?.[1].id}
                     disabled={!product?.Skus?.[1].status ? true : false}
                     onChange={handleChangeOptions}
+                    checked={productOption.skuId === product?.Skus?.[1].id}
                   />
                   <label
                     htmlFor="dryprocess"
@@ -407,6 +419,7 @@ function Productdetail() {
                     value={product?.Skus?.[2].id}
                     disabled={!product?.Skus?.[2].status ? true : false}
                     onChange={handleChangeOptions}
+                    checked={productOption.skuId === product?.Skus?.[2].id}
                   />
                   <label
                     htmlFor="honeyprocess"
@@ -432,6 +445,7 @@ function Productdetail() {
                     name="roast"
                     value="light"
                     onChange={handleChangeOptions}
+                    checked={productOption.roast === 'light'}
                   />
                   <label htmlFor="light">Light roast</label>
                   <br />
@@ -443,6 +457,7 @@ function Productdetail() {
                     name="roast"
                     value="medium"
                     onChange={handleChangeOptions}
+                    checked={productOption.roast === 'medium'}
                   />
                   <label htmlFor="medium">Medium roast</label>
                   <br />
@@ -454,6 +469,7 @@ function Productdetail() {
                     name="roast"
                     value="dark"
                     onChange={handleChangeOptions}
+                    checked={productOption.roast === 'dark'}
                   />
                   <label htmlFor="dark">Dark roast</label>
                 </div>
@@ -472,6 +488,7 @@ function Productdetail() {
                     name="grind"
                     value="wholebean"
                     onChange={handleChangeOptions}
+                    checked={productOption.grind === 'wholebean'}
                   />
                   <label htmlFor="whole">Whole bean</label>
                   <br />
@@ -483,6 +500,7 @@ function Productdetail() {
                     name="grind"
                     value="finedground"
                     onChange={handleChangeOptions}
+                    checked={productOption.grind === 'finedground'}
                   />
                   <label htmlFor="fined">Fined ground</label>
                   <br />
@@ -494,6 +512,7 @@ function Productdetail() {
                     name="grind"
                     value="mediumground"
                     onChange={handleChangeOptions}
+                    checked={productOption.grind === 'mediumground'}
                   />
                   <label htmlFor="dark">Medium ground</label>
                 </div>
@@ -504,6 +523,7 @@ function Productdetail() {
                     name="grind"
                     value="coarseground"
                     onChange={handleChangeOptions}
+                    checked={productOption.grind === 'coarseground'}
                   />
                   <label htmlFor="dark">Coarse ground</label>
                 </div>
@@ -523,6 +543,7 @@ function Productdetail() {
                     value="100"
                     onChange={handleChangeOptions}
                     disabled={productOption.skuId ? false : true}
+                    checked={productOption.weight === '100'}
                   />
                   <label
                     htmlFor="100"
@@ -542,6 +563,7 @@ function Productdetail() {
                     value="250"
                     onChange={handleChangeOptions}
                     disabled={productOption.skuId ? false : true}
+                    checked={productOption.weight === '250'}
                   />
                   <label
                     htmlFor="250"
@@ -561,6 +583,7 @@ function Productdetail() {
                     value="500"
                     onChange={handleChangeOptions}
                     disabled={productOption.skuId ? false : true}
+                    checked={productOption.weight === '500'}
                   />
                   <label
                     htmlFor="500"
@@ -579,6 +602,7 @@ function Productdetail() {
                     value="1000"
                     onChange={handleChangeOptions}
                     disabled={productOption.skuId ? false : true}
+                    checked={productOption.weight === '1000'}
                   />
                   <label
                     className={`option-text-${
@@ -594,7 +618,7 @@ function Productdetail() {
             <div className="totalprice">
               <div className="price">Price</div>
               <div className="price">
-                {productOption.price.toFixed(0) * productOption.amount}
+                {(productOption?.price * productOption.amount).toFixed(2)}
               </div>
               <div className="price">Baht</div>
             </div>
@@ -602,8 +626,8 @@ function Productdetail() {
               <Link to={'/allproducts'} className="btn">
                 Continue Shopping
               </Link>
-              <button className="btnaddtocart" onClick={handleSumbitToCart}>
-                Add to cart
+              <button className="btnaddtocart" onClick={handleUpdateCart}>
+                Update Cart
               </button>
             </div>
           </div>
@@ -613,4 +637,4 @@ function Productdetail() {
   );
 }
 
-export default Productdetail;
+export default EditProductDetail;

@@ -113,20 +113,6 @@ const Decoration = styled.div`
   }
 `;
 
-const MOCK_ALL = [
-  'Brazil',
-  'Columbia',
-  'Ethiopia',
-  'Kenya',
-  'Panama',
-  'Peru',
-  'Doi Mon Chong',
-  'Mae Chan Tai',
-  'Doi Chang',
-  'Doi Chang',
-  'Doi Chang',
-  'Doi Chang',
-];
 function Allproduct() {
   const [product, setProduct] = useState([]);
   useEffect(() => {
@@ -153,11 +139,6 @@ function Allproduct() {
             <Card4 item={item} />
           </div>
         ))}
-        {/* {MOCK_ALL.map((item, idx) => (
-          <div className="bs" key={idx}>
-            <Card4 name={item} />
-          </div>
-        ))} */}
       </div>
     </Decoration>
   );

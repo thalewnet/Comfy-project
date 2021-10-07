@@ -120,14 +120,6 @@ const Decoration = styled.div`
   }
 `;
 
-const MOCK_LOCAL = [
-  'Doi Mon Chong',
-  'Mae Chan Tai',
-  'Doi Chang',
-  'Doi Chang',
-  'Doi Chang',
-  'Doi Chang',
-];
 function Localproduct() {
   const [product, setProduct] = useState([]);
   useEffect(() => {
@@ -154,11 +146,6 @@ function Localproduct() {
             <Card4 item={item} />
           </div>
         ))}
-        {/* {MOCK_LOCAL.map((item, idx) => (
-          <div className="bs" key={idx}>
-            <Card4 name={item} />
-          </div>
-        ))} */}
       </div>
     </Decoration>
   );

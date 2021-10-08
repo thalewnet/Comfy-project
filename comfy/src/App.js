@@ -45,10 +45,7 @@ function App() {
                 <Route path="/forgot" component={Forgotten} />
                 <Route path="/allproducts" component={Allproduct} />
                 <Route path="/importproducts" component={Importproduct} />
-                <Route
-                  path="/cart/delivery/payment/confirm"
-                  component={Orderconfirm}
-                />
+                <Route path="/confirm" component={Orderconfirm} />
                 <Route path="/payment" component={Payment} />
                 <Route path="/delivery" component={Delivery} />
                 <Route path="/cart" component={Cart} />

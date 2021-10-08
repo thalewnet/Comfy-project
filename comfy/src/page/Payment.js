@@ -4,7 +4,7 @@ import Path from '../component/Path';
 import credit from '../image/credit.png';
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { OrderContext } from '../contexts/orderContext';
 import axios from '../config/axios';
 const Decoration = styled.div`
@@ -125,8 +125,8 @@ const Decoration = styled.div`
   }
 
   .preview-image {
-    width: 270px;
-    height: 400px;
+    width: 200px;
+    height: 300px;
   }
   .btn {
     position: relative;
@@ -158,6 +158,11 @@ const Decoration = styled.div`
   .btn:hover {
     background-color: #456044;
   }
+  .error-text {
+    color: red;
+    font-size: 12px;
+    font-style: oblique;
+  }
 
   @media (max-width: 1100px) {
     .topics {
@@ -169,8 +174,9 @@ const Decoration = styled.div`
 function Payment() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const { shipment, checkOutItems } = useContext(OrderContext); // เหลือใส่ cart order
-
+  const { shipment, checkOutItems, paymentPrice } = useContext(OrderContext); // เหลือใส่ cart order
+  const [error, setError] = useState({});
+  const history = useHistory();
   useEffect(() => {
     if (!selectedFile) {
       setPreview(null);
@@ -182,6 +188,7 @@ function Payment() {
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
   const handleSelectImage = (e) => {
+    setError({});
     if (!e.target.files || e.target.files.length === 0) {
       setSelectedFile(null);
       return;
@@ -190,9 +197,36 @@ function Payment() {
     setSelectedFile(e.target.files[0]);
   };
 
-  const handleSubmittoCreateOrder = (e) => {
-    e.preventDefault();
-    //ต้องรับ state ของ cart / shippment มายังหน้านี้ ต้องไปเก็บไว้ใน context
+  const handleSubmittoCreateOrder = async (e) => {
+    try {
+      e.preventDefault();
+      if (!selectedFile) {
+        setError((cur) => ({ ...cur, photo: 'กรุณาแนบหลักฐานการโอน' }));
+      } else {
+        console.log(shipment);
+        console.log(checkOutItems);
+        console.log(+paymentPrice);
+
+        const formData = new FormData();
+
+        formData.append('address', shipment.address);
+        formData.append('province', shipment.province);
+        formData.append('district', shipment.district);
+        formData.append('subdistrict', shipment.subdistrict);
+        formData.append('zipcode', shipment.zipcode);
+        formData.append('phonenumber', shipment.phonenumber);
+        formData.append('comment', shipment.comment);
+        formData.append('cloudinput', selectedFile);
+        formData.append('totalprice', +paymentPrice);
+        for (let i = 0; i < checkOutItems.length; i++) {
+          formData.append('arrcartid', +checkOutItems[i]);
+        }
+        await axios.post('/orders', formData);
+        history.push('/confirm');
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Decoration>
@@ -214,25 +248,29 @@ function Payment() {
               type="text"
               id="name"
               defaultValue="Comfy Coffee Co., Ltd."
-              readonly
+              disabled
             />
           </div>
           <div className="form">
             <label htmlFor="accnum">Banking Account Number:</label>
-            <input type="text" id="accnum" defaultValue="123-234563" readonly />
+            <input type="text" id="accnum" defaultValue="123-234563" disabled />
           </div>
           <div className="form">
             <label htmlFor="bank">Bank :</label>
-            <input type="text" id="bank" defaultValue="KBank" readonly />
+            <input type="text" id="bank" defaultValue="KBank" disabled />
           </div>
           <div className="form">
             <label htmlFor="price">Price :</label>
-            <input type="text" id="price" defaultValue="580 Baht" readonly />
+            <input
+              type="text"
+              id="price"
+              defaultValue={paymentPrice}
+              disabled
+            />
           </div>
           <div className="form">
-            <label htmlFor="upload">
-              Upload Payment Slip :<br />
-            </label>
+            <label htmlFor="upload">Upload Payment Slip :</label>
+            {error.photo && <span className="error-text">{error.photo}</span>}
             <div className="upload-area">
               <div className="upload-icon">
                 <i>

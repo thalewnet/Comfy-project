@@ -102,6 +102,7 @@ const validateInput = (name, value) => {
       }
       return '';
     }
+
     default:
       return '';
   }

@@ -25,6 +25,8 @@ function OrderProvider({ children }) {
   });
   const [checkOutItems, setCheckOutItems] = useState([]); // item selected and record with ID
   // console.log(checkOutItems);
+
+  const [paymentPrice, setPaymentPrice] = useState(0);
   return (
     <OrderContext.Provider
       value={{
@@ -34,6 +36,8 @@ function OrderProvider({ children }) {
         setCheckOutItems,
         productOption,
         setProductOption,
+        setPaymentPrice,
+        paymentPrice,
       }}
     >
       {children}

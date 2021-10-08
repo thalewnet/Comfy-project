@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
 import Path from '../component/Path';
 import Cargo from '../image/cargo.png';
 import Ordernubmer from '../component/Ordernumber';
+import axios from '../config/axios';
 
 const Decoration = styled.div`
   padding-top: 64px;
@@ -95,6 +95,14 @@ const Decoration = styled.div`
   }
 `;
 function Myorder() {
+  const [orderLists, setOrderLists] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get('/orders/userorder');
+      console.log(res.data.orders);
+    };
+    fetchData();
+  }, []);
   return (
     <Decoration>
       <Path />

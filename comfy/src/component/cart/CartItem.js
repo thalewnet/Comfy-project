@@ -2,12 +2,20 @@ import axios from '../../config/axios';
 import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { OrderContext } from '../../contexts/orderContext';
-function CartItem({ item, setCartLists, cartLists, setCalPrice, calPrice }) {
+function CartItem({
+  item,
+  setCartLists,
+  cartLists,
+  setCalPrice,
+  calPrice,
+  setError,
+}) {
   console.log(item);
   const { checkOutItems, setCheckOutItems } = useContext(OrderContext);
   const history = useHistory();
   const handleSelectedItem = (e) => {
     const { value, checked } = e.target;
+    setError((cur) => ({ ...cur, checkout: '' }));
     if (checked) {
       setCheckOutItems((cur) => [...cur, +value]);
       setCalPrice((cur) => [...cur, +(+item.price).toFixed(2)]);

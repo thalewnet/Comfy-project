@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
 import truck from '../image/truck.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { validateInput, validateShipmentObject } from '../services/validation';
 import { OrderContext } from '../contexts/orderContext';
 import axios from '../config/axios';
@@ -177,6 +177,7 @@ function Delivery() {
   const [districts, setDistricts] = useState([]);
   const [subdistricts, setSubDistricts] = useState([]);
   const [zipCode, setZipCode] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -197,7 +198,6 @@ function Delivery() {
       const res = await axios.get(
         `/services/districts?province=${e.target.value}`
       );
-      console.log(res.data.amphoeList);
       setSubDistricts([]);
       setZipCode([]);
       setDistricts(res.data.amphoeList);
@@ -220,7 +220,10 @@ function Delivery() {
     e.preventDefault();
     const errMessage = validateShipmentObject(shipment);
     setError(errMessage);
-    console.log(shipment);
+    if (Object.keys(errMessage).length === 0) {
+      console.log(shipment);
+      history.push('/payment');
+    }
   };
   return (
     <Decoration>

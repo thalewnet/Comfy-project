@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Cartdetailcomponent from '../component/Cartdetailcomponent';
@@ -42,6 +42,7 @@ const Decoration = styled.div`
   .text-box {
     width: 80%;
     margin: 0 auto;
+    display: flex;
   }
   .topics {
     width: 100%;
@@ -109,15 +110,29 @@ const Decoration = styled.div`
   .btn:hover {
     background-color: #456044;
   }
+  .error-text {
+    color: red;
+    font-size: 16px;
+    font-style: oblique;
+    margin-right: 10px;
+  }
 `;
 
 function Cart() {
   const { checkOutItems, setCheckOutItems } = useContext(OrderContext);
+  const [error, setError] = useState({});
   const history = useHistory();
   const handleSummaryOrder = (e) => {
     e.preventDefault();
-    history.push('/delivery');
-    console.log(checkOutItems);
+    if (checkOutItems.length === 0) {
+      setError((cur) => ({
+        ...cur,
+        checkout: 'กรุณาเลือกสินค้าอย่างน้อย 1 ชิ้น',
+      }));
+    } else {
+      history.push('/delivery');
+      console.log(checkOutItems);
+    }
   };
   return (
     <Decoration>
@@ -131,10 +146,11 @@ function Cart() {
 
       <div className="text-box">
         <p className="topics">Check out</p>
+        {error.checkout && <div className="error-text">{error.checkout}</div>}
       </div>
 
       <div className="component-container">
-        <Cartdetailcomponent />
+        <Cartdetailcomponent setError={setError} />
       </div>
 
       <div className="form">

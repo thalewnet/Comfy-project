@@ -36,7 +36,18 @@ const Decoration = styled.div`
     }
 
     .btnadd {
-      background-color: #eecb14;
+      background-color: #fae475;
+      cursor: pointer;
+    }
+    .btnadd:hover {
+      background-color: #e6c315;
+    }
+    .btnsub {
+      background-color: #e6e3e3;
+      cursor: pointer;
+    }
+    .btnsub:hover {
+      background-color: #c4c4c4;
     }
 
     p {
@@ -115,23 +126,13 @@ const Decoration = styled.div`
     justify-content: center;
     margin-top: 10px;
 
-    .btn {
-      text-decoration: none;
-      margin-right: 20px;
-      color: whitesmoke;
-      background: #204d48;
-      border: 2px solid #204d48;
-      padding: 8px 16px;
-      border-radius: 8px;
-    }
-
     .btnaddtocart {
       background-color: #204d48;
       color: whitesmoke;
       border-radius: 8px;
       font-family: Roboto;
       font-style: normal;
-      padding: 0 16px;
+      padding: 8px 40px;
       font-size: 16px;
     }
   }
@@ -139,9 +140,7 @@ const Decoration = styled.div`
   .btnaddtocart:hover {
     background-color: #245855;
   }
-  .btn:hover {
-    background-color: #245855;
-  }
+
   .image-size {
     width: 500px;
     height: 400px;
@@ -619,9 +618,6 @@ function EditProductDetail() {
               <div className="price">Baht</div>
             </div>
             <div className="btn-group">
-              <Link to={'/allproducts'} className="btn">
-                Continue Shopping
-              </Link>
               <button className="btnaddtocart" onClick={handleUpdateCart}>
                 Update Cart
               </button>

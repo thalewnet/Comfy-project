@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import axios from '../config/axios';
-import { OrderContext } from '../contexts/orderContext';
 import { AuthContext } from '../contexts/authContext';
 import { validateInput, validateProductOption } from '../services/validation';
-import { getToken } from '../services/localStorage';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -37,7 +35,18 @@ const Decoration = styled.div`
     }
 
     .btnadd {
-      background-color: #eecb14;
+      background-color: #fae475;
+      cursor: pointer;
+    }
+    .btnadd:hover {
+      background-color: #e6c315;
+    }
+    .btnsub {
+      background-color: #e6e3e3;
+      cursor: pointer;
+    }
+    .btnsub:hover {
+      background-color: #c4c4c4;
     }
 
     p {
@@ -192,8 +201,9 @@ const Decoration = styled.div`
   }
 `;
 function Productdetail() {
-  const { setCartItem } = useContext(OrderContext);
+  // const { setCartItem } = useContext(OrderContext);
   const { user } = useContext(AuthContext);
+  const history = useHistory();
   const { id } = useParams();
   const INITAIL_PRODUCROPTION = {
     roast: '',
@@ -316,9 +326,10 @@ function Productdetail() {
         ...productOption,
         price: productOption?.price * productOption.amount,
       });
-      console.log(res.data.cart);
-      setCartItem((cur) => [...cur, res.data.cart]);
-      window.location.reload();
+      // console.log(res.data.cart);
+      // setCartItem((cur) => [...cur, res.data.cart]);
+      console.log('push..........................');
+      history.push('/cart');
     } catch (err) {
       console.log(err);
     }

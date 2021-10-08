@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import CartItem from '../component/cart/CartItem';
 import SummaryCart from './cart/SummaryCart';
 import axios from '../config/axios';
 import { getToken } from '../services/localStorage';
+import { OrderContext } from '../contexts/orderContext';
 const Decoration = styled.div`
   * {
     margin: 0;
@@ -130,11 +131,12 @@ const Decoration = styled.div`
   }
 `;
 
-function Cartdetailcomponent() {
+function Cartdetailcomponent({ setError }) {
   const [cartLists, setCartLists] = useState([]);
   const [calPrice, setCalPrice] = useState([]);
   const totalPrice = calPrice.reduce((acc, item) => acc + +item, 0).toFixed(2);
-
+  const { setPaymentPrice } = useContext(OrderContext);
+  setPaymentPrice(totalPrice);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -167,6 +169,7 @@ function Cartdetailcomponent() {
               cartLists={cartLists}
               setCalPrice={setCalPrice}
               calPrice={calPrice}
+              setError={setError}
             />
           ))}
         </table>

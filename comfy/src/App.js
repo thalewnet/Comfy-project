@@ -24,6 +24,7 @@ import AdminCreateProduct from './page/AdminCreateProduct';
 import { OrderProvider } from './contexts/orderContext';
 import { ProductProvider } from './contexts/productContext';
 import EditProductDetail from './page/EditProductDetail';
+import AdminAllproduct from './page/AdminAllproduct';
 
 function App() {
   return (
@@ -52,16 +53,16 @@ function App() {
                 <Route path="/contact" component={Contact} />
                 <Route path="/myorder" component={Myorder} />\
                 <Route
-                  path="/admin-product-update"
-                  component={Adminupdatedproduct}
-                />
-                <Route
                   path="/admin-create-product"
                   component={AdminCreateProduct}
                 />
+                <Route
+                  path="/admin-product-update/:id"
+                  component={Adminupdatedproduct}
+                />
                 <Route path="/admin-orderstatus" component={Adminorderstatus} />
                 <Route path="/admin-ordercheck" component={Adminordercheck} />
-                <Route path="/test" component={Adminorderstatus} />
+                <Route path="/admin-allproducts" component={AdminAllproduct} />
                 <Route path="/test2" component={Adminordercheck} />
                 <Route path="/" component={Homepage} />
               </Switch>

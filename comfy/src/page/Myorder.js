@@ -4,6 +4,7 @@ import Path from '../component/Path';
 import Cargo from '../image/cargo.png';
 import Ordernubmer from '../component/Ordernumber';
 import axios from '../config/axios';
+import { Link } from 'react-router-dom';
 
 const Decoration = styled.div`
   padding-top: 64px;
@@ -99,7 +100,7 @@ function Myorder() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get('/orders/userorder');
-      console.log(res.data.orders);
+      setOrderLists(res.data.orders);
     };
     fetchData();
   }, []);
@@ -119,13 +120,14 @@ function Myorder() {
 
       <div className="container">
         <div className="container-inside">
-          <Ordernubmer order={'CF-001'} />
-          <Ordernubmer order={'CF-002'} />
-          <a href="/homepage">
+          {orderLists.map((item) => (
+            <Ordernubmer key={item.id} order={`CF-${item.id}`} item={item} />
+          ))}
+          <Link href="/homepage">
             <button type="button" className="btn">
               Back to homepage
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </Decoration>

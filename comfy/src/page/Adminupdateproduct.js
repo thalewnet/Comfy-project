@@ -4,6 +4,7 @@ import Path from '../component/Path';
 import axios from '../config/axios';
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useParams } from 'react-router-dom';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -183,9 +184,52 @@ const Decoration = styled.div`
   }
 `;
 function Adminupdatedproduct() {
+  const [product, setProduct] = useState({
+    name: '',
+    type: '',
+    description: '',
+    process: ['Washed / Wet process', 'Natural / Dry process', 'Honey Process'],
+    wetprice: '',
+    dryprice: '',
+    honeyprice: '',
+    wetstatus: false,
+    drystatus: false,
+    honeystatus: false,
+    wetSkuId: 0,
+    drySkuId: 0,
+    honeySkuId: 0,
+  });
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-
+  const [prevImg, setPrevImg] = useState(null);
+  const { id } = useParams();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/products/${id}`);
+        console.log(res.data.products);
+        setProduct((cur) => ({
+          ...cur,
+          name: res.data.products?.name,
+          type: res.data.products?.type,
+          description: res.data.products?.description,
+          wetprice: res.data.products?.Skus[0]?.price,
+          dryprice: res.data.products?.Skus[1]?.price,
+          honeyprice: res.data.products?.Skus[2]?.price,
+          wetstatus: res.data.products?.Skus[0]?.status,
+          drystatus: res.data.products?.Skus[1]?.status,
+          honeystatus: res.data.products?.Skus[2]?.status,
+          wetSkuId: res.data.products?.Skus[0]?.id,
+          drySkuId: res.data.products?.Skus[1]?.id,
+          honeySkuId: res.data.products?.Skus[2]?.id,
+        }));
+        setPrevImg(res.data.products.imageUrl);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
     if (!selectedFile) {
@@ -193,6 +237,7 @@ function Adminupdatedproduct() {
       return;
     }
     const objectUrl = URL.createObjectURL(selectedFile);
+    setPrevImg(null);
     setPreview(objectUrl);
 
     // free memory when ever this component is unmounted
@@ -209,19 +254,7 @@ function Adminupdatedproduct() {
     setSelectedFile(e.target.files[0]);
   };
 
-  const [product, setProduct] = useState({
-    name: '',
-    type: '',
-    description: '',
-    process: ['Washed / Wet process', 'Natural / Dry process', 'Honey Process'],
-    wetprice: '',
-    dryprice: '',
-    honeyprice: '',
-    wetstatus: false,
-    drystatus: false,
-    honeystatus: false,
-  });
-  console.log(product);
+  console.log(selectedFile);
 
   const handleChangeProduct = (e) => {
     setProduct((cur) => ({ ...cur, [e.target.name]: e.target.value }));
@@ -244,8 +277,16 @@ function Adminupdatedproduct() {
       formData.append('wetprice', product.wetprice);
       formData.append('dryprice', product.dryprice);
       formData.append('honeyprice', product.honeyprice);
-      // const res = await axios.post('/create-product', formData);
-      // console.log(res);
+      formData.append('wetId', product.honeyprice);
+      formData.append('dryId', product.honeyprice);
+      formData.append('honeyId', product.honeyprice);
+
+      // router.put('/update-product/:productId/:wetSkuId/:drySkuId/:honeySkuId', updateProduct);
+      const res = await axios.put(
+        `/products/update-product/${id}/${product.wetSkuId}/${product.drySkuId}/${product.honeySkuId}`,
+        formData
+      );
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -259,6 +300,7 @@ function Adminupdatedproduct() {
             {selectedFile && (
               <img className="preview-image" src={preview} alt="" />
             )}
+            {prevImg && <img className="preview-image" src={prevImg} alt="" />}
             <div>
               <div className="upload-area">
                 <div className="upload-icon">
@@ -299,6 +341,8 @@ function Adminupdatedproduct() {
                 name="type"
                 value="local"
                 onChange={handleChangeProduct}
+                checked={product?.type === 'local'}
+                disabled
               />
               <label htmlFor="local">Local product</label>
               <br />
@@ -308,6 +352,8 @@ function Adminupdatedproduct() {
                 name="type"
                 value="import"
                 onChange={handleChangeProduct}
+                checked={product?.type === 'import'}
+                disabled
               />
               <label htmlFor="import">Imported product</label>
               <br />
@@ -317,7 +363,7 @@ function Adminupdatedproduct() {
                 <div className="controlinput">
                   <label
                     className={`process-${
-                      product.wetstatus ? 'active' : 'inactive'
+                      product?.wetstatus ? 'active' : 'inactive'
                     }`}
                     htmlFor="wetprocess"
                   >
@@ -329,9 +375,9 @@ function Adminupdatedproduct() {
                     id="wetprocess"
                     name="wetprice"
                     placeholder="Enter price"
-                    value={product.wetprice}
+                    value={product?.wetprice}
                     onChange={handleChangeProduct}
-                    disabled={!product.wetstatus}
+                    disabled={!product?.wetstatus}
                   />
                   <button
                     className="btn-active"
@@ -366,9 +412,9 @@ function Adminupdatedproduct() {
                     id="dryprocess"
                     name="dryprice"
                     placeholder="Enter price"
-                    value={product.dryprice}
+                    value={product?.dryprice}
                     onChange={handleChangeProduct}
-                    disabled={!product.drystatus}
+                    disabled={!product?.drystatus}
                   />
                   <button
                     className="btn-active"
@@ -392,7 +438,7 @@ function Adminupdatedproduct() {
                 <div className="controlinput">
                   <label
                     className={`process-${
-                      product.honeystatus ? 'active' : 'inactive'
+                      product?.honeystatus ? 'active' : 'inactive'
                     }`}
                     htmlFor="honeyprocess"
                   >
@@ -404,9 +450,9 @@ function Adminupdatedproduct() {
                     placeholder="Enter price"
                     id="honeyprocess"
                     name="honeyprice"
-                    value={product.honeyprice}
+                    value={product?.honeyprice}
                     onChange={handleChangeProduct}
-                    disabled={!product.honeystatus}
+                    disabled={!product?.honeystatus}
                   />
                   <button
                     className="btn-active"
@@ -432,8 +478,8 @@ function Adminupdatedproduct() {
                   className="details-input"
                   type="text"
                   placeholder="Specific Product description"
-                  name="descriptions"
-                  value={product.description}
+                  name="description"
+                  value={product?.description}
                   onChange={handleChangeProduct}
                 />
                 <button className="update-btn">Updated</button>

@@ -195,6 +195,10 @@ function Navbarcomponent() {
     setUser(null);
     history.push('/login');
   };
+
+  const handleClicktoOrder = () => {
+    history.push('/myorder');
+  };
   return (
     <Decoration>
       <nav>
@@ -214,27 +218,51 @@ function Navbarcomponent() {
                 </label>
               </div>
               <li>
-                <Link to={'/allproducts'} className="product">
-                  All Products
-                </Link>
+                {!user.role === 'user' ? (
+                  <Link to={'/allproducts'} className="product">
+                    All Products
+                  </Link>
+                ) : (
+                  <Link to={'/admin-allproducts'} className="product">
+                    All Products
+                  </Link>
+                )}
               </li>
+              {!user.role === 'user' ? (
+                <>
+                  <li>
+                    <Link to={'/localproducts'} className="product">
+                      Local Coffee Bean
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/importproducts'} className="product">
+                      Imported Coffee Bean
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to={'/admin-create-product'} className="product">
+                      Create Product
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/admin-orderstatus'} className="product">
+                      Dashboard
+                    </Link>
+                  </li>
+                </>
+              )}
+
               <li>
-                <Link to={'/localproducts'} className="product">
-                  Local Coffee Bean
-                </Link>
-              </li>
-              <li>
-                <Link to={'/importproducts'} className="product">
-                  Imported Coffee Bean
-                </Link>
-              </li>
-              <li>
-                <a className="contact" href="/contact">
+                <Link to={'/contact'} className="contact">
                   <i className="icon-phone">
                     <FontAwesomeIcon icon={faPhoneAlt} />
                   </i>
                   <span>Contact us</span>
-                </a>
+                </Link>
               </li>
               {user && (
                 <>
@@ -248,7 +276,10 @@ function Navbarcomponent() {
                     </Link>
                   </li>
                   <li>
-                    <div className="name-tag">{`Welcome ${user.firstName} `}</div>
+                    <div
+                      className="name-tag"
+                      onClick={handleClicktoOrder}
+                    >{`Welcome ${user.firstName} `}</div>
                   </li>
                   <li>
                     <Link to={'/login'} onClick={handleClickLogout}>

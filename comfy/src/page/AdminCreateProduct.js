@@ -230,7 +230,6 @@ function AdminCreateProduct() {
     try {
       e.preventDefault();
       const formData = new FormData();
-
       formData.append('name', product.name);
       formData.append('type', product.type);
       formData.append('description', product.description);
@@ -244,22 +243,6 @@ function AdminCreateProduct() {
       formData.append('wetprice', product.wetprice);
       formData.append('dryprice', product.dryprice);
       formData.append('honeyprice', product.honeyprice);
-      // formData.append(
-      //   'price',
-      //   JSON.stringify([product.wetprice, product.dryprice, product.honeyprice])
-      // );
-      // formData.append(
-      //   'status',
-      //   JSON.stringify([
-      //     product.wetstatus,
-      //     product.drystatus,
-      //     product.honeystatus,
-      //   ])
-      // );
-      // console.log(formData);
-      // for (var pair of formData.entries()) {
-      //   console.log(pair[0] + ', ' + pair[1]);
-      // }
 
       const res = await axios.post('/products/create-product', formData);
       window.location.reload();

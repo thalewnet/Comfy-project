@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
 import all from '../image/all.png';
-import Card4 from '../component/Card4.js';
 import ProductMenu from '../component/product/ProductMenu';
 import axios from '../config/axios';
+import Card6 from '../component/Card6';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -112,12 +112,11 @@ const Decoration = styled.div`
   }
 `;
 
-function Allproduct() {
+function AdminAllproduct() {
   const [product, setProduct] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get('/products');
-      // console.log(res.data.products);
       setProduct(res.data.products);
     };
     fetchData();
@@ -135,7 +134,7 @@ function Allproduct() {
       <div className="item-card">
         {product.map((item) => (
           <div className="productCard" key={item.id}>
-            <Card4 item={item} />
+            <Card6 item={item} />
           </div>
         ))}
       </div>
@@ -143,4 +142,4 @@ function Allproduct() {
   );
 }
 
-export default Allproduct;
+export default AdminAllproduct;

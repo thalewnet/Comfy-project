@@ -65,13 +65,13 @@ const Decoration = styled.div`
     }
   }
 `;
-function Card4({ item }) {
+function Card6({ item }) {
   const { name, imageUrl, id } = item;
   const history = useHistory();
   const handleClickToProduct = (e) => {
     try {
       e.preventDefault();
-      history.push(`/productname/${id}`);
+      history.push(`/admin-product-update/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -101,4 +101,4 @@ function Card4({ item }) {
   );
 }
 
-export default Card4;
+export default Card6;

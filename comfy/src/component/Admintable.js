@@ -47,7 +47,7 @@ const Decoration = styled.div`
   }
 `;
 
-function Admintable() {
+function Admintable({ orderLists }) {
   return (
     <Decoration>
       <table className="admintable">
@@ -58,50 +58,27 @@ function Admintable() {
           <th>Order status</th>
           <th></th>
         </tr>
-        <tr>
-          <td>CFF-001</td>
-          <td>Thapanaphong</td>
-          <td>860</td>
-          <td>Waiting for confirm</td>
-          <td>
-            <Link to={'/admin-ordercheck'} className="edit-btn">
-              Edit
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td>CFF-002</td>
-          <td>Thapanaphong</td>
-          <td>860</td>
-          <td>Waiting for confirm</td>
-          <td>
-            <Link to={'/admin-ordercheck'} className="edit-btn">
-              Edit
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td>CFF-003</td>
-          <td>Thapanaphong</td>
-          <td>860</td>
-          <td>Waiting for confirm</td>
-          <td>
-            <Link to={'/admin-ordercheck'} className="edit-btn">
-              Edit
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td>CFF-004</td>
-          <td>Thapanaphong</td>
-          <td>860</td>
-          <td>Waiting for confirm</td>
-          <td>
-            <Link to={'/admin-ordercheck'} className="edit-btn">
-              Edit
-            </Link>
-          </td>
-        </tr>
+        {orderLists?.map((item) => (
+          <tr>
+            <td>CF-{item.id}</td>
+            <td>{`${item.User.firstName}  ${item.User.lastName} `}</td>
+            <td>{item.totalPrice}</td>
+            <td>
+              {!item.ispaid
+                ? 'Waiting for confirm payment'
+                : !item.isverified
+                ? 'Waiting for verified order details'
+                : !item.issent
+                ? 'Waiting for packing and Shipping'
+                : 'Done'}
+            </td>
+            <td>
+              <Link to={`/admin-ordercheck/${item.id}`} className="edit-btn">
+                Edit
+              </Link>
+            </td>
+          </tr>
+        ))}
       </table>
     </Decoration>
   );

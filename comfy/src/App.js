@@ -61,7 +61,10 @@ function App() {
                   component={Adminupdatedproduct}
                 />
                 <Route path="/admin-orderstatus" component={Adminorderstatus} />
-                <Route path="/admin-ordercheck" component={Adminordercheck} />
+                <Route
+                  path="/admin-ordercheck/:id"
+                  component={Adminordercheck}
+                />
                 <Route path="/admin-allproducts" component={AdminAllproduct} />
                 <Route path="/test2" component={Adminordercheck} />
                 <Route path="/" component={Homepage} />

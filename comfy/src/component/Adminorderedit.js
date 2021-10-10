@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import slip from '../image/slip.jpg';
+import axios from '../config/axios';
 const Decoration = styled.div`
   * {
     margin: 0;
@@ -66,57 +66,194 @@ const Decoration = styled.div`
   }
   .update-btn {
     width: 90%;
-    background: #5c9db1;
+    background: #396ce3;
     border-radius: 5px;
     height: 30px;
     margin-top: 15px;
     color: whitesmoke;
+    cursor: pointer;
   }
 
   .slip img {
     width: 200px;
     height: 328px;
   }
+  .text-status-false {
+    color: red;
+  }
+
+  .text-status-true {
+    color: lime;
+  }
+
+  .text-orderitems {
+    font-size: 14px;
+  }
 `;
-function Adminorderedit() {
+function Adminorderedit({ order, id }) {
+  const [orderInfo, setOrderInfo] = useState({
+    ispaid: order.ispaid,
+    isverified: order.isverified,
+    issent: order.issent,
+    trackingNumber: order.trackingNumber,
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/orders/adminorder/${id}`);
+        console.log('fetch', res.data.order);
+        setOrderInfo((cur) => ({
+          ...cur,
+          ispaid: res.data.order?.ispaid,
+          isverified: res.data.order.isverified,
+          issent: res.data.order.issent,
+          trackingNumber: res.data.order.trackingNumber,
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+  const arrOrderItems = order.OrderItems?.map(
+    (item) =>
+      `${item.Sku?.Product?.name} ${item.Sku?.process} ${item.roast} roast ${item.grind} grind ${item.weight} grams ${item.amount} ea`
+  );
+  const handleChangeInfo = (e) => {
+    if (
+      e.target.name === 'ispaid' ||
+      e.target.name === 'issent' ||
+      e.target.name === 'isverified'
+    ) {
+      setOrderInfo((cur) => ({ ...cur, [e.target.name]: e.target.checked }));
+    } else {
+      setOrderInfo((cur) => ({ ...cur, [e.target.name]: e.target.value }));
+    }
+  };
+
+  const handleClickUpdatedOrder = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(orderInfo);
+      await axios.put(`/orders/${id}`, orderInfo);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Decoration>
       <div className="order-container">
-        <div className="order-name">Order: CFF-001</div>
+        <div className="order-name">Order: CF-{id}</div>
         <div className="order-info-container">
           <div className="slip">
-            <img src={slip} alt="" />
+            <img src={order.paymentSlip} alt="slip" />
           </div>
           <div className="order-info">
             <div className="order-details">
-              <p>1.Doimonchong Honey process Light roast Whole bean 500 grams</p>
-              <p>2.MaeChanTai Washed / Wat process Light roast Medium ground 500 grams</p>
-              <p>3.Doichang Washed / Wat process Light roast Fined ground 250 grams</p>
-              <p>Total: 1090 &#3647;</p>
+              {arrOrderItems?.map((item, idx) => (
+                <p className="text-orderitems" key={idx}>{`${
+                  idx + 1
+                }. ${item}`}</p>
+              ))}
+
+              <p className="text-orderitems">
+                Total: {order.totalPrice} &#3647;
+              </p>
             </div>
             <div className="customer-address">
-              <p>Thapanaphong Lewgaseamsant</p>
-              <p>134/99 Pracharat 1 Soi14 BangSue BangSue 10800</p>
-              <p>Telphone: 094181827</p>
+              <p className="text-orderitems">{`${order.User?.firstName} ${order.User?.lastName}`}</p>
+              <p className="text-orderitems">{`${order.Shipment?.address} ${order.Shipment?.subdistrict} ${order.Shipment?.district} ${order.Shipment?.zipcode}`}</p>
+              <p className="text-orderitems">
+                Telphone: {order.Shipment?.phoneNumber}
+              </p>
             </div>
           </div>
         </div>
         <div className="tracking">
           <label for="track">Tracking number:</label>
-          <input type="text" name="track" />
+          <input
+            type="text"
+            name="trackingNumber"
+            onChange={handleChangeInfo}
+            disabled={orderInfo.issent ? true : false}
+          />
         </div>
         <div className="order-check-status">
           <p>Order status:</p>
           <form>
             <div className="status-check">
-              <input type="checkbox" id="slip" name="slip" value="slipchecked" />
-              <label for="slip">Checking Slip payment</label>
-              <input type="checkbox" id="shipping" name="ship" value="shippingchecked" />
-              <label for="ship"> Waitting for Shipping</label>
-              <input type="checkbox" id="done" name="done" value="donechecked" />
-              <label for="done"> Done</label>
+              <input
+                type="checkbox"
+                id="slip"
+                name="ispaid"
+                onChange={handleChangeInfo}
+                checked={orderInfo.ispaid ? true : false}
+              />
+              <label
+                className={`text-status-${orderInfo.ispaid ? 'true' : 'false'}`}
+                htmlFor="slip"
+              >
+                Check Slip payment
+              </label>
+              <input
+                type="checkbox"
+                id="verified"
+                name="isverified"
+                onChange={handleChangeInfo}
+                checked={orderInfo.isverified ? true : false}
+              />
+              <label
+                className={`text-status-${
+                  orderInfo.isverified ? 'true' : 'false'
+                }`}
+                htmlFor="verified"
+              >
+                Verify order
+              </label>
+              <input
+                type="checkbox"
+                id="shipping"
+                name="issent"
+                onChange={handleChangeInfo}
+                checked={orderInfo.issent ? true : false}
+              />
+              <label
+                className={`text-status-${orderInfo.issent ? 'true' : 'false'}`}
+                htmlFor="ship"
+              >
+                Shipping
+              </label>
+              <input
+                type="checkbox"
+                id="done"
+                name="done"
+                checked={
+                  orderInfo.issent &&
+                  orderInfo.ispaid &&
+                  orderInfo.isverified &&
+                  orderInfo.trackingNumber !== '' &&
+                  orderInfo.trackingNumber !== null
+                }
+              />
+              <label
+                className={`text-status-${
+                  orderInfo.issent &&
+                  orderInfo.ispaid &&
+                  orderInfo.isverified &&
+                  orderInfo.trackingNumber !== '' &&
+                  orderInfo.trackingNumber !== null
+                    ? 'true'
+                    : 'false'
+                }`}
+                htmlFor="done"
+              >
+                Done
+              </label>
             </div>
-            <button className="update-btn">Updated</button>
+            <button className="update-btn" onClick={handleClickUpdatedOrder}>
+              Updated
+            </button>
           </form>
         </div>
       </div>

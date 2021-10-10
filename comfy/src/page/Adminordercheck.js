@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Cargo from '../image/cargo.png';
 import Adminorderedit from '../component/Adminorderedit.js';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Decoration = styled.div`
   padding-top: 64px;
@@ -93,12 +95,25 @@ const Decoration = styled.div`
   }
 `;
 function Adminordercheck() {
+  const { id } = useParams();
+  const [order, setOrder] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/orders/adminorder/${id}`);
+        setOrder(res.data.order);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <Decoration>
       <div className="bar">
         <div className="inside">
           <img className="all" src={Cargo} alt="truck"></img>
-          <p className="text-bar">Order CFF-001 </p>
+          <p className="text-bar">Order CF-{id} </p>
         </div>
       </div>
       <div className="text-box">
@@ -107,12 +122,12 @@ function Adminordercheck() {
 
       <div className="container">
         <div className="container-inside">
-          <Adminorderedit />
-          <a href="/homepage">
+          <Adminorderedit order={order} id={id} />
+          <Link to="/admin-orderstatus">
             <button type="button" className="btn">
               Back to order table
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </Decoration>

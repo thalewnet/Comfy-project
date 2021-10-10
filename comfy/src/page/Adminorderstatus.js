@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Cargo from '../image/cargo.png';
 import Admintable from '../component/Admintable.js';
-
+import { Link } from 'react-router-dom';
+import axios from '../config/axios';
 const Decoration = styled.div`
   padding-top: 64px;
 
@@ -94,6 +95,18 @@ const Decoration = styled.div`
   }
 `;
 function Adminorderstatus() {
+  const [orderLists, setOrderLists] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('/orders');
+        setOrderLists(res.data.orders);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <Decoration>
       <div className="bar">
@@ -108,12 +121,12 @@ function Adminorderstatus() {
 
       <div className="container">
         <div className="container-inside">
-          <Admintable />
-          <a href="/homepage">
+          <Admintable orderLists={orderLists} />
+          <Link to={'/'}>
             <button type="button" className="btn">
               Back to homepage
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </Decoration>

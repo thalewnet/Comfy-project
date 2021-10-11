@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import Path from '../component/Path';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from '../config/axios';
 import { AuthContext } from '../contexts/authContext';
 import { validateInput, validateProductOption } from '../services/validation';

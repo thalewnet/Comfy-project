@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Cartdetailcomponent from '../component/Cartdetailcomponent';
@@ -119,7 +119,7 @@ const Decoration = styled.div`
 `;
 
 function Cart() {
-  const { checkOutItems, setCheckOutItems } = useContext(OrderContext);
+  const { checkOutItems } = useContext(OrderContext);
   const [error, setError] = useState({});
   const history = useHistory();
   const handleSummaryOrder = (e) => {
@@ -131,7 +131,7 @@ function Cart() {
       }));
     } else {
       history.push('/delivery');
-      console.log(checkOutItems);
+      // console.log(checkOutItems);
     }
   };
   return (

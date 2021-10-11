@@ -118,14 +118,6 @@ const Decoration = styled.div`
   }
 `;
 
-const MOCK_IMPORT = [
-  'Brazil',
-  'Columbia',
-  'Ethiopia',
-  'Kenya',
-  'Panama',
-  'Peru',
-];
 function Importproduct() {
   const [product, setProduct] = useState([]);
   useEffect(() => {
@@ -151,11 +143,6 @@ function Importproduct() {
             <Card4 item={item} />
           </div>
         ))}
-        {/* {MOCK_IMPORT.map((item, idx) => (
-          <div className="bs" key={idx}>
-            <Card4 name={item} />
-          </div>
-        ))} */}
       </div>
     </Decoration>
   );

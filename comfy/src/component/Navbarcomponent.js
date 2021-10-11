@@ -218,7 +218,7 @@ function Navbarcomponent() {
                 </label>
               </div>
               <li>
-                {!user.role === 'user' ? (
+                {user?.role === 'user' ? (
                   <Link to={'/allproducts'} className="product">
                     All Products
                   </Link>
@@ -228,7 +228,7 @@ function Navbarcomponent() {
                   </Link>
                 )}
               </li>
-              {!user.role === 'user' ? (
+              {user?.role === 'user' || !user ? (
                 <>
                   <li>
                     <Link to={'/localproducts'} className="product">

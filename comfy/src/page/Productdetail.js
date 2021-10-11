@@ -213,7 +213,7 @@ function Productdetail() {
     skuId: '',
     amount: 1,
     productId: id,
-    userId: user.id,
+    userId: user?.id,
   };
   const [error, setError] = useState({});
   const [product, setProduct] = useState({});
@@ -321,14 +321,14 @@ function Productdetail() {
     try {
       const errMessage = validateProductOption(productOption);
       setError(errMessage);
-      console.log('submit', productOption);
-      const res = await axios.post('/carts', {
+      // console.log('submit', productOption);
+      await axios.post('/carts', {
         ...productOption,
         price: productOption?.price * productOption.amount,
       });
       // console.log(res.data.cart);
       // setCartItem((cur) => [...cur, res.data.cart]);
-      console.log('push..........................');
+
       history.push('/cart');
     } catch (err) {
       console.log(err);

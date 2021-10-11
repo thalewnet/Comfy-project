@@ -147,6 +147,15 @@ const Decoration = styled.div`
   .process-inactive {
     color: lightgray;
   }
+
+  .alert-box {
+    margin-top: 20px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px dashed #95e88e;
+    background: #d0ffcc;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  }
   @media (max-width: 1110px) {
     .container {
       flex-direction: column;
@@ -184,6 +193,9 @@ const Decoration = styled.div`
   }
 `;
 function Adminupdatedproduct() {
+  const [toggle, setToggle] = useState(false);
+
+  const [updateMsg, setUpdateMsg] = useState('');
   const [product, setProduct] = useState({
     name: '',
     type: '',
@@ -229,7 +241,8 @@ function Adminupdatedproduct() {
       }
     };
     fetchData();
-  }, []);
+  }, [toggle]);
+
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
     if (!selectedFile) {
@@ -245,6 +258,7 @@ function Adminupdatedproduct() {
   }, [selectedFile]);
 
   const handleSelectImage = (e) => {
+    setUpdateMsg('');
     if (!e.target.files || e.target.files.length === 0) {
       setSelectedFile(null);
       return;
@@ -257,6 +271,7 @@ function Adminupdatedproduct() {
   console.log(selectedFile);
 
   const handleChangeProduct = (e) => {
+    setUpdateMsg('');
     setProduct((cur) => ({ ...cur, [e.target.name]: e.target.value }));
   };
 
@@ -281,14 +296,14 @@ function Adminupdatedproduct() {
       formData.append('dryId', product.honeyprice);
       formData.append('honeyId', product.honeyprice);
 
-      // router.put('/update-product/:productId/:wetSkuId/:drySkuId/:honeySkuId', updateProduct);
       const res = await axios.put(
         `/products/update-product/${id}/${product.wetSkuId}/${product.drySkuId}/${product.honeySkuId}`,
         formData
       );
-      console.log(res);
+      setToggle((cur) => !cur);
+      setUpdateMsg(res.data.message);
     } catch (err) {
-      console.log(err);
+      console.dir(err);
     }
   };
   return (
@@ -301,24 +316,24 @@ function Adminupdatedproduct() {
               <img className="preview-image" src={preview} alt="" />
             )}
             {prevImg && <img className="preview-image" src={prevImg} alt="" />}
-            <div>
-              <div className="upload-area">
-                <div className="upload-icon">
-                  <i>
-                    <FontAwesomeIcon icon={faFileUpload} />
-                  </i>
-                </div>
-                <label htmlFor="upload" className="browse">
-                  Browse file
-                </label>
-                <input
-                  type="file"
-                  id="upload"
-                  onChange={handleSelectImage}
-                  hidden
-                />
+
+            <div className="upload-area">
+              <div className="upload-icon">
+                <i>
+                  <FontAwesomeIcon icon={faFileUpload} />
+                </i>
               </div>
+              <label htmlFor="upload" className="browse">
+                Browse file
+              </label>
+              <input
+                type="file"
+                id="upload"
+                onChange={handleSelectImage}
+                hidden
+              />
             </div>
+            {updateMsg && <div className="alert-box">{updateMsg}</div>}
           </div>
 
           <div className="col-right">
@@ -380,22 +395,25 @@ function Adminupdatedproduct() {
                     disabled={!product?.wetstatus}
                   />
                   <button
+                    type="button"
                     className="btn-active"
-                    onClick={() =>
-                      setProduct((cur) => ({ ...cur, wetstatus: true }))
-                    }
+                    onClick={() => {
+                      setUpdateMsg('');
+                      setProduct((cur) => ({ ...cur, wetstatus: true }));
+                    }}
                   >
                     Active
                   </button>
                   <button
+                    type="button"
                     className="btn-inactive"
-                    onClick={() =>
-                      setProduct((cur) => ({ ...cur, wetstatus: false }))
-                    }
+                    onClick={() => {
+                      setUpdateMsg('');
+                      setProduct((cur) => ({ ...cur, wetstatus: false }));
+                    }}
                   >
                     Inactive
                   </button>
-                  <button className="btn-edit">Edit</button>
                 </div>
                 <div className="controlinput">
                   <label
@@ -417,22 +435,25 @@ function Adminupdatedproduct() {
                     disabled={!product?.drystatus}
                   />
                   <button
+                    type="button"
                     className="btn-active"
-                    onClick={() =>
-                      setProduct((cur) => ({ ...cur, drystatus: true }))
-                    }
+                    onClick={() => {
+                      setUpdateMsg('');
+                      setProduct((cur) => ({ ...cur, drystatus: true }));
+                    }}
                   >
                     Active
                   </button>
                   <button
+                    type="button"
                     className="btn-inactive"
-                    onClick={() =>
-                      setProduct((cur) => ({ ...cur, drystatus: false }))
-                    }
+                    onClick={() => {
+                      setUpdateMsg('');
+                      setProduct((cur) => ({ ...cur, drystatus: false }));
+                    }}
                   >
                     Inactive
                   </button>
-                  <button className="btn-edit">Edit</button>
                 </div>
 
                 <div className="controlinput">
@@ -455,22 +476,25 @@ function Adminupdatedproduct() {
                     disabled={!product?.honeystatus}
                   />
                   <button
+                    type="button"
                     className="btn-active"
-                    onClick={() =>
-                      setProduct((cur) => ({ ...cur, honeystatus: true }))
-                    }
+                    onClick={() => {
+                      setUpdateMsg('');
+                      setProduct((cur) => ({ ...cur, honeystatus: true }));
+                    }}
                   >
                     Active
                   </button>
                   <button
+                    type="button"
                     className="btn-inactive"
-                    onClick={() =>
-                      setProduct((cur) => ({ ...cur, honeystatus: false }))
-                    }
+                    onClick={() => {
+                      setUpdateMsg('');
+                      setProduct((cur) => ({ ...cur, honeystatus: false }));
+                    }}
                   >
                     Inactive
                   </button>
-                  <button className="btn-edit">Edit</button>
                 </div>
 
                 <h3>Product details</h3>
